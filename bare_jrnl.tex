@@ -1,0 +1,1422 @@
+
+%% bare_jrnl.tex
+%% V1.4b
+%% 2015/08/26
+%% by Michael Shell
+%% see http://www.michaelshell.org/
+%% for current contact information.
+%%
+%% This is a skeleton file demonstrating the use of IEEEtran.cls
+%% (requires IEEEtran.cls version 1.8b or later) with an IEEE
+%% journal paper.
+%%
+%% Support sites:
+%% http://www.michaelshell.org/tex/ieeetran/
+%% http://www.ctan.org/pkg/ieeetran
+%% and
+%% http://www.ieee.org/
+
+%%*************************************************************************
+%% Legal Notice:
+%% This code is offered as-is without any warranty either expressed or
+%% implied; without even the implied warranty of MERCHANTABILITY or
+%% FITNESS FOR A PARTICULAR PURPOSE! 
+%% User assumes all risk.
+%% In no event shall the IEEE or any contributor to this code be liable for
+%% any damages or losses, including, but not limited to, incidental,
+%% consequential, or any other damages, resulting from the use or misuse
+%% of any information contained here.
+%%
+%% All comments are the opinions of their respective authors and are not
+%% necessarily endorsed by the IEEE.
+%%
+%% This work is distributed under the LaTeX Project Public License (LPPL)
+%% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
+%% distributed and modified. A copy of the LPPL, version 1.3, is included
+%% in the base LaTeX documentation of all distributions of LaTeX released
+%% 2003/12/01 or later.
+%% Retain all contribution notices and credits.
+%% ** Modified files should be clearly indicated as such, including  **
+%% ** renaming them and changing author support contact information. **
+%%*************************************************************************
+
+
+% *** Authors should verify (and, if needed, correct) their LaTeX system  ***
+% *** with the testflow diagnostic prior to trusting their LaTeX platform ***
+% *** with production work. The IEEE's font choices and paper sizes can   ***
+% *** trigger bugs that do not appear when using other class files.       ***                          ***
+% The testflow support page is at:
+% http://www.michaelshell.org/tex/testflow/
+
+
+
+\documentclass[journal]{IEEEtran}
+%
+% If IEEEtran.cls has not been installed into the LaTeX system files,
+% manually specify the path to it like:
+% \documentclass[journal]{../sty/IEEEtran}
+\newcounter{MYtempeqncnt}
+
+
+
+
+% Some very useful LaTeX packages include:
+% (uncomment the ones you want to load)
+
+
+% *** MISC UTILITY PACKAGES ***
+%
+%\usepackage{ifpdf}
+% Heiko Oberdiek's ifpdf.sty is very useful if you need conditional
+% compilation based on whether the output is pdf or dvi.
+% usage:
+% \ifpdf
+%   % pdf code
+% \else
+%   % dvi code
+% \fi
+% The latest version of ifpdf.sty can be obtained from:
+% http://www.ctan.org/pkg/ifpdf
+% Also, note that IEEEtran.cls V1.7 and later provides a builtin
+% \ifCLASSINFOpdf conditional that works the same way.
+% When switching from latex to pdflatex and vice-versa, the compiler may
+% have to be run twice to clear warning/error messages.
+
+
+
+
+
+
+% *** CITATION PACKAGES ***
+%
+\usepackage{cite}
+% cite.sty was written by Donald Arseneau
+% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
+% \cite{} output to follow that of the IEEE. Loading the cite package will
+% result in citation numbers being automatically sorted and properly
+% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
+% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
+% \cite will automatically add leading space, if needed. Use cite.sty's
+% noadjust option (cite.sty V3.8 and later) if you want to turn this off
+% such as if a citation ever needs to be enclosed in parenthesis.
+% cite.sty is already installed on most LaTeX systems. Be sure and use
+% version 5.0 (2009-03-20) and later if using hyperref.sty.
+% The latest version can be obtained at:
+% http://www.ctan.org/pkg/cite
+% The documentation is contained in the cite.sty file itself.
+
+
+
+
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\usepackage{subcaption} % for subfigures
+\ifCLASSINFOpdf
+   \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  % \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+% graphicx was written by David Carlisle and Sebastian Rahtz. It is
+% required if you want graphics, photos, etc. graphicx.sty is already
+% installed on most LaTeX systems. The latest version and documentation
+% can be obtained at: 
+% http://www.ctan.org/pkg/graphicx
+% Another good source of documentation is "Using Imported Graphics in
+% LaTeX2e" by Keith Reckdahl which can be found at:
+% http://www.ctan.org/pkg/epslatex
+%
+% latex, and pdflatex in dvi mode, support graphics in encapsulated
+% postscript (.eps) format. pdflatex in pdf mode supports graphics
+% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
+% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
+% not a bitmapped formats (.jpeg, .png). The IEEE frowns on bitmapped formats
+% which can result in "jaggedy"/blurry rendering of lines and letters as
+% well as large increases in file sizes.
+%
+% You can find documentation about the pdfTeX application at:
+% http://www.tug.org/applications/pdftex
+
+
+
+
+
+% *** MATH PACKAGES ***
+%
+\usepackage{amsmath}
+% A popular package from the American Mathematical Society that provides
+% many useful and powerful commands for dealing with mathematics.
+%
+% Note that the amsmath package sets \interdisplaylinepenalty to 10000
+% thus preventing page breaks from occurring within multiline equations. Use:
+%\interdisplaylinepenalty=2500
+% after loading amsmath to restore such page breaks as IEEEtran.cls normally
+% does. amsmath.sty is already installed on most LaTeX systems. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/pkg/amsmath
+
+
+
+
+
+% *** SPECIALIZED LIST PACKAGES ***
+%
+%\usepackage{algorithmic}
+% algorithmic.sty was written by Peter Williams and Rogerio Brito.
+% This package provides an algorithmic environment fo describing algorithms.
+% You can use the algorithmic environment in-text or within a figure
+% environment to provide for a floating algorithm. Do NOT use the algorithm
+% floating environment provided by algorithm.sty (by the same authors) or
+% algorithm2e.sty (by Christophe Fiorio) as the IEEE does not use dedicated
+% algorithm float types and packages that provide these will not provide
+% correct IEEE style captions. The latest version and documentation of
+% algorithmic.sty can be obtained at:
+% http://www.ctan.org/pkg/algorithms
+% Also of interest may be the (relatively newer and more customizable)
+% algorithmicx.sty package by Szasz Janos:
+% http://www.ctan.org/pkg/algorithmicx
+
+
+
+
+% *** ALIGNMENT PACKAGES ***
+%
+\usepackage{array}
+% Frank Mittelbach's and David Carlisle's array.sty patches and improves
+% the standard LaTeX2e array and tabular environments to provide better
+% appearance and additional user controls. As the default LaTeX2e table
+% generation code is lacking to the point of almost being broken with
+% respect to the quality of the end results, all users are strongly
+% advised to use an enhanced (at the very least that provided by array.sty)
+% set of table tools. array.sty is already installed on most systems. The
+% latest version and documentation can be obtained at:
+% http://www.ctan.org/pkg/array
+
+
+% IEEEtran contains the IEEEeqnarray family of commands that can be used to
+% generate multiline equations as well as matrices, tables, etc., of high
+% quality.
+
+
+
+
+% *** SUBFIGURE PACKAGES ***
+%\ifCLASSOPTIONcompsoc
+%  \usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+%\else
+%  \usepackage[caption=false,font=footnotesize]{subfig}
+%\fi
+% subfig.sty, written by Steven Douglas Cochran, is the modern replacement
+% for subfigure.sty, the latter of which is no longer maintained and is
+% incompatible with some LaTeX packages including fixltx2e. However,
+% subfig.sty requires and automatically loads Axel Sommerfeldt's caption.sty
+% which will override IEEEtran.cls' handling of captions and this will result
+% in non-IEEE style figure/table captions. To prevent this problem, be sure
+% and invoke subfig.sty's "caption=false" package option (available since
+% subfig.sty version 1.3, 2005/06/28) as this is will preserve IEEEtran.cls
+% handling of captions.
+% Note that the Computer Society format requires a larger sans serif font
+% than the serif footnote size font used in traditional IEEE formatting
+% and thus the need to invoke different subfig.sty package options depending
+% on whether compsoc mode has been enabled.
+%
+% The latest version and documentation of subfig.sty can be obtained at:
+% http://www.ctan.org/pkg/subfig
+
+
+
+
+% *** FLOAT PACKAGES ***
+%
+%\usepackage{fixltx2e}
+% fixltx2e, the successor to the earlier fix2col.sty, was written by
+% Frank Mittelbach and David Carlisle. This package corrects a few problems
+% in the LaTeX2e kernel, the most notable of which is that in current
+% LaTeX2e releases, the ordering of single and double column floats is not
+% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
+% single column figure to be placed prior to an earlier double column
+% figure.
+% Be aware that LaTeX2e kernels dated 2015 and later have fixltx2e.sty's
+% corrections already built into the system in which case a warning will
+% be issued if an attempt is made to load fixltx2e.sty as it is no longer
+% needed.
+% The latest version and documentation can be found at:
+% http://www.ctan.org/pkg/fixltx2e
+
+
+\usepackage{stfloats}
+% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
+% the ability to do double column floats at the bottom of the page as well
+% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
+% LaTeX2e). It also provides a command:
+%\fnbelowfloat
+% to enable the placement of footnotes below bottom floats (the standard
+% LaTeX2e kernel puts them above bottom floats). This is an invasive package
+% which rewrites many portions of the LaTeX2e float routines. It may not work
+% with other packages that modify the LaTeX2e float routines. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/pkg/stfloats
+% Do not use the stfloats baselinefloat ability as the IEEE does not allow
+% \baselineskip to stretch. Authors submitting work to the IEEE should note
+% that the IEEE rarely uses double column equations and that authors should try
+% to avoid such use. Do not be tempted to use the cuted.sty or midfloat.sty
+% packages (also by Sigitas Tolusis) as the IEEE does not format its papers in
+% such ways.
+% Do not attempt to use stfloats with fixltx2e as they are incompatible.
+% Instead, use Morten Hogholm'a dblfloatfix which combines the features
+% of both fixltx2e and stfloats:
+%
+% \usepackage{dblfloatfix}
+% The latest version can be found at:
+% http://www.ctan.org/pkg/dblfloatfix
+
+
+
+
+%\ifCLASSOPTIONcaptionsoff
+%  \usepackage[nomarkers]{endfloat}
+% \let\MYoriglatexcaption\caption
+% \renewcommand{\caption}[2][\relax]{\MYoriglatexcaption[#2]{#2}}
+%\fi
+% endfloat.sty was written by James Darrell McCauley, Jeff Goldberg and 
+% Axel Sommerfeldt. This package may be useful when used in conjunction with 
+% IEEEtran.cls'  captionsoff option. Some IEEE journals/societies require that
+% submissions have lists of figures/tables at the end of the paper and that
+% figures/tables without any captions are placed on a page by themselves at
+% the end of the document. If needed, the draftcls IEEEtran class option or
+% \CLASSINPUTbaselinestretch interface can be used to increase the line
+% spacing as well. Be sure and use the nomarkers option of endfloat to
+% prevent endfloat from "marking" where the figures would have been placed
+% in the text. The two hack lines of code above are a slight modification of
+% that suggested by in the endfloat docs (section 8.4.1) to ensure that
+% the full captions always appear in the list of figures/tables - even if
+% the user used the short optional argument of \caption[]{}.
+% IEEE papers do not typically make use of \caption[]'s optional argument,
+% so this should not be an issue. A similar trick can be used to disable
+% captions of packages such as subfig.sty that lack options to turn off
+% the subcaptions:
+% For subfig.sty:
+% \let\MYorigsubfloat\subfloat
+% \renewcommand{\subfloat}[2][\relax]{\MYorigsubfloat[]{#2}}
+% However, the above trick will not work if both optional arguments of
+% the \subfloat command are used. Furthermore, there needs to be a
+% description of each subfigure *somewhere* and endfloat does not add
+% subfigure captions to its list of figures. Thus, the best approach is to
+% avoid the use of subfigure captions (many IEEE journals avoid them anyway)
+% and instead reference/explain all the subfigures within the main caption.
+% The latest version of endfloat.sty and its documentation can obtained at:
+% http://www.ctan.org/pkg/endfloat
+%
+% The IEEEtran \ifCLASSOPTIONcaptionsoff conditional can also be used
+% later in the document, say, to conditionally put the References on a 
+% page by themselves.
+
+
+
+
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+\usepackage{url}
+% url.sty was written by Donald Arseneau. It provides better support for
+% handling and breaking URLs. url.sty is already installed on most LaTeX
+% systems. The latest version and documentation can be obtained at:
+% http://www.ctan.org/pkg/url
+% Basically, \url{my_url_here}.
+
+
+
+
+% *** Do not adjust lengths that control margins, column widths, etc. ***
+% *** Do not use packages that alter fonts (such as pslatex).         ***
+% There should be no need to do such things with IEEEtran.cls V1.6 and later.
+% (Unless specifically asked to do so by the journal or conference you plan
+% to submit to, of course. )
+
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+\begin{document}
+%
+% paper title
+% Titles are generally capitalized except for words such as a, an, and, as,
+% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
+% not capitalized unless they are the first or last word of the title.
+% Linebreaks \\ can be used within to get better formatting as desired.
+% Do not put math or special symbols in the title.
+\title{Performance Analysis of IEEE 802.11ax OFDMA-based Random Access}
+%
+%
+% author names and IEEE memberships
+% note positions of commas and nonbreaking spaces ( ~ ) LaTeX will not break
+% a structure at a ~ so this keeps an author's name from being broken across
+% two lines.
+% use \thanks{} to gain access to the first footnote area
+% a separate \thanks must be used for each paragraph as LaTeX2e's \thanks
+% was not built to handle multiple paragraphs
+%
+
+\author{Yang~Hang,
+        Der-Jiunn~Deng,~\IEEEmembership{Member,~IEEE,} 
+        and~Kwang-Cheng Chen,~\IEEEmembership{Fellow,~IEEE}% <-this % stops a space
+\thanks{M. Shell was with the Department
+of Electrical and Computer Engineering, Georgia Institute of Technology, Atlanta,
+GA, 30332 USA e-mail: (see http://www.michaelshell.org/contact.html).}% <-this % stops a space
+\thanks{J. Doe and J. Doe are with Anonymous University.}% <-this % stops a space
+\thanks{Manuscript received April 19, 2005; revised August 26, 2015.}}
+
+% note the % following the last \IEEEmembership and also \thanks - 
+% these prevent an unwanted space from occurring between the last author name
+% and the end of the author line. i.e., if you had this:
+% 
+% \author{....lastname \thanks{...} \thanks{...} }
+%                     ^------------^------------^----Do not want these spaces!
+%
+% a space would be appended to the last name and could cause every name on that
+% line to be shifted left slightly. This is one of those "LaTeX things". For
+% instance, "\textbf{A} \textbf{B}" will typeset as "A B" not "AB". To get
+% "AB" then you have to do: "\textbf{A}\textbf{B}"
+% \thanks is no different in this regard, so shield the last } of each \thanks
+% that ends a line with a % and do not let a space in before the next \thanks.
+% Spaces after \IEEEmembership other than the last one are OK (and needed) as
+% you are supposed to have spaces between the names. For what it is worth,
+% this is a minor point as most people would not even notice if the said evil
+% space somehow managed to creep in.
+
+
+
+% The paper headers
+\markboth{Journal of \LaTeX\ Class Files,~Vol.~14, No.~8, August~2015}%
+{Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for IEEE Journals}
+% The only time the second header will appear is for the odd numbered pages
+% after the title page when using the twoside option.
+% 
+% *** Note that you probably will NOT want to include the author's ***
+% *** name in the headers of peer review papers.                   ***
+% You can use \ifCLASSOPTIONpeerreview for conditional compilation here if
+% you desire.
+
+
+
+
+% If you want to put a publisher's ID mark on the page you can do it like
+% this:
+%\IEEEpubid{0000--0000/00\$00.00~\copyright~2015 IEEE}
+% Remember, if you use this you must call \IEEEpubidadjcol in the second
+% column for its text to clear the IEEEpubid mark.
+
+
+
+% use for special paper notices
+%\IEEEspecialpapernotice{(Invited Paper)}
+
+
+
+
+% make the title area
+\maketitle
+
+% As a general rule, do not put math, special symbols or citations
+% in the abstract or keywords.
+\begin{abstract}
+%\boldmath
+With more and more dense deployment of WiFi, quality-of-experience (QoE) and power save have become the critical concern. 
+IEEE 802.11ax, a task group aimed at high efficient WLAN (HEW), firstly issues OFDMA, i.e., multi-user (MU) PHY. 
+It also prosposes OFDMA-based random access mechanism, which is the focus of this work.
+We firstly illustrate necessary IEEE 802.11ax features which are required to understand procedure of the OFDMA-based random access. 
+Then, we give a Markov chain model to precisely describe the steady state behavior.
+Also we analyze system efficiency and access delay of the random access mechanism. 
+At last we estimate the performance effect of system parameters, including number of resource units (RUs) for random access and contension window size.
+\end{abstract}
+% IEEEtran.cls defaults to using nonbold math in the Abstract.
+% This preserves the distinction between vectors and scalars. However,
+% if the journal you are submitting to favors bold math in the abstract,
+% then you can use LaTeX's standard command \boldmath at the very start
+% of the abstract to achieve this. Many IEEE journals frown on math
+% in the abstract anyway.
+
+% Note that keywords are not normally used for peerreview papers.
+\begin{IEEEkeywords}
+random access, Multi-User PHY, OFDMA, 802.11ax.
+\end{IEEEkeywords}
+
+
+
+
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+
+\section{Introduction}		\label{Intro}
+
+%1. why 802.11ax, dense, DCF, contention, collision
+During last decades, IEEE 802.11 achieved great success in WLAN. Enormous WiFi are deployed for its high speed and simplicity of deployment. 
+The foundation of 802.11 MAC, distributed coordination function (DCF), is a random access mechanism \cite{bianchi2000performance}.
+With DCF, a random access MAC, the star topology of a 802.11 WLAN result in a absolutely unfair queueing. 
+Since in star topology,  access point (AP) needs to transmit all the down-link (DL) traffic, which is often more than $1/2$ traffic loading of the basic service set (BSS), while AP has only $1/n$ chance to access medium where $n$ is number of total stations including AP. It is, thus, an unfair queueing problem.
+What's worse, combining effect of the unstability of random access's nature and the unfair queueing problem, once under a dense scenario, the performance will degrade severely since contention and collision will occupy the channel.
+That lies the defect of legacy 802.11.
+We collectively call them dense deployment problem.
+The dense deployment problem not only degrades throughput but also waste much energy.
+
+%2. ax feature, MU, central control, but OFDMA-random access
+Previous amendments, 802.11n and 802.11ac called high throughput (HT) and very high throughput (VHT) respectively which are aimed at improving throughput, only mitigate the dense deployment problem. 
+The bottleneck at the MAC efficiency is not resolved.
+Thus, 802.11ax task group is issued targeted at high efficiency WLAN (HEW), improving quality of experience (QoE) and power save.
+Confronting the dense deployment problem, 802.11ax permits AP of central control, to schedule both down-link (DL) and up-link (UL) transmission so that contention is much reduced and unfair queueing problem could be resolved.
+IEEE 802.11ax also issues multi-user (MU) PHY which is supported with Orthogonal Frequency Multiple Access (OFDMA), and a special control frame called trigger frame (TF) to implement trigger-based MU UL\cite{draft_ax}. 
+Accordingly, multi-channel random access, the focus of this paper, is of course implemented in 802.11ax, named OFDMA-based random access, since random access is an efficient way for stations to transmit bandwidth request, buffer status report (BSR) etc. 
+Actually, the new MAC is based on DCF since it helps co-exist among BSS and other systems. The difference is that the DCF mainly works on AP which means AP needs to access channel following DCF procedure, while HE-STA (802.11ax STA) is mostly scheduled by AP and even the random access procedure is initialized by AP. 
+
+%3. related work, random acces history ? , clarify OFDMA-based random access is special
+% SU/MU; aloha/CSMA; BEB/UB; saturated/unsaturated
+Random access is a classical topic in data network.
+It originates from Aloha and slotted Aloha \cite{abramson1970aloha}, which are also named collision resolution, with single-user channel. 
+Inherently, collision resolution algorithms can achieve small delay with a large number of lightly loaded nodes \cite{bertsekas1992data}.
+Then CSMA works as typical collision resolution  \cite{kleinrock1975packet}\cite{chen1994medium}, which is accepted by IEEE 802.11 named CSMA/CA \cite{bianchi2000performance}. 
+CSMA/CA has been a popular approach to MAC on unlicensed band for a long time, since it is easily implemented and robust. 
+For random access, the stability is a major concern. 
+% MU PHY
+With the emergence of MU PHY techniques, like MU-MIMO or MU-OFDMA, multi-user (MU) channel random access is proposed.
+We concern about MU-OFDMA.
+With MU channel, randomness extends from time domain to time-frequency domain, 2-dimension.
+The MU random access is mainly adopted by cellular networks, IEEE 802.16 and 3GPP LTE.
+And cellular network only implements random access for initial up-link access. 
+In recent years, several analytical models have been proposed to derive the throughput \cite{zhou2008efficient}\cite{shen2003performance}\cite{choi2006multichannel}, the collision probability\cite{kim2012performance}\cite{seo2011design}, and the access delay \cite{zhou2008efficient}\cite{kim2012performance}\cite{seo2011design}\cite{behroozi1992delay}. 
+In \cite{kim2012performance}, the authors presented an analytical model to evaluate the access success probability and the access delay for UMTS system.
+\cite{choi2006multichannel} designs a 1-persistent type retransmission, i.e., no exponential backoff, to achieve a fast access.  
+In \cite{zhou2008efficient}, a closed-form expression of throughput for OFDMA system is firstly given.
+
+% backoff mechanism
+The backoff mechanism, which is about retransmission when failure occurs, is also important in random access.
+Many works compare performance of two backoff mechanism, binary exponential backoff and uniform backoff  \cite{zhou2008efficient}\cite{seo2011design}\cite{kim2012performance}, which are implemented by IEEE 802.16 and 3GPP LTE respectively.  \cite{wei2015modeling} specifies a model estimating transient behavior of OFDMA system.
+
+%many metrics: throughput, mean and variance of access delay, stability
+All above works about OFDMA random access is an Aloha-type access in cellular network.
+In addition, \cite{GeneralizedOFDMACSMACA} is one of a few works for 802.11. It generalizes CSMA/CA to OFDMA system for 802.11.
+
+%4. our work
+% the first to analyze the 802.11ax random access
+Though OFDMA and multi-channel random access have been employed by IEEE 802.16 and 3GPP LTE for a long time.
+It is the first time for 802.11ax to issue OFDMA and OFDMA-based random access, which is a huge evolution for 802.11.
+And as far as we know, this is the first paper analyzing IEEE 802.11ax OFDMA-based random access. 
+It employs binary exponential backoff and MU PHY under Trigger-based MU UL, which is different from \cite{GeneralizedOFDMACSMACA}.
+Since \cite{bianchi2000performance} proposes an accurate Markov chain model for DCF, we could also reuse this model to generate another Markov chain for 802.11ax to precisely depict the OFDMA-based random access.
+We assume stations are under saturated condition which means they always have packets to transmit.
+The saturated analysis is based on the key assumption of independent collision probability $p$ whatever the packet is retransmitted or not.
+Simulation validates our model to be accurate.
+Then, we estimate the maximum system efficiency and minimum access delay. 
+Since OFDMA-based random access has dynamic and more complicated parameter sets than legacy 802.11, we evaluate effect of a variety of parameter sets and at last propose rules for AP to configure the parameter set. 
+
+The paper is organized as follows.
+More explanations of 802.11ax features are given in section \ref{sec_ax_feature}. 
+In section \ref{sec_RA_illu}, a detailed illustration of OFDMA-based random access procedure is presented.
+Section \ref{sec_sys_model} contains the system model and performance analysis, including system efficiency and access delay, of the random access mechanism. 
+Then section \ref{sec_model_val} shows simulation results compared with analysis results, which validates the model.
+In section \ref{sec_max_min}, additional considerations on optimal performance are carried out. 
+Section \ref{sec_perf_eval} gives performance evaluation under various parameter sets and at last propose rules for configuring the parameter set.
+Conclusion remark is given in section \ref{sec_conclu}.
+
+
+\section{802.11ax Features}			\label{sec_ax_feature}
+The legacy random access is called distributed coordination function (DCF). 
+Since the DCF degrades performance severely at dense scenario solution, IEEE 802.11ax proposes a centralized coordination, improving the status of AP. 
+This centralized coordination function is also based on DCF so that 802.11ax is compatible with legacy 802.11 and other wireless system. 
+At the same time, OFDMA is issued in IEEE 802.11ax to improve the system performance. In this section, we introduce MU PHY and TF-based MU UL\cite{dengquality}.
+
+\subsection{PHY}
+While legacy 802.11 specify a 20 MHz channel a Single User (SU) channel, which means only one user could access the channel at a time in a BSS, 802.11ax issues a flexible resource allocation based on OFDMA, allowing multiple STAs to access channel simultaneously.
+It should help mitigate contention and collision. 
+
+The resource unit (RU) in 802.11ax is more fine-grained, as specified in figure \ref{fig_RU_spec}. The smallest RU is 26-tone, with which a 20 MHz could be separated into 9 subchannels.
+It is flexible that if there are not 9 HE-STAs to share the channel, AP could allocate multiple RUs to one HE-STA without wasting the RUs.
+And as specified in figure \ref{fig_RU_spec}, multiple 20 MHz channels can be aggregated to be utilized by a BSS, which is called \textit{Channel Bonding}. 
+This will help a lot improve system performance, since one BSS is not restricted to a single 20 MHz channel.  
+It is worth mentioning that every transmission of MU should end at the same time. That means padding is required for short packets.
+
+
+
+Actually, MU PHY has been implemented in 802.11n and 802.11ac with MU-MIMO, which is an absolutely different method from OFDMA and beyond the scope of this paper. 
+
+\begin{figure}[!t]
+\includegraphics[scale=0.14]{./figure/RU_spec.png}
+\caption{Maximum number of RUs for each channel width}
+\label{fig_RU_spec}
+\end{figure}
+
+
+\begin{figure}[!t]
+\includegraphics[scale=0.23]{./figure/fig_MU_DL.png}
+\caption{MU DL of 802.11ax}
+\label{fig_MU_DL}
+\end{figure}
+
+
+\begin{figure}[!t]
+\includegraphics[scale=0.21]{./figure/fig_MU_UL.png}
+\caption{Trigger-based MU UL of 802.11ax}
+\label{fig_MU_UL}
+\end{figure}
+
+
+\subsection{MAC}
+Since 802.11ax MAC is still based on DCF, AP will contend with DCF procedure to transmit DL packets with OFDMA to multiple stations, which is called MU DL as in figure \ref{fig_MU_DL}. 
+The difficulty of OFDMA MU is MU UL. 
+802.11 is not a synchronous system, preamble and even two-way handshaking are required before a data transmission. 
+A trigger-based MU UL is issued as in figure \ref{fig_MU_UL}.
+A brand new control frame, called trigger frame, is created to be transmitted by AP before HE-STAs transmitting a packet. 
+In this way, stations is able to access channel with the scheduled RU contained in trigger frame transmitted by AP. 
+The trigger frame format is as in figure \ref{fig_TF_format}. Since the standard is in progress, many fields remain to be determined (TBD). 
+
+\begin{figure}[!ht]
+\includegraphics[scale=0.2]{./figure/fig_tf_format.png}
+\caption{Trigger Frame format}
+\label{fig_TF_format}
+\end{figure}
+
+The basic use of trigger frame is to allocate RUs. It contains resource allocation information in field \textit{user info}, specifying some station to access some RU in subfield \textit{AID} and \textit{RU allocation}.  
+When AP schedules RUs for random access, the subfield \textit{AID} of User Info is set to value 0. The detailed procedure we will illustrate in section \ref{sec_RA_illu}. 
+
+What's more, to support scheduling of TF, a mechanism called \textit{Target Wake Time} (TWT) is implemented in 802.11ax. TWT is originally issued in 802.11ah for power saving\cite{khorov2015survey}. It is also out of scope of this paper.
+
+
+
+\section{802.11ax Random Access Illustration}		\label{sec_RA_illu}
+\begin{figure*}[!hb]
+%\begin{minipage}{.5\textwidth}
+\centering
+\includegraphics[scale=0.35]{./figure/RA_illu.png}
+\caption{Illustration of OFDMA-based random access}
+\label{fig_ra_illu}
+%\end{minipage}
+\end{figure*}
+
+%\begin{minipage}{.5\textwidth}
+%\includegraphics[scale=0.35]{./figure/RA_illu_3.png}
+%\caption{Another example of OFDMA-based random access for DL in 802.11ax}
+%\label{fig_ra_dl}
+%\end{minipage}
+
+
+\begin{figure*}[!hb]
+\centering
+\includegraphics[scale=0.35]{./figure/RA_illu_2.png}
+\caption{An example of OFDMA-based random access for UL in 802.11ax }
+\label{fig_ra_ul}
+\end{figure*}
+
+As stated above, legacy IEEE 802.11 MAC is a 20MHz SU PHY, which means that at most single user could succeed in contending at a time slot.
+With the MU PHY, HE-STA (802.11ax, high efficient station) has multiple RUs to access, which means multiple HE-STAs may access channel at the same time.
+And the parameter set is set by AP in real time.
+The procedure is of course more complicated and flexible.
+We first illustrate the ODFMA-based random access procedure then give two use cases of the random access.
+
+Different from legacy 802.11, all the parameters are configured by AP, not predefined at hardware. 
+The parameter set is composed of $OCW_{min}, OCW_{max}, M$. $OCW_{min}$, (i.e., OFDMA contention window), represents the minimum contention window, while $OCW_{max}$ represents the maximum contention window. 
+And $M$ is the number of RUs for random access. $OCW_{min}, OCW_{max}$ are given in an element called RAPS (random access parameter set) contained in beacon frame sent by AP.
+In this way, HE-STA is able to access channel with different parameters obtained from the beacon frame. 
+
+
+In a beacon interval, to initialize a random access procedure, AP first transmits a trigger frame. 
+The TF announces some RUs for random access by setting the AID of those RUs value of 0. 
+HE-STA needs maintain a backoff counter, called OFDMA Backoff (OBO). 
+HE-STAs who want to access channel will randomly generate a OBO among range $[0, OCW_i]$, where $i$ is the backoff level. 
+Then the OBO subtracts the value of number of RUs for random access in the current stage. 
+If the OBO reaches 0, the HE-STA will randomly select a RU from those for random access to transmit a packet after SIFS (short inter-frame spacing). 
+After that AP responds with a block ack indicating who succeed in transmitting a request. The whole three-way handshaking is called a stage. 
+It is worth reminding that the stage in this paper is a concept of interval, not the backoff stage in other papers. 
+It is specified from standard \cite{draft_ax}. To distinguish the two words, we use backoff level replacing backoff stage. 
+Those whose OBO is greater than 0 will freeze the OBO and wait for next stage.  
+If more than one HE-STA transmit at the same RU, collision occurs. 
+Those who collide in the current stage will double their $OCW$ at next stage until $OCW$ reaches $OCW_{max}$. 
+Only if at least one HE-STA succeed in transmit a request in a stage will the stage be a successful stage. 
+
+Figure \ref{fig_ra_illu} illustrates the procedure. Green means transmission from AP to STA (i.e., DL) and yellow means UL direction. 
+With clear illustration above, we look deeply into the implementation of the mechanism.
+See figure \ref{fig_RAPS}, the two critical parameters $OCW_{min},OCW_{max}$ are specified in field OCW Range. 
+The value is defined by $OCW_{min} = 2^{EOCW_{min}}-1$, $OCW_{max} = 2^{EOCW_{max}}-1$. 
+In the following analysis, we issue another parameter $m$, maximum backoff level, $OCW_{max} = (OCW_{min}+1)*2^m-1$. So we specify $OCW_{max}$ with $m$ and $OCW_{min}$ in following section, which helps analysis.
+
+
+Following are two use cases of OFDMA-based random access. 
+One is as figure \ref{fig_ra_ul} for UL random access. 
+When HE-STA wants to random access to transmit data packets, he will send buffer state report (BSR) frame with OFDMA-based random access. 
+After successful contention, AP will allocate RUs for the HE-STA by trigger frame. 
+
+
+Another use case of random access is for power save HE-STA to solicit buffered packets at AP, which is kind of DL transmission.
+Similar to legacy 802.11 power save, HE-STA needs to transmit PS-poll or APSD-trigger frame to inform AP of its active state when the HE-STA wakes up.
+The transmission of PS-poll or APSD-trigger frame is a good case of OFDMA-based random access. After successful contention, AP will transmit the buffered packets of the HE-STA.
+
+\begin{figure}[!h]
+\includegraphics[scale=0.3]{./figure/RAPS.png}
+\caption{Random Access Parameter Set (RAPS) Element}
+\label{fig_RAPS}
+\end{figure}
+
+
+
+\section{System Model} 		\label{sec_sys_model}
+One of main contribution of this paper is the analytical evaluation of the saturation analysis of 802.11ax OFDMA-based random access, in the assumption of ideal channel conditions (i.e., no hidden terminals and capture). 
+The Markov chain model of random access was first proposed by Bianchi for analyzing distributed coordination function\cite{bianchi2000performance}. 
+Here, for the brand new ODFMA-based random access, we generate a new Markov chain model. 
+In this analysis, we also generate three metrics, $n_s$ number of stations who succeed in contending in a stage, \textit{eff} self-defined system efficiency, and $D$ access delay of request frame. 
+
+The analysis is divided into two parts. First is the Markov chain model to estimate the packet transmission probability $\tau$ and conditional collision probability $p$. 
+Secondly, we express the three metrics as function of $\tau$. 
+Table \ref{table_notation} is a list of all parameters and notations.
+
+\begin{table}[!h]
+\caption{Parameters and Notations}
+\centering
+\label{table_notation}
+\begin{tabular}{c|l}
+\hline
+$n$						& $\#$ of stations \\
+$OCW_{min}$ or $W_0$		& minimum OFDMA contention window \\
+$M$						& $\#$ of RUs for random access \\
+$m$						& maximum backoff level \\
+$p$						& packet collision probability \\
+$\tau$					& station's transmission probability \\
+$n_s$					& $\#$ of successful stations in a stage \\
+$N_{s\_station}$			& $\#$ of stages for a station to succeed in contending \\
+$N_{s\_stage}$			& $\#$ of stages until a successful stage \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Packet Transmission Probability}
+Since 802.11ax implements OFDMA-MU and corresponding trigger-based UL, AP won't contend with 802.11ax stations under this situation.
+To estimate the performance of the OFDMA-based random access mechanism, we assume a saturated condition that each station always has packets to transmit as long as it accesses the channel.
+In the first use case, each station will contend to send \textit{Buffer Status Report} (BSR), for convenience and easy understanding we call it request in the following context, for the data transmission later. 
+
+With above illustration of OFDMA-based random access mechanism, a 20 MHz channel, which is a single user (SU) channel in legacy 802.11, can be divided into 9 subchannels, called resource unit (RU). Consider a fixed number $n$ of contending stations. 
+$M$ represents the number of RU for random access in a stage. 
+$W_i$ is the OFDMA contention window (OCW) at $i^{th}$ backoff level, with relationship $W_i = 2W_{i-1}+1$. Stations with OCW $W_i$ will randomly generate a backoff counter among range $[0,W_i]$.  
+
+The bidimensional process $\lbrace s(t),b(t) \rbrace$, where $s(t)$ denotes the backoff level $(0,1\cdots ,m)$ of a given station at time $t$ and $b(t)$ denotes backoff time counter (i.e., OBO) for the station, will be modeled with Markov chain as in figure\ref{Markov}. 
+Since states $\lbrace i,0\sim M \rbrace$ all means station could access RU, we could merge these states into one state, denoted by $\lbrace i, T \rbrace$. 
+
+The model is based on the assumption that at each request transmission, and regardless of the number of retransmission suffered, each request frame collides with constant and independent probability $p$.
+
+\begin{figure*}[!t]
+\includegraphics[scale=.45]{./figure/Markov_chain.png}
+\caption{Markov Chain model for the backoff window size}
+\label{Markov}
+\end{figure*}
+
+Let's assume $P\lbrace i_1, k_1|i_0,k_0\rbrace = P\lbrace s(t+1) = i_1, b(t+1)= k_1|s(t) = i_0, b(t) = k_0\rbrace $. In this Markov Chain, the only non null one-step transition probabilities are 
+\begin{align}
+\left\lbrace
+\begin{array}{lll}
+P\lbrace i, T | i, k \rbrace = 1  						& k\in [M+1,2M]			& i \in [0,m]\\ [3pt]
+P\lbrace i, k-M | i, k \rbrace = 1  					& k\in [2M+1,W_i]   	& i \in [0,m]\\ [3pt]
+P\lbrace 0, k | i, T \rbrace = \frac{1-p}{W_0+1}  		& k\in [M+1,W_0]		& i \in [0,m]\\ [3pt]
+P\lbrace 0, T | i, T \rbrace = \frac{(1-p)(M+1)}{W_0+1} &						& i \in [0,m]\\ [3pt]
+P\lbrace i, k | i-1, T \rbrace = \frac{p}{W_i+1} 		& k\in [M+1,W_i] 		& i \in [1,m]\\ [3pt]
+P\lbrace i, T | i-1, T \rbrace = \frac{p(M+1)}{W_i+1}   &	  					& i \in [1,m]\\ [3pt]
+P\lbrace m, k | m, T \rbrace = \frac{p}{W_m+1} 		 	& k\in [M+1,W_m] 		& \\ [3pt]
+P\lbrace m, k | m, T \rbrace = \frac{p(M+1)}{W_m+1}
+\end{array}
+\right.
+\label{trans_prob}
+\end{align}
+The first and second equations in \ref{trans_prob} accounts for the fact that in a trigger frame stage for random access, the backoff counter maintained by stations will decrease the number of RUs for random access. 
+The third and fourth equation represents that after a successful contention, stations will reset the contention window size to initial window size and uniformly generate a backoff value among $[0,W_0]$, since $T = [0,M]$, the transition probability to $\lbrace i, T \rbrace$ is $M+1$ times of that to $\lbrace i, k \rbrace$. 
+For the fifth and sixth equations, they represents when a failure contention occurs, the contention window size will be doubled. 
+The last two equation is situation of failure contention at the maximum backoff level.
+
+Let $b_{i,k} = \lim_{t\rightarrow \infty} P\lbrace s(t) = i, b(t) = k\rbrace,\ i\in [0,m], \ k \in [0,W_i]$ be the stationary distribution of the Markov chain. Then we show the steady state for the Markov Chain.
+First,  for $k = T$
+\begin{align}
+b_{i-1,T}\cdot p = b_{i,T} 		\rightarrow b_{i,T} = p^i b_{0,T}, \quad 0\leq i < m\\
+b_{m-1,T}\cdot p = (1-p) b_{m,T}	\rightarrow b_{m,T} = \frac{p^m}{1-p}b_{0,T}.
+\label{biT}
+\end{align}
+
+Then,
+\begin{align}
+&b_{i,k} =  \nonumber \\
+&
+\begin{cases}
+(\lfloor \frac{W_0-k}{M} \rfloor+1)\frac{(1-p)}{W_0+1}\sum_{i=0}^m b_{i,T}, \  M+1\leq k\leq W_0,\ i = 0\\[3pt]
+(\lfloor \frac{W_i-k}{M} \rfloor+1)\frac{p}{W_i+1}b_{i-1,T}, 				\	 M+1 \leq k\leq W_i, \ 0<i<m \\[3pt]
+(\lfloor \frac{W_m-k}{M} \rfloor+1)\frac{p}{W_m+1} (b_{m-1,T}+b_{m,T}), 	
+\end{cases}\nonumber
+\\ &\qquad \qquad \qquad \qquad \quad \qquad \qquad M+1 \leq k\leq W_m, \quad i = m \nonumber \\
+\label{steady_prob}
+\end{align}
+
+From equation \ref{biT}, we have $\sum_{i=0}^m b_{i,T}= \frac{b_{0,T}}{1-p}$; sum the equation \ref{steady_prob} respectively, we obtain equation \ref{part_sum}.  
+\begin{figure*}[!t]
+
+%\normalsize
+%% Store the current equation number.
+%\setcounter{MYtempeqncnt}{\value{equation}}
+%\setcounter{equation}{4}
+\begin{align}
+\begin{cases}
+\sum_{k=M+1}^{W_0} b_{0,k} = \frac{b_{0,T}}{W_0+1}\left(-\frac{M}{2}\left\lfloor \frac{W_0}{M}\right\rfloor ^2 + \left(W_0-\frac{M}{2}\right)\left\lfloor \frac{W_0}{M} \right\rfloor \right) \\[8pt]
+\sum_{i=1}^{m-1}\sum_{k=M+1}^{W_i} b_{i,k} = \frac{b_{0,T}}{W_0+1}\left(\frac{p}{2}\right)^i \left(-\frac{M}{2}\left\lfloor \frac{W_i}{M}\right\rfloor ^2 + \left(W_i-\frac{M}{2}\right)\left\lfloor \frac{W_i}{M} \right\rfloor \right) \\[8pt]
+\sum_{k=M+1}^{W_m} b_{m,k} = \frac{b_{0,T}}{W_0+1}\frac{(\frac{p}{2})^m}{1-p}\left(-\frac{M}{2}\left\lfloor \frac{W_m}{M}\right\rfloor ^2 + \left(W_m-\frac{M}{2}\right)\left\lfloor \frac{W_m}{M} \right\rfloor \right) 
+\end{cases}
+\label{part_sum}
+\end{align}
+\end{figure*}
+
+Let $X_i = -\frac{M}{2}\left\lfloor \frac{W_i}{M}\right\rfloor ^2 + \left(W_i-\frac{M}{2}\right)\left\lfloor \frac{W_i}{M} \right\rfloor$. Then we sum all the states to have equation \ref{total_sum2}.
+
+\begin{figure*}[!t]
+\begin{align}
+1 &= \sum_{i=0}^m \sum_{k=0}^{W_i}b_{i,k} 
+ = \frac{b_{0,T}}{W_0+1}\left( X_0 + \sum_{i=1}^{m-1}X_i\left( \frac{p}{2}\right)^i + X_m\frac{\left( \frac{p}{2}\right)^m}{1-p}\right) + \frac{b_{0,T}}{1-p}\label{total_sum}\\
+& = b_{0,T}\left( \frac{(1-p)X_0+(1-p) \sum_{i=1}^{m-1}X_i\left( \frac{p}{2}\right)^i+X_m\left( \frac{p}{2}\right)^m+W_0+1}{(W_0+1)(1-p)}\right)\label{total_sum2}
+\end{align}
+%\setcounter{equation}{7}%{\value{MYtempeqncnt}}
+%% IEEE uses as a separator
+\hrulefill
+\end{figure*}
+
+We can now express $\tau$, the probability of a station transmit a request at a randomly selected stage.
+
+\begin{align}
+\label{tau_general}
+&\tau = \sum_{i=0}^m b_{i,T} = \frac{b_{0,T}}{1-p} = \nonumber \\
+&\frac{W_0+1}{W_0+1+(1-p)X_0+(1-p) \sum_{i=1}^{m-1}X_i\left( \frac{p}{2}\right)^i+X_m\left( \frac{p}{2}\right)^m}
+\end{align}
+
+For $m=0$, check equation \ref{total_sum}, the terms containing $X_i, i>0$ will disappear, and $b_{0,T}/(1-p)$ will just be $b_{0,T}$.
+Thus, equation \ref{total_sum2} will be simplified to 
+\begin{align}
+1 = b_{0,T}\left( \frac{W_0+1+X_0}{W_0+1}\right),
+\end{align}
+thereby, 
+\begin{align}
+\tau = b_{0,T} = \frac{W_0+1}{W_0+1+X_0}.
+\label{tau_W0}
+\end{align}
+Thus $\tau$ is independent with $n$, number of contending stations.
+
+On the other hand, conditional collision probability $p$ is the probability that no other stations select the same RU to transmit request. So we have 
+\begin{align}
+\label{p_ax}
+p = 1-\left( 1-\frac{\tau}{M} \right)^{n-1}.
+\end{align}
+Rewrite the equation \ref{p_ax}, $\tau^\star = \left(1-(1-p)^\frac{1}{n-1} \right)M$. 
+To obtain transmission probability $\tau$ and conditional probability $p$, we need to find solutions to group of equations \ref{tau_general} and \ref{p_ax}.
+$\tau^\star(p)$ is a monotonically increasing function. 
+Though $\tau(p)$ is hard to determine the monotonicity from the expression of equation \ref{tau_general} with respect to $p$. 
+We justify the monotonic decrease of function \ref{tau_general} with numerical method. 
+Also, $\tau(0) = \frac{W_0+1}{W_0+1+X_0}> \tau^\star(0) = 0$.
+And $\tau(1) < \tau^\star(1) = M$. We find the only solution with numerical method.
+
+
+
+\subsection{Random Access Efficiency}
+With the transmit probability, we could easily estimate efficiency of random access mechanism. 
+Firstly, find expected number of stations who succeed in contending to transmit request at a stage, which is denoted with $E[n_s]$. 
+Extending $n_s$, we define a system efficiency as an important metric.
+Secondly, we are interested in the access delay of request frame. 
+In another word, say how many stages needed for a station to succeed in contending, denoted by $N_{s\_station}$.
+What's more, another interesting metric is how many stages are elapsed until a successful stage, which means at least one station succeed in contending in the stage. This metric is a concept similar to "delay" in the second use case of OFDMA-based random access. We represent it with $N_{s\_stage}$. It helps design whole MU UL transmission procedure. 
+Here, our concern is mainly on first two metrics which are purely related to random access procedure. The third metric is only expressed in the subsection of access delay, not being discussed later. 
+
+\subsubsection{$n_s$ and System Efficiency}
+What we care in the random access is that how many stations contend successfully in a single stage, denoted by $n_s$.
+Given transmission probability $\tau$ and conditional collision probability $p$, we could obtain probability that a station succeeds in contending in a stage, $P_{s\_station} = \tau (1-p)$.
+Then, with equation \ref{p_ax}, $E[n_s]$ is easily computed as follows. 
+\begin{align}
+\label{equ_ns}
+E[n_s] &= n P_{s\_station} \nonumber \\
+		&= n\tau (1-p) \nonumber \\
+		&= n\tau (1-\frac{\tau}{M})^{n-1}
+\end{align}
+
+Furthermore, normalizing $n_s$, system efficiency here is defined as 
+\begin{align}
+\label{eff_def}
+\textit{eff}\ (\tau) &= \frac{E[\text{number of successful stations in a given stage}]}{\text{number of RUs for random access in a stgae}} \nonumber\\
+					 &=\frac{E[n_s]}{M} \nonumber \\
+					 &= \frac{n\tau(1-\frac{\tau}{M})^{n-1}}{M}.
+\end{align}
+
+Both two metrics are our concerns. Another metric, access delay, is derived in next subsection.
+With all these metrics, we could evaluate the performance later.
+
+	
+\subsubsection{Access Delay}
+$N_{s\_station}$, the random variable of how many stages are needed for a station to succeed in contending in a stage follows geometric distribution with parameter $P_{s\_station}$, which is obtained just now.  
+Then the expected value of access delay of request frame, $E[D]$, is 
+\begin{align}
+\label{equ_delay}
+E[D] = E[N_{s\_station}] = \frac{1}{\tau (1-\frac{\tau}{M})^{n-1}}.
+\end{align}
+
+Then another interesting metric which is not our focus, denoted by $N_{s\_stage}$, that how many stages are elapsed until a successful stage. 
+We could firstly obtain $P_{s\_stage}$, the probability of a successful stage, which means at least one station succeed in contending in the stage.
+
+\begin{align}
+P_{s\_stage} &= 1-P\lbrace n_s = 0\rbrace \nonumber \\
+	&= 1-(1-P_{s\_station})^n \nonumber\\
+	&= 1-(1-\tau(1-p))^n
+\end{align} 	 
+Since $N_{s\_stage}$ follows geometric distribution with parameter $P_{s\_stage}$,  
+\begin{align}
+E[N_{s\_stage}] &= \frac{1}{P_{s\_stage}}  \nonumber \\
+			&= \frac{1}{1-(1-\tau(1-p))^n}
+\end{align} 
+
+In a word, we focus on three metrics: number of successful stations in a stage by $n_s$, system efficiency by $E[n_s]/M$ and access delay given by $N_{s\_station}$. 
+Actually, only two variables are concerned, $n_s$ and $N_{s\_station}$. However, $n_s$ and its normalized value are both meaningful, which we will explain in following sections.
+
+
+
+\section{Model Validation} 		\label{sec_model_val}
+To validate the Markov chain model, we run a simulation using C language according to the settings as in section \ref{sec_RA_illu}. 
+We run the simulation with variety of parameter sets $\lbrace M, OCW_{min}, OCW_{max}\rbrace$ and collects the information of the two variables, $n_s$ and $D$. 
+The values of results from both analysis and simulation are given in figure \ref{validation} and table \ref{table_val}. 
+All simulation results are obtained from a long-run simulation.
+The results show that the Markov model precisely predict the steady state behavior of the OFDMA-based random access.
+\begin{table}[!h]
+\caption{Analysis versus simulation: $n_s$ and access delay with $m=3,M=9,OCW_{min} = 15$}
+\label{table_val}
+\begin{center}
+\begin{tabular}{c|c|c}
+\hline
+$n_s$ 	& analysis 	& simulation \\
+\hline
+$n=1$ 	& 0.72727  	& 0.72728 \\
+$n=5$ 	& 2.23001	& 2.22335 \\
+$n=10$	& 2.88954	& 2.88546 \\
+$n=20$	& 3.29798	& 3.29857 \\
+\hline
+delay	& analysis	& simulation \\
+\hline
+$n=1$ 	& 1.37500  	& 1.37499 \\
+$n=5$ 	& 2.24214	& 2.24886 \\
+$n=10$	& 3.46075	& 3.46565 \\
+$n=20$	& 6.06432	& 6.06323 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{figure}[!h]
+\includegraphics[scale=0.54]{./figure/multiple_parameter.png}
+\caption{System efficiency: Analysis versus Simulation}
+\label{validation}
+\end{figure}
+
+\section{Maximum System Efficiency and Minimum Access Delay} 	\label{sec_max_min}
+With the system efficiency given in equation \ref{eff_def}, we take the derivative with respect to $\tau$, and find the extreme point, $\tau^\star = M/n$. Since $\tau\in [0,1]$, $\tau^\star = min\lbrace 1,M/n\rbrace$. 
+What we care is when $n$, the number of contending stations, is large, i.e., $\tau^\star = M/n$. 
+Then the system efficiency is
+\begin{align}
+\textit{eff}\ (\tau^\star) = (1-\frac{1}{n})^{n-1} 
+\label{equ_max_eff}
+\end{align}
+Then the maximum $n_s$ is easy to generate.
+\begin{align}
+\label{equ_max_ns}
+E[n_s]^\star = M \cdot \textit{eff}\ (\tau^\star) = M(1-\frac{1}{n})^{n-1} 
+\end{align}
+Thus the limit of system efficiency, based on infinite $n$, is
+\begin{align}
+\label{eff_limit}
+\lim_{n\rightarrow \infty}\textit{eff}\ (\tau^\star) = \lim_{n\rightarrow \infty}(1-\frac{1}{n})^{n-1} =\frac{1}{e} 
+\end{align}
+
+\begin{figure}[!ht]
+\includegraphics[scale=0.42]{./figure/chp4/max_min.png}
+\caption{Efficiency and access delay versus transmission probability $\tau$}
+\label{fig_eff_def}
+\end{figure}
+
+
+With the delay analysis given in \ref{equ_delay}, we also take the derivative with respect to $\tau$, and find the extreme point, $\tau^\star = M/n$. Again, $\tau^\star = min\lbrace 1, M/n\rbrace$. 
+When $n\geq M$, the minimum access delay is 
+\begin{align}
+\label{equ_min_delay}
+D(\tau^\star) = \frac{n}{M(1-\frac{1}{n})^{n-1}}.
+\end{align}
+
+From above analysis, we find that the maximum system efficiency and minimum access delay are both obtained by the same transmission probability $\tau^\star = min\lbrace 1, M/n\rbrace$.
+What's more, system efficiency is independent with $M$, number of RUs for random access in a stage, while $M$ affects access delay. 
+The larger $M$ is, the shorter the access delay will be. 
+It indicates that when AP allocates RUs for random access, the AP could allocates as many as possible, only if the channel of the RU is sensed idle. 
+This rule will be more explained in next section.
+
+Figure \ref{fig_eff_def} is plotted corresponding to equation \ref{eff_def} and \ref{equ_delay}.
+Consistent to the analysis above, the figure shows that the maximum system efficiency is independent of number of RUs for random access when $n\geq M$, and approaching to $1/e$ with $n$ increasing. 
+What's more, the optimal transmission probability $\tau$ of system efficiency and access delay is consistent with each other, which also validates the analysis. 
+
+According to equation \ref{tau_general} and \ref{p_ax}, transmission probability $\tau$ is dependent on system parameters, $M$ (RUs for random access in a stage), $W_0$ (initial contention window) $m$ (backoff levels) or $W_m$ (the maximum contention window) and $n$ (number of stations in the network).
+The only way to approach optimal performance is to employ adaptive techniques to tune the system parameter set $\lbrace M, W_0, W_m \rbrace$ on the basis of the estimated value of $n$.
+In the following section, we will evaluate the performance corresponding to different system parameters sets and propose the rules to tune the system parameter sets so that the transmission probability $\tau$ approach the optimal transmission probability, $\tau^\star$, which means both system efficiency and delay approach the optimal. 
+
+\section{Performance Evaluation} 	\label{sec_perf_eval}
+We have estimated the maximum system efficiency and minimum access delay in the previous section. Then we evaluate the metrics, $n_s$ (number of stations who succeed in contending in a stage), system efficiency and $D$ (access delay), under various parameter sets. 
+With above analysis, we could evaluates transmission probability under various parameter sets, since the optimal transmission probability $\tau^\star$ means both maximum system efficiency and minimal access delay.
+
+At last, we evaluate the effects of the various system parameters $\lbrace M, OCW_{min}, OCW_{max}\rbrace$.
+
+\subsection{RUs for Random Access $M$}
+\label{M}
+Equation \ref{equ_max_eff} indicates that $M$, the number of RUs for random access, has nothing to do with maximum system efficiency. 
+However, larger $M$ is better for $n_s$ and $D$ according to equation \ref{equ_max_ns} and \ref{equ_min_delay}. More explaination are given later to validate the statement. 
+
+In figure \ref{fig_n_M_eff}, the maximum system efficiency is the same. 
+The difference is "when" the optimal point will be. 
+For larger $M$, the optimal number of stations is larger, given by $M/n$. It is also intuitive.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=.54]{./figure/n_M_eff_perf.png}
+\caption{System efficiency versus number of stations}
+\label{fig_n_M_eff}
+\end{figure}
+
+\begin{figure}[!h]
+\begin{subfigure}{0.5\textwidth}  
+%\centering
+\includegraphics[scale=.54]{./figure/n_M_ns_perf.png}
+\caption{Number of successful stations in a single stage versus number of stations}
+\label{fig_n_M_ns}
+\end{subfigure}
+
+\begin{subfigure}{0.5\textwidth}  
+%\centering
+\includegraphics[scale=.54]{./figure/n_M_delay_perf.png}
+\caption{Access delay versus number of stations}
+\label{fig_n_M_delay}
+\end{subfigure}
+\caption{Configure $M$}
+\end{figure}
+
+In figure \ref{fig_n_M_delay}, the larger $M$ will linearly decrease the access delay of station. The figure is consistent with the equation \ref{equ_min_delay}. 
+
+More practically, we present the number of successful stations in a single stage versus number of stations in figure \ref{fig_n_M_ns}.
+While the maximum system efficiency is the same with different $M$, the actually number of stations who succeed contending in a single stage is much different, which corresponds to equation \ref{equ_max_ns}. 
+The optimal value of number of successful stations in a single stage is propotional to $M$. 
+Above all, when AP allocates RUs for random access, the AP will sense channels first then allocates as many RUs, which are sensed idle, for random access as possible.
+
+
+
+\subsection{Initial and max Contention Window $(OCW_{min}, OCW_{max})$}
+\label{contend_window}
+Different from legacy 802.11 where backoff mechanism is preconfigured in hardware of stations, the initial and maximum contention window $(OCW_{min}, OCW_{max})$ are allocated in beacon frame sent by AP. 
+Thus, the configuration of backoff mechanism becomes dynamic, which means that it could be configured according to the scenario, especially the number of stations.
+With the $M$ being determined as large as possible, it is more complicated algorithm to adaptive tune $OCW_{min}, OCW_{max}$ so that transmission probability approaches optimal value.
+Since $\tau$ is determined by solving equations \ref{tau_general} and \ref{p_ax}, it is hard to give a expression of $\tau$ determined by system parameters $W_0$ and $W_m$.
+However, we could find the rules by checking a variety of parameter sets.
+
+% figures
+\begin{figure}[!t]
+\centering
+%subfigure
+\begin{subfigure}{0.5\textwidth}
+%\centering
+\includegraphics[scale=.54]{./figure/chp4/M9/n_tau_perf_M9_x200.png}
+\caption{Case 1, given $M=9$}
+\label{fig_tau_n_M9}
+\end{subfigure}
+%subfigure
+\begin{subfigure}{0.5\textwidth}
+%\centering
+\includegraphics[scale=.54]{./figure/chp4/M18/n_tau_perf_M18_x400.png}
+\caption{Case 1, given $M=18$}
+\label{fig_tau_n_M18}
+\end{subfigure}
+%caption
+\caption{Transmission probability versus number of stations}
+\label{fig_tau_n}
+\end{figure}
+
+Figure \ref{fig_tau_n} shows case 1 ($M=9$) and case 2 ($M=18$), from both of which we could generalize some rules between $\tau$ and parameters $OCW_{min}, OCW_{max}$.
+In the figure, the purple line without point is the optimal $\tau$, which is given according to $\tau^\star = min\lbrace 1, M/n \rbrace$.
+As stated above, we need to find a tuning of $OCW_{min}, OCW_{max}$ so that $\tau$ approaches the optimal line. The rules are listed following.
+
+Firstly, the $OCW_{min}$, namely $W_0$, determines the start of the line of $\tau$. The larger $W_0$ is, the lower transmission probability will start at $n=1$.
+A special situation is when $W_0<M$, $\tau=1$ at $n=1$. 
+That's why cases in figure \ref{fig_tau_n} have two different start points.
+For optimal transmission probability $\tau^\star$, when $n \leq M$, $\tau^\star = 1$. 
+A special case of $m=0$, which means $W_m=W_0$, results in constant transmission probability equal to 1, which is perfect match with $\tau^\star$ at $n\leq M$.
+Thus, if given $n\leq M$, the optimal configuration will be $OCW_{max}= OCW_{min} < M$. 
+
+
+Secondly, $W_m$ determines limit of the $\tau$, i.e., where the line will converge. 
+Lines with the same $W_m$ will converge to a same value. 
+To see the tendency of lines, I draw the two figures \ref{fig_tau_n_M9} and \ref{fig_tau_n_M18} with $n$ in range $[0,200]$ and $[0,400]$ respectively. 
+And both the two figures validate the above statement.
+And larger $W_m$ is closer to optimal transmission probability when $n$ is large. 
+When $m=0$, $\tau$ will not change with $n$, which is consistent with equation \ref{tau_W0}.
+For those $m>0$, the curve will be convex. It is intuitive that with the number of stations increasing, the collision probability will increase, thus contention window increase. 
+
+
+% figures
+\begin{figure}[!t]
+\centering
+\begin{subfigure}{0.5\textwidth}
+\centering
+\includegraphics[scale=.54]{./figure/chp4/M9/n_tau_perf_M9_x100.png}
+\caption{Case 1, given $M=9$}
+\label{fig_tau_n_M9_detail}
+\end{subfigure}
+
+\begin{subfigure}{0.5\textwidth}
+\centering
+\includegraphics[scale=.54]{./figure/chp4/M18/n_tau_perf_M18_x100.png}
+\caption{Case 1, given $M=18$}
+\label{fig_tau_n_M18_detail}
+\end{subfigure}
+
+\caption{Details of transmission probability versus number of stations when $n\leq 100$}
+\label{fig_tau_n_detail}
+\end{figure}
+
+Then, we draw two figures with x axis range $[0,100]$ to find more rules as in figure \ref{fig_tau_n_detail}. 
+From the two figures \ref{fig_tau_n_M9_detail} and \ref{fig_tau_n_M18_detail} we find another rule that if $W_0=1$ which is the minimum value, there will be a flat start of $\tau$.
+What's good is that the flat start is closer to $\tau^\star$ when $n\leq M$.
+
+Based on above observation, we find conclude that $W_0$ has significant influence on small $n\leq M$, while $W_m$ affects $n$ is large or $n>M$. 
+Afterwards, in the next two subsections, we check the system efficiency and access delay under different parameter sets of $\lbrace W_0, W_m \rbrace$, with which we could find explicit relationship between the parameter and performance.
+
+
+
+
+\subsubsection{Configure $OCW_{max}$}
+
+\begin{figure}[!t]
+\centering
+\begin{subfigure}{0.5\textwidth}  
+  \centering  
+  \includegraphics[scale=0.54]{./figure/chp4/M9/n_eff_perf_W01.png}  
+    \caption{System efficiency versus number of stations}   
+    \label{fig_n_eff_Wm}
+\end{subfigure}   
+
+\begin{subfigure}{0.5\textwidth}
+	\centering
+\includegraphics[scale=.54]{./figure/chp4/M9/n_delay_perf.png}
+\caption{Access delay versus number of stations}
+\label{fig_n_delay_Wm}
+\end{subfigure}
+\caption{Example of Configuring $OCW_{max}$, given $M=9$}
+\end{figure}
+
+With above rough rules, we estimate the effects of $OCW_{max}$ first by setting different $OCW_{max}$ while given $OCW_{min}=1$ and $M=9$.
+It is because small $OCW_{min}$ is good for situation of small $n$.
+Actually the data we use to generate the figures are the same as that for figure \ref{fig_tau_n_M9}. For figure \ref{fig_n_eff_Wm}, we display three of them to clearly show relationship between system efficiency and $OCW_{max}$.
+And from the figure, it is apparent that larger $OCW_{max}$ is better for system efficiency. 
+The result corresponds to the second rule we obtain when estimating the transmission probability $\tau$.
+What's more, the access delay also validates the same result. And since we use the same data with that in figure \ref{fig_tau_n_M9}, we find that the lines which converge in figure \ref{fig_tau_n_M9} also have the same tendency in figure \ref{fig_n_delay_Wm}. 
+
+As stated in last section that $OCW_{max}$ has significant influence on situation of large $n$, $n$ is number of contending stations. With increasing $n$, larger $OCW_{max}$ will obtain larger gain. 
+Therefore, we have a rule that the larger $OCW_{max}$, the better.
+
+
+
+\subsubsection{Configure $OCW_{min}$}
+
+\begin{figure}[!t]
+\centering
+\begin{subfigure}{0.5\textwidth}  
+  \centering  
+  \includegraphics[scale=0.54]{./figure/chp4/M18/n_eff_perf_Wm1023.png}  
+    \caption{System efficiency versus number of stations}   
+    \label{fig_n_eff_W0}
+\end{subfigure}   
+
+\begin{subfigure}{0.5\textwidth}
+	\centering
+\includegraphics[scale=.54]{./figure/chp4/M18/n_delay_perf.png}
+\caption{Access delay versus number of stations}
+\label{fig_n_delay_W0}
+\end{subfigure}
+\caption{Example of Configuring $OCW_{min}$, given $M=18$}
+\end{figure}
+
+Similarly, to estimate the relationship between performance and $OCW_{min}$, we compare the performance between different $OCW_{min}$ while given fixed $OCW_{max}=1023$, which has been validated that large $OCW_{max}$ is better, and $M=18$. 
+Firstly, we claimed in section \ref{contend_window} that $W_0=W_m\leq M$ is the perfect configuration in situation of $n\leq M$. It is again validated here that it has the maximum system efficiency and minimum access delay in situation of $n\leq M$. 
+Secondly, since $OCW_{min}$ determines the start of line, i.e., $n=1$, it has significant influence on small $n$.
+From figure \ref{fig_n_eff_W0} and \ref{fig_n_delay_W0}, we find larger $OCW_{min}=127$ has lower system efficiency and longer access delay. And as stated before, $W_0=15$ has close performance with $W_0=1$ since $W_0<M$ will be similar for situation of small $n$.
+
+Therefore, we generate a rule that the smaller $OCW_{min}$, the better.
+For a special situation that $n\leq M$, we could configure $OCW_{min}=OCW_{max}<M$, which will result in perfect performance. 
+However, larger $OCW_{max}$ smaller $OCW_{min}$ is closely approach to optimal performance.
+
+\subsection{Rules for configuring $\lbrace M, OCW_{min}, OCW_{max} \rbrace$}
+Above two previous subsections, we could conclude rules of configuring the parameter set $\lbrace M, OCW_{min}, OCW_{max} \rbrace$ for obtaining best performance for all $n$. 
+\begin{itemize}
+\item[1] Large $M$
+\item[2] $OCW_{min}, OCW_{max}$
+	\begin{itemize}
+	\item small $OCW_{min}$ and large $OCW_{max}$
+	\item If given $n\leq M$
+	\begin{itemize}
+		\item $OCW_{max}=OCW_{min}<M$
+	\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+
+
+
+
+
+\section{Conclusion}   \label{sec_conclu}
+In this paper, we illustrate one of important features of the IEEE 802.11ax MAC, i.e., OFDMA-based random access. 
+Different from legacy 802.11, the OFDMA-based random access mechanism is more flexible, not only because multiple channels being allocated for random access, but also the system parameters are configured by AP in real time.
+We generate a 2-dimentional discrete-time Markov chain model of the OFDMA-based random access, and run a long-run simulation validate the model could accurately predict the steady state behavior of the random access mechanism.
+
+With the model, we derive the maximum system efficiency and minimum access delay, and estimate the effect of system parameters $\lbrace M, OCW_{min}, OCW_{max} \rbrace$ on system efficiency and access delay, where $M$ is the number of RUs for random access, $OCW_{min}$ is the initial OFDMA contention window, $OCW_{max}$ is the maximum OFDMA contention window. 
+%An interesting result is that the maximum system efficiency and minimum access delay are obtained by the same transmission probability $\tau$, which is given by $\tau^\star = min \lbrace 1,M/n\rbrace$. 
+%Then rules of configuration of parameter set aimed at reaching the optimal transmission probability $\tau^\star$ is proposed for AP according to system state, mainly the number of contending stations. 
+%The last group cases of various parameter sets validates our proposed rules.
+
+We find an interesting result that system efficiency and access delay behave consistent with each other and they both strongly depend on the system parameters.
+Larger $M$ is better whenever $n$ is large or small.
+Smaller $OCW_{min}$ is better and affects more in case when $n$ is small.
+Larger $OCW_{max}$ is better and affcets more in case when $n$ is large. 
+Especially, an optimal configuration $OCW_{min}=OCW_{max}\leq M$ fits in case $n\leq M$. 
+All above are the rough insight we obtain from steady state behavior.
+To generate a dynamic algorithm to configure the system parameters requires transient analysis, which could be done in the future.
+
+% An example of a floating figure using the graphicx package.
+% Note that \label must occur AFTER (or within) \caption.
+% For figures, \caption should occur after the \includegraphics.
+% Note that IEEEtran v1.7 and later has special internal code that
+% is designed to preserve the operation of \label within \caption
+% even when the captionsoff option is in effect. However, because
+% of issues like this, it may be the safest practice to put all your
+% \label just after \caption rather than within \caption{}.
+%
+% Reminder: the "draftcls" or "draftclsnofoot", not "draft", class
+% option should be used if it is desired that the figures are to be
+% displayed while in draft mode.
+%
+%\begin{figure}[!t]
+%\centering
+%\includegraphics[width=2.5in]{myfigure}
+% where an .eps filename suffix will be assumed under latex, 
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+%\caption{Simulation results for the network.}
+%\label{fig_sim}
+%\end{figure}
+
+% Note that the IEEE typically puts floats only at the top, even when this
+% results in a large percentage of a column being occupied by floats.
+
+
+% An example of a double column floating figure using two subfigures.
+% (The subfig.sty package must be loaded for this to work.)
+% The subfigure \label commands are set within each subfloat command,
+% and the \label for the overall figure must come after \caption.
+% \hfil is used as a separator to get equal spacing.
+% Watch out that the combined width of all the subfigures on a 
+% line do not exceed the text width or a line break will occur.
+%
+%\begin{figure*}[!t]
+%\centering
+%\subfloat[Case I]{\includegraphics[width=2.5in]{box}%
+%\label{fig_first_case}}
+%\hfil
+%\subfloat[Case II]{\includegraphics[width=2.5in]{box}%
+%\label{fig_second_case}}
+%\caption{Simulation results for the network.}
+%\label{fig_sim}
+%\end{figure*}
+%
+% Note that often IEEE papers with subfigures do not employ subfigure
+% captions (using the optional argument to \subfloat[]), but instead will
+% reference/describe all of them (a), (b), etc., within the main caption.
+% Be aware that for subfig.sty to generate the (a), (b), etc., subfigure
+% labels, the optional argument to \subfloat must be present. If a
+% subcaption is not desired, just leave its contents blank,
+% e.g., \subfloat[].
+
+
+% An example of a floating table. Note that, for IEEE style tables, the
+% \caption command should come BEFORE the table and, given that table
+% captions serve much like titles, are usually capitalized except for words
+% such as a, an, and, as, at, but, by, for, in, nor, of, on, or, the, to
+% and up, which are usually not capitalized unless they are the first or
+% last word of the caption. Table text will default to \footnotesize as
+% the IEEE normally uses this smaller font for tables.
+% The \label must come after \caption as always.
+%
+%\begin{table}[!t]
+%% increase table row spacing, adjust to taste
+%\renewcommand{\arraystretch}{1.3}
+% if using array.sty, it might be a good idea to tweak the value of
+% \extrarowheight as needed to properly center the text within the cells
+%\caption{An Example of a Table}
+%\label{table_example}
+%\centering
+%% Some packages, such as MDW tools, offer better commands for making tables
+%% than the plain LaTeX2e tabular which is used here.
+%\begin{tabular}{|c||c|}
+%\hline
+%One & Two\\
+%\hline
+%Three & Four\\
+%\hline
+%\end{tabular}
+%\end{table}
+
+
+% Note that the IEEE does not put floats in the very first column
+% - or typically anywhere on the first page for that matter. Also,
+% in-text middle ("here") positioning is typically not used, but it
+% is allowed and encouraged for Computer Society conferences (but
+% not Computer Society journals). Most IEEE journals/conferences use
+% top floats exclusively. 
+% Note that, LaTeX2e, unlike IEEE journals/conferences, places
+% footnotes above bottom floats. This can be corrected via the
+% \fnbelowfloat command of the stfloats package.
+
+
+
+
+
+% if have a single appendix:
+%\appendix[Proof of the Zonklar Equations]
+% or
+%\appendix  % for no appendix heading
+% do not use \section anymore after \appendix, only \section*
+% is possibly needed
+
+% use appendices with more than one appendix
+% then use \section to start each appendix
+% you must declare a \section before using any
+% \subsection or using \label (\appendices by itself
+% starts a section numbered zero.)
+%
+
+
+\appendices
+\section{Proof of the First Zonklar Equation}
+Appendix one text goes here.
+
+% you can choose not to have a title for an appendix
+% if you want by leaving the argument blank
+\section{}
+Appendix two text goes here.
+
+
+% use section* for acknowledgment
+\section*{Acknowledgment}
+
+
+The authors would like to thank...
+
+
+% Can use something like this to put references on a page
+% by themselves when using endfloat and the captionsoff option.
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+\fi
+
+
+
+% trigger a \newpage just before the given reference
+% number - used to balance the columns on the last page
+% adjust value as needed - may need to be readjusted if
+% the document is modified later
+%\IEEEtriggeratref{8}
+% The "triggered" command can be changed if desired:
+%\IEEEtriggercmd{\enlargethispage{-5in}}
+
+% references section
+
+% can use a bibliography generated by BibTeX as a .bbl file
+% BibTeX documentation can be easily obtained at:
+% http://mirror.ctan.org/biblio/bibtex/contrib/doc/
+% The IEEEtran BibTeX style support page is at:
+% http://www.michaelshell.org/tex/ieeetran/bibtex/
+\bibliographystyle{IEEEtran}
+% argument is your BibTeX string definitions and bibliography database(s)
+\bibliography{formula.bib}
+%
+% <OR> manually copy in the resultant .bbl file
+% set second argument of \begin to the number of references
+% (used to reserve space for the reference number labels box)
+%\begin{thebibliography}{1}
+
+%\bibitem{IEEEhowto:kopka}
+%H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
+%  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+
+%\end{thebibliography}
+
+% biography section
+% 
+% If you have an EPS/PDF photo (graphicx package needed) extra braces are
+% needed around the contents of the optional argument to biography to prevent
+% the LaTeX parser from getting confused when it sees the complicated
+% \includegraphics command within an optional argument. (You could create
+% your own custom macro containing the \includegraphics command to make things
+% simpler here.)
+%\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
+% or if you just want to reserve a space for a photo:
+
+\begin{IEEEbiography}{Michael Shell}
+Biography text here.
+\end{IEEEbiography}
+
+% if you will not have a photo at all:
+\begin{IEEEbiographynophoto}{John Doe}
+Biography text here.
+\end{IEEEbiographynophoto}
+
+% insert where needed to balance the two columns on the last page with
+% biographies
+%\newpage
+
+\begin{IEEEbiographynophoto}{Jane Doe}
+Biography text here.
+\end{IEEEbiographynophoto}
+
+% You can push biographies down or up by placing
+% a \vfill before or after them. The appropriate
+% use of \vfill depends on what kind of text is
+% on the last page and whether or not the columns
+% are being equalized.
+
+%\vfill
+
+% Can be used to pull up biographies so that the bottom of the last one
+% is flush with the other column.
+%\enlargethispage{-5in}
+
+
+
+% that's all folks
+\end{document}
+
+
