@@ -359,7 +359,7 @@
 % not capitalized unless they are the first or last word of the title.
 % Linebreaks \\ can be used within to get better formatting as desired.
 % Do not put math or special symbols in the title.
-\title{Performance Analysis of IEEE 802.11ax OFDMA-based Random Access}
+\title{Performance Analysis of IEEE 802.11ax OFDMA-based Multi-Channel Random Access}
 %
 %
 % author names and IEEE memberships
@@ -435,13 +435,13 @@ GA, 30332 USA e-mail: (see http://www.michaelshell.org/contact.html).}% <-this %
 % in the abstract or keywords.
 \begin{abstract}
 %\boldmath
-With more and more dense deployment of WiFi, quality-of-experience (QoE) and power save have become the critical concern. 
-IEEE 802.11ax, a task group aimed at high efficient WLAN (HEW), firstly issues OFDMA, i.e., multi-user (MU) PHY. 
-It also prosposes OFDMA-based random access mechanism, which is the focus of this work.
-We firstly illustrate necessary IEEE 802.11ax features which are required to understand procedure of the OFDMA-based random access. 
-Then, we give a Markov chain model to precisely describe the steady state behavior.
-Also we analyze system efficiency and access delay of the random access mechanism. 
-At last we estimate the performance effect of system parameters, including number of resource units (RUs) for random access and contension window size.
+With the progressive increase of dense WiFi networks deployment, quality-of-experience (QoE) and power saving are becoming critical issues. 
+IEEE 802.11ax, a task group aimed at high efficient WLAN (HEW), is to handle this dense scenario.
+802.11ax makes revolutionary modifications to both MAC and PHY layer. 
+One of the main features is OFDMA-based random access mechanism.
+We propose a Markov chain model to precisely describe the steady state behavior of the OFDMA-based random access.
+Also, we analyze system efficiency and access delay of the random access mechanism. 
+Finally, we estimate the effects of system parameters, including number of resource units (RUs) for random access and contension window size, on system efficiency and access delay.
 \end{abstract}
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
 % This preserves the distinction between vectors and scalars. However,
@@ -452,7 +452,7 @@ At last we estimate the performance effect of system parameters, including numbe
 
 % Note that keywords are not normally used for peerreview papers.
 \begin{IEEEkeywords}
-random access, Multi-User PHY, OFDMA, 802.11ax.
+MCRA, Multi-User PHY, OFDMA, 802.11ax
 \end{IEEEkeywords}
 
 
@@ -473,73 +473,145 @@ random access, Multi-User PHY, OFDMA, 802.11ax.
 
 \section{Introduction}		\label{Intro}
 
-%1. why 802.11ax, dense, DCF, contention, collision
-During last decades, IEEE 802.11 achieved great success in WLAN. Enormous WiFi are deployed for its high speed and simplicity of deployment. 
-The foundation of 802.11 MAC, distributed coordination function (DCF), is a random access mechanism \cite{bianchi2000performance}.
-With DCF, a random access MAC, the star topology of a 802.11 WLAN result in a absolutely unfair queueing. 
-Since in star topology,  access point (AP) needs to transmit all the down-link (DL) traffic, which is often more than $1/2$ traffic loading of the basic service set (BSS), while AP has only $1/n$ chance to access medium where $n$ is number of total stations including AP. It is, thus, an unfair queueing problem.
-What's worse, combining effect of the unstability of random access's nature and the unfair queueing problem, once under a dense scenario, the performance will degrade severely since contention and collision will occupy the channel.
-That lies the defect of legacy 802.11.
-We collectively call them dense deployment problem.
-The dense deployment problem not only degrades throughput but also waste much energy.
+% what is dense scenario
+During last decades, IEEE 802.11 achieved great success, enormous WiFi networks have been deployed because of its high throughput and relative simplicity of implementation.
+According to Cisco Visual Network index \cite{cisco2016}, the mobile traffic will increase 53\% at CAGR within 2015-
+2020, i.e., eight-fold, reaching 30.6 EB per month by 2020.
+Therefore, scenarios of WiFi networks will become dense scenarios, which means plenty of stations (STA) or access points (AP) or both exist in a limited area. 
+In this paper, we only focus on case of single AP with multiple STAs. 
 
-%2. ax feature, MU, central control, but OFDMA-random access
-Previous amendments, 802.11n and 802.11ac called high throughput (HT) and very high throughput (VHT) respectively which are aimed at improving throughput, only mitigate the dense deployment problem. 
-The bottleneck at the MAC efficiency is not resolved.
-Thus, 802.11ax task group is issued targeted at high efficiency WLAN (HEW), improving quality of experience (QoE) and power save.
-Confronting the dense deployment problem, 802.11ax permits AP of central control, to schedule both down-link (DL) and up-link (UL) transmission so that contention is much reduced and unfair queueing problem could be resolved.
-IEEE 802.11ax also issues multi-user (MU) PHY which is supported with Orthogonal Frequency Multiple Access (OFDMA), and a special control frame called trigger frame (TF) to implement trigger-based MU UL\cite{draft_ax}. 
-Accordingly, multi-channel random access, the focus of this paper, is of course implemented in 802.11ax, named OFDMA-based random access, since random access is an efficient way for stations to transmit bandwidth request, buffer status report (BSR) etc. 
-Actually, the new MAC is based on DCF since it helps co-exist among BSS and other systems. The difference is that the DCF mainly works on AP which means AP needs to access channel following DCF procedure, while HE-STA (802.11ax STA) is mostly scheduled by AP and even the random access procedure is initialized by AP. 
+% history of 802.11 i.e., legacy solutions not work, MAC is bottleneck
+Actually, a series of standards, 802.11b, g, n, ac, have evolved to handle the increasing WLAN usage.
+The method is mainly by means of raising data rate on physical layer (PHY) \cite{perahia2013next} from 2 Mbps to 7 Gbps.
+However, performance or user experience of WiFi networks dose not improve enough with the data rate, especially in dense scenario. 
+That is because bottleneck of dense WiFi networks gradually relocate at MAC layer.
+Compared with that on PHY layer, legacy 802.11 made fewer changes on MAC layer. 
+The MAC is always based on distributed coordination function (DCF), which is a random access protocol. 
+Collisions consume much efficiency in dense scenario.
 
-%3. related work, random acces history ? , clarify OFDMA-based random access is special
-% SU/MU; aloha/CSMA; BEB/UB; saturated/unsaturated
-Random access is a classical topic in data network.
-It originates from Aloha and slotted Aloha \cite{abramson1970aloha}, which are also named collision resolution, with single-user channel. 
-Inherently, collision resolution algorithms can achieve small delay with a large number of lightly loaded nodes \cite{bertsekas1992data}.
-Then CSMA works as typical collision resolution  \cite{kleinrock1975packet}\cite{chen1994medium}, which is accepted by IEEE 802.11 named CSMA/CA \cite{bianchi2000performance}. 
-CSMA/CA has been a popular approach to MAC on unlicensed band for a long time, since it is easily implemented and robust. 
-For random access, the stability is a major concern. 
-% MU PHY
-With the emergence of MU PHY techniques, like MU-MIMO or MU-OFDMA, multi-user (MU) channel random access is proposed.
-We concern about MU-OFDMA.
-With MU channel, randomness extends from time domain to time-frequency domain, 2-dimension.
-The MU random access is mainly adopted by cellular networks, IEEE 802.16 and 3GPP LTE.
-And cellular network only implements random access for initial up-link access. 
-In recent years, several analytical models have been proposed to derive the throughput \cite{zhou2008efficient}\cite{shen2003performance}\cite{choi2006multichannel}, the collision probability\cite{kim2012performance}\cite{seo2011design}, and the access delay \cite{zhou2008efficient}\cite{kim2012performance}\cite{seo2011design}\cite{behroozi1992delay}. 
-In \cite{kim2012performance}, the authors presented an analytical model to evaluate the access success probability and the access delay for UMTS system.
-\cite{choi2006multichannel} designs a 1-persistent type retransmission, i.e., no exponential backoff, to achieve a fast access.  
-In \cite{zhou2008efficient}, a closed-form expression of throughput for OFDMA system is firstly given.
+% causes of bottleneck at MAC
+MAC efficiency is wasted by two parts, overhead of control signaling and collisions.
+Much effort has been conducted to reduce the overhead of control signaling, such as RIFS, frame aggregation, etc \cite{perahia2013next}. 
+In dense scenario, collisions will be the major component of spectrum waste.
+That is why bottleneck relocate at MAC layer.
+Collision is caused by two problems, instable distributed coordination function (DCF) problem and unfair queueing problem.
 
-% backoff mechanism
-The backoff mechanism, which is about retransmission when failure occurs, is also important in random access.
-Many works compare performance of two backoff mechanism, binary exponential backoff and uniform backoff  \cite{zhou2008efficient}\cite{seo2011design}\cite{kim2012performance}, which are implemented by IEEE 802.16 and 3GPP LTE respectively.  \cite{wei2015modeling} specifies a model estimating transient behavior of OFDMA system.
+Firstly, DCF is inherently instable as it is a random access protocol. 
+Collisions will consume even more resource in dense scenario. 
+Secondly, when we see the WiFi network with queueing model, WiFi network will be an unfair queue, which will worsen the effect of instability of DCF. 
+%Each STA and AP are modeled as an individual queue, and the shared spectrum or the channel is seen as the server.
+%Packets thus become the customers served by channel. 
+%Because legacy 802.11 implement single-user (SU) channel. That means at one time, at most one packet could be served successfully; otherwise collision happens.
+On the one hand, each STA and AP  (each queue) has the same chance to access the channel (server). 
+On the other hand, because WiFi network operates in a star topology, AP as the center and STAs surrounding the AP logically, AP shares more than $1/2$ down-link (DL) traffic loading, while AP only has $1/(n+1)$ chance to access channel, where $n$ is the number of STAs.
+The queue model of WiFi network is, therefore, an unfair queue between DL and up-link (UL) transmissions. 
 
-%many metrics: throughput, mean and variance of access delay, stability
-All above works about OFDMA random access is an Aloha-type access in cellular network.
-In addition, \cite{GeneralizedOFDMACSMACA} is one of a few works for 802.11. It generalizes CSMA/CA to OFDMA system for 802.11.
 
-%4. our work
-% the first to analyze the 802.11ax random access
-Though OFDMA and multi-channel random access have been employed by IEEE 802.16 and 3GPP LTE for a long time.
-It is the first time for 802.11ax to issue OFDMA and OFDMA-based random access, which is a huge evolution for 802.11.
-And as far as we know, this is the first paper analyzing IEEE 802.11ax OFDMA-based random access. 
-It employs binary exponential backoff and MU PHY under Trigger-based MU UL, which is different from \cite{GeneralizedOFDMACSMACA}.
-Since \cite{bianchi2000performance} proposes an accurate Markov chain model for DCF, we could also reuse this model to generate another Markov chain for 802.11ax to precisely depict the OFDMA-based random access.
-We assume stations are under saturated condition which means they always have packets to transmit.
-The saturated analysis is based on the key assumption of independent collision probability $p$ whatever the packet is retransmitted or not.
-Simulation validates our model to be accurate.
-Then, we estimate the maximum system efficiency and minimum access delay. 
-Since OFDMA-based random access has dynamic and more complicated parameter sets than legacy 802.11, we evaluate effect of a variety of parameter sets and at last propose rules for AP to configure the parameter set. 
+% DCF to scheduled MAC, TF-based UL
+Study group 802.11, target high efficiency WLAN (HEW) in dense scenario, thus modify the MAC thoroughly, change DCF to central control. 
+On PHY layer, OFDMA is issued to implement both DL and UL multi-user (MU) channel, which means a STA could communicate with multiple STAs at a time. 
+On MAC layer, a brand new control frame called trigger frame (TF) is created to implement TF-based UL transmission. 
+The AP thus could schedule both DL and UL transmissions, which means DCF will be replaced by a scheduled MAC protocol. 
+And instability of DCF and unfair queueing problem will not exist any more, because AP does not need to contend with STAs.
+Moreover, a OFDMA-based multi-channel random access (MCRA) is proposed in 802.11ax as random access is highly efficient to transmit short frames, like bandwidth request. 
+The AP need not contend with STAs to access channel.
+Instead, AP initiate the MCRA by transmit a TF at first. 
+Then STAs receiving the TF will contend with Aloha and binary exponential backoff mechanism. 
+AP at last responds with ACK telling which STAs succeed in contending.
+A random access procedure is thus composed of three-way handshake. 
+Details will be illustrated in Section II.
 
+% Related works of MCRA
+As for the OFDMA-based MCRA, we are concerned about number of stations succeeding in accessing the channel and access delay of a station.
+Actually, MCRA has been supported by cellular networks to perform initial association to the network and to request transmission resources. 
+Several models are proposed to derive the throughput 
+1. cellular networks, synchronous network, different from WiFi network
+
+
+% Our contribution
+In this paper, we estimate the steady state behavior of the OFDMA-based MCRA by extending Bianchi's Markov chain model.
+Bianchi's model has never been shifted to model the OFDMA-based MCRA. 
+Though the MCRA has big difference from DCF, including SU to MU channel, distributed scheme to central control scheme and listening before talk to Aloha, Bianchi's Markov chain model will have been validated that it precisely model the MCRA by some modifications.
+Also, we evaluate system efficiency, access delay and effects of important system parameters. 
+
+% organization
 The paper is organized as follows.
-More explanations of 802.11ax features are given in section \ref{sec_ax_feature}. 
-In section \ref{sec_RA_illu}, a detailed illustration of OFDMA-based random access procedure is presented.
-Section \ref{sec_sys_model} contains the system model and performance analysis, including system efficiency and access delay, of the random access mechanism. 
-Then section \ref{sec_model_val} shows simulation results compared with analysis results, which validates the model.
-In section \ref{sec_max_min}, additional considerations on optimal performance are carried out. 
-Section \ref{sec_perf_eval} gives performance evaluation under various parameter sets and at last propose rules for configuring the parameter set.
-Conclusion remark is given in section \ref{sec_conclu}.
+More explanations of 802.11ax features are given in Section \ref{sec_ax_feature}, including MU UL/DL transmission procedure and OFDMA-based random access procedure.
+Section \ref{sec_sys_model} contains the system model and performance analysis, system efficiency and access delay of the MCRA mechanism. 
+Then Section \ref{sec_model_val} shows simulation results compared with analysis results, which validates the model.
+Additional considerations on optimal performance are carried out in Section \ref{sec_max_min}. 
+After that, Section \ref{sec_perf_eval} evaluates the performance and effects of important system parameters. 
+Conclusion remark is given in Section \ref{sec_conclu}.
+
+
+%% 
+%%1. why 802.11ax, dense, DCF, contention, collision
+%During last decades, IEEE 802.11 achieved great success. Enormous wifi networks have been deployed because of its high throughput and relative simplicity of implementation.
+%The foundation of 802.11 MAC, distributed coordination function (DCF), is a random access protocol \cite{bianchi2000performance}.
+%The DCF together with star topology of a 802.11 WLAN results in an unfair queueing. 
+%Since in star topology,  access point (AP) needs to transmit all the down-link (DL) traffic, which is often more than $1/2$ traffic loading of the basic service set (BSS), while AP has only $1/n$ chance to access medium where $n$ is number of total stations including AP. It is, thus, an unfair queueing problem.
+%What's worse, combining effect of the unstability of random access's nature and the unfair queueing problem, once under a dense scenario, the performance will degrade severely since contention and collision will occupy the channel.
+%That lies the defect of legacy 802.11.
+%We collectively call them dense deployment problem.
+%The dense deployment problem not only degrades throughput but also waste much energy.
+%
+%%2. ax feature, MU, central control, but OFDMA-random access
+%Previous amendments, 802.11n and 802.11ac called high throughput (HT) and very high throughput (VHT) respectively which are aimed at improving throughput, only mitigate the dense deployment problem. 
+%The bottleneck at the MAC efficiency is not resolved.
+%Thus, 802.11ax task group is issued targeted at high efficiency WLAN (HEW), improving quality of experience (QoE) and power save.
+%Confronting the dense deployment problem, 802.11ax permits AP of central control, to schedule both down-link (DL) and up-link (UL) transmission so that contention is much reduced and unfair queueing problem could be resolved.
+%IEEE 802.11ax also issues multi-user (MU) PHY which is supported with Orthogonal Frequency Multiple Access (OFDMA), and a special control frame called trigger frame (TF) to implement trigger-based MU UL\cite{draft_ax}. 
+%Accordingly, multi-channel random access, the focus of this paper, is of course implemented in 802.11ax, named OFDMA-based random access, since random access is an efficient way for stations to transmit bandwidth request, buffer status report (BSR) etc. 
+%Actually, the new MAC is based on DCF since it helps co-exist among BSS and other systems. The difference is that the DCF mainly works on AP which means AP needs to access channel following DCF procedure, while HE-STA (802.11ax STA) is mostly scheduled by AP and even the random access procedure is initialized by AP. 
+%
+%%3. related work, random acces history ? , clarify OFDMA-based random access is special
+%% SU/MU; aloha/CSMA; BEB/UB; saturated/unsaturated
+%Random access is a classical topic in data network.
+%It originates from Aloha and slotted Aloha \cite{abramson1970aloha}, which are also named collision resolution, with single-user channel. 
+%Inherently, collision resolution algorithms can achieve small delay with a large number of lightly loaded nodes \cite{bertsekas1992data}.
+%Then CSMA works as typical collision resolution  \cite{kleinrock1975packet}\cite{chen1994medium}, which is accepted by IEEE 802.11 named CSMA/CA \cite{bianchi2000performance}. 
+%CSMA/CA has been a popular approach to MAC on unlicensed band for a long time, since it is easily implemented and robust. 
+%For random access, the stability is a major concern. 
+%% MU PHY
+%With the emergence of MU PHY techniques, like MU-MIMO or MU-OFDMA, multi-user (MU) channel random access is proposed.
+%We concern about MU-OFDMA.
+%With MU channel, randomness extends from time domain to time-frequency domain, 2-dimension.
+%The MU random access is mainly adopted by cellular networks, IEEE 802.16 and 3GPP LTE.
+%And cellular network only implements random access for initial up-link access. 
+%In recent years, several analytical models have been proposed to derive the throughput \cite{zhou2008efficient}\cite{shen2003performance}\cite{choi2006multichannel}, the collision probability\cite{kim2012performance}\cite{seo2011design}, and the access delay \cite{zhou2008efficient}\cite{kim2012performance}\cite{seo2011design}\cite{behroozi1992delay}. 
+%In \cite{kim2012performance}, the authors presented an analytical model to evaluate the access success probability and the access delay for UMTS system.
+%\cite{choi2006multichannel} designs a 1-persistent type retransmission, i.e., no exponential backoff, to achieve a fast access.  
+%In \cite{zhou2008efficient}, a closed-form expression of throughput for OFDMA system is firstly given.
+%
+%% backoff mechanism
+%The backoff mechanism, which is about retransmission when failure occurs, is also important in random access.
+%Many works compare performance of two backoff mechanism, binary exponential backoff and uniform backoff  \cite{zhou2008efficient}\cite{seo2011design}\cite{kim2012performance}, which are implemented by IEEE 802.16 and 3GPP LTE respectively.  \cite{wei2015modeling} specifies a model estimating transient behavior of OFDMA system.
+%
+%%many metrics: throughput, mean and variance of access delay, stability
+%All above works about OFDMA random access is an Aloha-type access in cellular network.
+%In addition, \cite{GeneralizedOFDMACSMACA} is one of a few works for 802.11. It generalizes CSMA/CA to OFDMA system for 802.11.
+%
+%%4. our work
+%% the first to analyze the 802.11ax random access
+%Though OFDMA and multi-channel random access have been employed by IEEE 802.16 and 3GPP LTE for a long time.
+%It is the first time for 802.11ax to issue OFDMA and OFDMA-based random access, which is a huge evolution for 802.11.
+%And as far as we know, this is the first paper analyzing IEEE 802.11ax OFDMA-based random access. 
+%It employs binary exponential backoff and MU PHY under Trigger-based MU UL, which is different from \cite{GeneralizedOFDMACSMACA}.
+%Since \cite{bianchi2000performance} proposes an accurate Markov chain model for DCF, we could also reuse this model to generate another Markov chain for 802.11ax to precisely depict the OFDMA-based random access.
+%We assume stations are under saturated condition which means they always have packets to transmit.
+%The saturated analysis is based on the key assumption of independent collision probability $p$ whatever the packet is retransmitted or not.
+%Simulation validates our model to be accurate.
+%Then, we estimate the maximum system efficiency and minimum access delay. 
+%Since OFDMA-based random access has dynamic and more complicated parameter sets than legacy 802.11, we evaluate effect of a variety of parameter sets and at last propose rules for AP to configure the parameter set. 
+%
+%The paper is organized as follows.
+%More explanations of 802.11ax features are given in section \ref{sec_ax_feature}. 
+%In section \ref{sec_RA_illu}, a detailed illustration of OFDMA-based random access procedure is presented.
+%Section \ref{sec_sys_model} contains the system model and performance analysis, including system efficiency and access delay, of the random access mechanism. 
+%Then section \ref{sec_model_val} shows simulation results compared with analysis results, which validates the model.
+%In section \ref{sec_max_min}, additional considerations on optimal performance are carried out. 
+%Section \ref{sec_perf_eval} gives performance evaluation under various parameter sets and at last propose rules for configuring the parameter set.
+%Conclusion remark is given in section \ref{sec_conclu}.
 
 
 \section{802.11ax Features}			\label{sec_ax_feature}
