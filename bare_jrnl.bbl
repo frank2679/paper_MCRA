@@ -82,6 +82,11 @@ H.~Kwon, H.~Seo, S.~Kim, and B.~G. Lee, ``{Generalized CSMA/CA for OFDMA
   Layer (PHY) Specifications, Amendment 6: Enhancements for High Efficiency
   WLAN, 802.11ax}, pp. 1--376, Sep 2016.
 
+\bibitem{bianchi2000performance}
+G.~Bianchi, ``{Performance analysis of the IEEE 802.11 distributed coordination
+  function},'' \emph{IEEE Journal on selected areas in communications},
+  vol.~18, no.~3, pp. 535--547, 2000.
+
 \bibitem{dengquality}
 D.-J. Deng, S.-Y. Lien, J.~Lee, and K.-C. Chen, ``{On Quality-of-Service
   Provisioning in IEEE 802.11 ax WLANs},'' \emph{IEEE Access}.
@@ -91,9 +96,9 @@ T.-S. Ho and K.-C. Chen, ``{Performance analysis of IEEE 802.11 CSMA/CA medium
   access control protocol},'' in \emph{proc. PIMRC}, vol.~96, 1996, pp.
   407--411.
 
-\bibitem{bianchi2000performance}
-G.~Bianchi, ``{Performance analysis of the IEEE 802.11 distributed coordination
-  function},'' \emph{IEEE Journal on selected areas in communications},
-  vol.~18, no.~3, pp. 535--547, 2000.
+\bibitem{roberts1975aloha}
+L.~G. Roberts, ``{ALOHA packet system with and without slots and capture},''
+  \emph{ACM SIGCOMM Computer Communication Review}, vol.~5, no.~2, pp. 28--42,
+  1975.
 
 \end{thebibliography}

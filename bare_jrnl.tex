@@ -477,13 +477,13 @@ During last decade, IEEE 802.11 has achieved a great success with enormous WiFi 
 According to Cisco Visual Network index \cite{cisco2016}, the mobile traffic will increase 53\% at CAGR within 2015-
 2020, i.e., eightfold, reaching 30.6 EB per month by 2020.
 Therefore, scenarios of WiFi networks will become the \textit{dense scenarios}, which means plenty of stations (STA) or access points (AP) or both exist in a limited area. 
-In this paper, we only focus on the case of single AP with multiple STAs. 
+In this paper, the case of single AP with multiple STAs is our concern. 
 
 % history of 802.11 i.e., legacy solutions not work, MAC is bottleneck
 Actually, a series of standards (802.11b/g/n/ac) have evolved to handle the increasing WLAN demand.
 The method is mainly by means of raising data rate on the physical layer (PHY)  from 2 Mbps to 7 Gbps \cite{perahia2013next}.
 However, performance or user experience of WiFi networks does not improve enough with the data rate, especially in the dense scenario. 
-That is because bottleneck of dense WiFi networks gradually relocates at MAC layer.
+That is because the bottleneck of dense WiFi networks gradually relocates at MAC layer.
 The MAC is always based on distributed coordination function (DCF) in legacy 802.11, which is protocol on a Single-User (SU) PHY. 
 Previous 802.11 amendments made fewer changes on MAC layer compared with that of PHY layer. 
 And collisions consume many spectrum resource in the dense scenario.
@@ -527,51 +527,45 @@ In recent years, related works have proposed some models to derive the throughpu
 \cite{zhou2008efficient} gives a closed-form expression of throughput for OFDMA system. 
 \cite{shen2003performance} proposes a stabilized multi-channel slotted Aloha algorithm.
 \cite{choi2006multichannel} designs a 1-persistent type retransmission, i.e., no exponential backoff, to achieve a fast access.
-Some other works compare performance of two kinds of backoff mechanism, binary exponential backoff and uniform backoff  \cite{zhou2008efficient}\cite{seo2011design}\cite{kim2012performance}, which are implemented by IEEE 802.16 and 3GPP LTE respectively.  
+Some other works \cite{zhou2008efficient}\cite{seo2011design}\cite{kim2012performance} compare performance of two kinds of backoff mechanism, binary exponential backoff and uniform backoff, which are implemented by IEEE 802.16 and 3GPP LTE respectively.  
 \cite{wei2015modeling} specifies a model estimating transient behavior of OFDMA system.
 In addition, \cite{GeneralizedOFDMACSMACA} generalizes CSMA/CA to OFDMA system for 802.11, which is much different from \cite{draft_ax}.
 
 
 % Our contribution
-In this paper, the steady state behavior of the OFDMA-based MCRA is evaluated by extending Bianchi's Markov chain model.
-Bianchi's model has never been used to model the OFDMA-based MCRA before. 
-Though the MCRA is quite different from DCF, including SU to MU channel, distributed scheme to central control scheme and listening before talking (carrier sense) to Aloha, we validate that Bianchi's Markov chain model could be extended to precisely model the MCRA.
+In this paper, the steady state behavior of the OFDMA-based MCRA is evaluated by extending Bianchi's Markov chain model \cite{bianchi2000performance}, which has never been used to model the OFDMA-based MCRA before. 
+Though the MCRA is quite different from DCF, including SU channel to MU channel, distributed MAC scheme to centralized MAC scheme and listening before talking (carrier sense) to Aloha, Bianchi's Markov chain model is validated in this paper that it could be extended to precisely model the MCRA mechanism.
 Thereby, we evaluate system efficiency, access delay and effects of important system parameters. 
 
 % organization
 The paper is organized as follows.
-More explanations of 802.11ax features are given in Section \ref{sec_ax_feature}, including MU UL/DL transmission procedure and OFDMA-based random access procedure.
-Section \ref{sec_sys_model} contains the system model and performance analysis, system efficiency and access delay of the MCRA mechanism. 
-Then Section \ref{sec_model_val} shows simulation results compared with analysis results, which validates the model.
+More explanations of 802.11ax features are given in Section \ref{sec_ax_feature}.
+Section \ref{sec_sys_model} contains the system model. 
+Then Section \ref{sec_model_val} shows simulation results compared with analysis results.
 Additional considerations on optimal performance are carried out in Section \ref{sec_max_min}. 
-After that, Section \ref{sec_perf_eval} evaluates the performance and effects of important system parameters. 
+After that, Section \ref{sec_perf_eval} evaluates the effects of important system parameters. 
 Conclusion remark is given in Section \ref{sec_conclu}.
 
 
 \section{802.11ax Features}			\label{sec_ax_feature}
 % 1. OFDMA MU, 2. TF-based UL 3. DCF to centralized coordination function
-In this section, necessary features of 802.11ax will be illustrated to understand the OFDMA-based MCRA mechanism.
+Necessary features of 802.11ax to understand the OFDMA-based MCRA mechanism are illustrated in this section.
 As stated above, collisions in dense scenario degrade the performance of WiFi networks as the bottleneck locates at MAC.
-Study group 802.11ax thus proposes TF-based UL procedure, which means AP schedules both DL/UL transmissions.
-In respect of DL/UL, 802.11ax shifted the distributed coordination legacy 802.11 to centralized coordination.
-on the other hand, OFDMA is issued in IEEE 802.11ax to realize MU PHY.
-Additionally, OFDMA-based multi-channel random access (MCRA) is proposed.
+Study group 802.11ax thus proposes TF-based UL procedure, which means UL transmission could be scheduled by AP, shifting distributed MAC to centralized MAC.
+on the other hand, OFDMA is issued in IEEE 802.11ax to realize MU PHY. 
+And OFDMA-based multi-channel random access (MCRA) is proposed.
 For more features of 802.11ax, \cite{dengquality} is a good reference.
 
-\subsection{PHY}
+\subsection{MU PHY}
+Though MU PHY has been implemented in 802.11n and 802.11ac with MU-MIMO, which only realizes MU DL transmission, OFDMA is adopted by 802.11ax to implement both MU DL and MU UL transmissions. Especially for MU UL transmission, which is more difficult to implement compared with MU DL transmission, trigger-based MU UL is proposed. 
 
-With MU PHY, the original SU 20 MHz channel could be specified more fine-grained and also aggregated to a wider channel.
-The resource unit (RU), which can be accessed by one STA, is specified as Table \ref{fig_RU_spec}. The smallest RU is 26-tone, with which a 20 MHz could be separated into 9 subchannels.
-Also, coarse-grained RU is accepted.
-And as specified in Table \ref{tab_RU_spec}, multiple 20 MHz channels can be aggregated, which is called \textit{Channel Bonding}. 
-This will help improve system performance since one BSS is not restricted to a single 20 MHz channel.  
+With MU PHY, the original SU 20 MHz channel could be specified more fine-grained and be also aggregated to a wider channel to meet various bandwidth demands.
+The resource unit (RU), which can be accessed by one STA, is specified as Table \ref{tab_RU_spec}. For example, the smallest RU is 26-tone, with which a 20 MHz could be separated into 9 subchannels.
+Also multiple 20 MHz channels can be aggregated to improve system throughput, which is referred to as \textit{Channel Bonding}. 
 It is worth mentioning that every transmission of MU should end at the same time. That means padding is required for shorter packets.
-
-
 % effects of MU has not explained.
 
-Actually, MU PHY has been implemented in 802.11n and 802.11ac with MU-MIMO, which only realizes MU DL transmission.
-It is an absolutely different method from OFDMA and beyond the scope of this paper. 
+
 
 \begin{table}[!t]
 \caption{Maximum number of RUs for each channel width}
@@ -579,7 +573,7 @@ It is an absolutely different method from OFDMA and beyond the scope of this pap
 \label{tab_RU_spec}
 \begin{tabular}{|c|c|c|c|c|}
 \hline
-RU type & CBW20	&	CBW40	&	CBW80	&	\parbox[m]{1.7cm}{CBW80+80 \\ and CBW160} \\
+RU type & CBW20	&	CBW40	&	CBW80	&	\parbox[m]{1.7cm}{\ CBW80+80 \\ and CBW160} \\
 \hline
 26-tone RU	&	9	&	18	&	37	&	74	\\
 \hline
@@ -612,17 +606,16 @@ RU type & CBW20	&	CBW40	&	CBW80	&	\parbox[m]{1.7cm}{CBW80+80 \\ and CBW160} \\
 \label{fig_MU_UL}
 \end{figure}
 
-
-\subsection{MAC}
-For MU DL transmission, AP will transmit DL packets to multiple stations simultaneously as in Fig. \ref{fig_MU_DL}. 
-The difficulty of OFDMA MU is MU UL transmission. 
-Since 802.11 is not a well-synchronized system, preamble and two-way handshaking may be required before a data transmission. 
-A trigger-based MU UL is issued as in Fig. \ref{fig_MU_UL}.
-A brand new control frame, trigger frame (TF), is created to be transmitted by AP at first.
+In respect of MAC layer, first for MU DL transmission, AP transmits DL packets to multiple stations simultaneously as in Fig. \ref{fig_MU_DL}.
+Secondly, MU UL transmission is a little complicated as WiFi network is not a well-synchronized system, where preamble and acknowledgement mechanisms are required for a data packet transmission. 
+A trigger-based MU UL transmission is thus issued as in Fig. \ref{fig_MU_UL}.
+A brand new control frame, trigger frame (TF), is created to be transmitted by AP to initiate the UL transmission.
 STAs could not transmit UL packets until they receive a TF which allocates RU for the STA or for random access. 
-The trigger frame format is as in Fig. \ref{fig_TF_format}. Since the standard is in progress, many fields remain to be determined (TBD). 
-In the field \textit{User Info}, \textit{AID} represents the STA and \textit{RU Allocation} represents the RU allocated to the STA.
-Especially, \textit{AID} of value 0 means the RU for random access.
+Afterwards, AP responds with ACK frame, forming a three-way handshake UL transmission. 
+The trigger frame format is as in Fig. \ref{fig_TF_format}. 
+Since the standard is in progress, some fields remain to be determined (TBD). 
+In the field \textit{User Info}, subfield \textit{AID} represents the identification of STA and subfield \textit{RU Allocation} represents the RU allocated to the STA.
+Especially, \textit{AID} with value 0 means the RU is for random access.
 
 
 \begin{figure}[!t]
@@ -636,13 +629,6 @@ Especially, \textit{AID} of value 0 means the RU for random access.
 
 
 \subsection{OFDMA-based MCRA}		\label{sec_RA_illu}
-
-%\begin{minipage}{.5\textwidth}
-%\includegraphics[scale=0.35]{./figure/RA_illu_3.png}
-%\caption{Another example of OFDMA-based random access for DL in 802.11ax}
-%\label{fig_ra_dl}
-%\end{minipage}
-
 
 \begin{figure*}[!ht]
 \centering
@@ -669,38 +655,32 @@ Especially, \textit{AID} of value 0 means the RU for random access.
 %And the parameter set is set by AP in real time.
 %The procedure is of course more complicated and flexible.
 %We first illustrate the ODFMA-based random access procedure then give two use cases of the random access.
-We first check a use case of OFDMA-based MCRA as in Fig. \ref{fig_ra_ul}.
-When a STA attempts to transmit data packets, the STA will send buffer state report (BSR) frame with OFDMA-based MCRA. 
-After successful contention, AP will allocate RUs for the STA by another type of trigger frame.
-Then the STA transmits data packets on the allocated RUs.
+An example of TF-based MU UL transmission with OFDMA-based MCRA, illustrated as in Fig. \ref{fig_ra_ul}, is divided into two steps, one as random access procedure and the other UL data transmission.
+Random access procedure, namely the OFDMA-based MCRA, works as collecting traffic information from stations.
+Thereby in the next step, AP could allocate RUs to STAs by transmitting a TF containing RU allocation.
+Then the STAs, receiving the TF with resource allocation information, transmit UL data packets. And AP at last responds ACK.
+Therefore, TF above in the example have two variants, one for random access and the other for resource allocation. 
+The key of this mechanism locates at random access, i.e., the OFDMA-based MCRA, which is our concern.
 
-Different from legacy 802.11, where all the parameters are predefined in each STA's hardware, system parameters of 802.11ax are configured dynamically by AP. 
-The parameters includes $OCW_{min}, OCW_{max}, M$, where $OCW_{min}, OCW_{max}$ represent the minimum and the maximum contention window. 
-And $M$ is the number of RUs for random access. 
-$OCW_{min}, OCW_{max}$ are given in an element called RAPS (random access parameter set) contained in beacon frame sent by AP. 
-$M$ is obtained from TF where some \textit{AID} of RUs equals 0.
+
+Details of OFDMA-based MCRA mechanism is as Fig. \ref{fig_ra_illu}. 
+To initialize a random access procedure, AP first transmits a TF announcing RUs for random access by setting the AID of the RUs to 0. 
+Attempting STAs, whose buffers are not empty, maintain a backoff counter named OFDMA Backoff (OBO), which are randomly generated among range $[0, OCW]$.
+Then the OBO subtracts the value of $M$ once receiving the TF, otherwise freezes, where $M$ is calculated by sum the number of RUs whose AID equals 0.  
+When the OBO reaches 0, the STA will randomly select a RU from those whose AIDs equal 0 to transmit a request after short inter-frame spacing (SIFS). 
+After that, AP responds with a block-ACK indicating which STAs contend successfully. The period of the whole three-way handshaking is named a \textit{stage}.
+A successful stage means at least one STA contend successfully to transmit a request in a stage. 
+It is worth noting that the stage in this paper, which is specified from standard \cite{draft_ax}, is a concept of the time interval, not the backoff stage in other papers.
+To avoid confusion of the two meanings, backoff stage is replaced with \textit{backoff level} in this paper.  
+When STAs fail to contend, the $OCW$ will be doubled until $OCW$ reaches $OCW_{max}$, which means the backoff level increases one step once a failure until the highest level.
+
+In terms of implementation, system parameters of the MCRA are configured dynamically by AP, including $OCW_{min}, OCW_{max}, M$, where $OCW_{min}, OCW_{max}$ represent the minimum and the maximum contention window, and $M$ as the number of RUs for random access. 
+Two of critical parameters $OCW_{min}, OCW_{max}$ are configured in Random Access Parameter Set (RAPS) element contained in beacon frame sent by AP.
+Check field \textit{OCW Range} in RAPS element as in Fig. \ref{fig_RAPS}, $OCW_{min} = 2^{EOCW_{min}}-1$, $OCW_{max} = 2^{EOCW_{max}}-1$. 
+$M$ is obtained from TF by sum the number of RUs whose \textit{AID} equal 0.
+To simplify following analysis, we issue another parameter $m$, \textit{maximum backoff level}, so that $OCW_{max} = (OCW_{min}+1)*2^m-1$. 
+The configuration of system parameter is absolutely different from that of legacy 802.11, where all the parameters are predefined in each STA's hardware. 
 OFDMA-based MCRA is thus more flexible compared with DCF.
-
-Now let's check details by referring Fig. \ref{fig_ra_illu}. 
-To initialize a random access procedure, AP first transmits a TF. 
-The TF announces some RUs for random access by setting the AID of those RUs value of 0. 
-Attempting STAs maintain a backoff counter, called OFDMA Backoff (OBO), which are randomly generated among range $[0, OCW]$. 
-Then the OBO subtracts the value of $M$ when STA receives a TF for random access. In other periods, the OBO will be frozen. 
-When the OBO reaches 0, the STA will randomly select an RU from those for random access to transmit a packet after short inter-frame spacing (SIFS). 
-After that, AP responds with a block ACK indicating which STAs succeed in contending. The whole three-way handshaking is called a \textit{stage}. 
-A successful stage means at least one STA succeed in transmitting a request in a stage. 
-It is worth reminding that the stage in this paper is a concept of the time interval, not the backoff stage in other papers. 
-It is specified from standard \cite{draft_ax}. 
-To distinguish the two meanings, we use \textit{backoff level} in this paper replacing backoff stage.  
-When STAs fail to contend, the $OCW$ will be doubled until $OCW$ reaches $OCW_{max}$. 
-It means the backoff level increases until the highest level.
-
-
-We look deeply into the implementation of the mechanism by checking the RAPS element as in Fig. \ref{fig_RAPS}.
-The two critical parameters $OCW_{min},OCW_{max}$ are specified in field \textit{OCW Range}. 
-The value is defined by $OCW_{min} = 2^{EOCW_{min}}-1$, $OCW_{max} = 2^{EOCW_{max}}-1$. 
-In the following analysis, we issue another parameter $m$, \textit{maximum backoff level}, so that $OCW_{max} = (OCW_{min}+1)*2^m-1$. 
-Then we later specify $OCW_{max}$ with $m$ and $OCW_{min}$ in following section, which simplifies analysis.
 
 
 
@@ -717,32 +697,31 @@ Then we later specify $OCW_{max}$ with $m$ and $OCW_{min}$ in following section,
 
 
 \section{System Model} 		\label{sec_sys_model}
-Bianchi's Markov chain model could accurately depict the steady state behavior of DCF. 
-It models all the details of DCF based on the assumption that at each request transmission, and regardless of the number of retransmission suffered, each request frame collides with constant and independent probability $p$. 
-Although there are some great differences between OFDMA-based MCRA and DCF, the differences could be modeled by modifying the original Markov chain.
-Therefore, we modify this model to conduct the saturation analysis of 802.11ax OFDMA-based MCRA also with the assumption of constant and independent conditional collision probability.
+Bianchi's Markov chain model has been validated that it accurately depicts the steady state behavior of DCF based on the assumption that at each request transmission, and regardless of the number of retransmission suffered, each request frame collides with constant and independent probability $p$. 
+Although some differences exist between OFDMA-based MCRA and DCF, we have validated that OFDMA-based MCRA could be modeled with Markov chain model.
 
 The analysis is divided into two parts. First is the Markov chain model to estimate the packet transmission probability $\tau$ and conditional collision probability $p$. 
-Secondly, we evaluate the metrics given $\tau$, including the number of stations who succeed in contending in a stage $n_s$, self-defined system efficiency \textit{eff}, and expected access delay of a STA $D$.  
+Secondly, we evaluate some metrics given $\tau$, including the number of stations who succeed in contending in a stage $n_s$, self-defined system efficiency \textit{eff}, and expected access delay of a STA $D$.  
 Table \ref{table_notation} is a list of all parameters and notations.
 
 
 \begin{table}[!h]
-\caption{Parameters and Notations}
+\caption{Parameters and Notations Interpretation}
 \centering
 \label{table_notation}
-\begin{tabular}{c|l}
+\begin{tabular}{c|m{4.5cm}}
 \hline
-$n$						& $\#$ of stations \\
-$OCW_{min}$ ($W_0$)		& minimum OFDMA contention window \\
-$OCW_{max}$ ($W_m$)		& maximum OFDMA contention window \\
-$M$						& $\#$ of RUs for random access \\
-$m$						& maximum backoff level \\
-$p$						& packet collision probability \\
-$\tau$					& station's transmission probability \\
-$n_s$					& $\#$ of successful stations in a stage \\
-$D$						& access delay, $\#$ of stages for a station\\
-						& to contend successfully \\
+Notations				& Meaning \\
+\hline
+$n$						& Number of stations \\
+$OCW_{min}$ ($W_0$)		& Minimum OFDMA contention window \\
+$OCW_{max}$ ($W_m$)		& Maximum OFDMA contention window \\
+$M$						& Number of RUs for random access \\
+$m$						& Maximum backoff level \\
+$p$						& Packet collision probability \\
+$\tau$					& Station's transmission probability \\
+$n_s$					& Number of successful stations in a stage \\
+$D$						& Access delay, number of stages for a station to contend successfully \\
 \hline
 \end{tabular}
 \end{table}
@@ -750,27 +729,25 @@ $D$						& access delay, $\#$ of stages for a station\\
 \subsection{Packet Transmission Probability}
 Consider a fixed number $n$ of stations under saturation condition, which means each station is an attempting station. 
 For saturation analysis, stage of MCRA is one after another.
-Thus DL transmissions do not need to be considered here.
 Also, the ideal channel is assumed so that collision happens only if more than one station transmits at the same RU.
+Since the critical of the mechanism is OFDMA-based MCRA, only UL request transmission is concerned, while DL transmission and UL data transmission are not considered here. 
 
-DCF and OFDMA-based MCRA seem quite different from each other. 
-One of the most important differences is the concept of time. In DCF, time is measured by slot. Here, we measure time by stage, the three-way handshake. 
-However, they are both discrete and integer time scale. And stage does not directly reflect real time. 
-The overhead of IFS and length of the request or BSR packet is not our concern. We only care about the number of stages.
+To model OFDMA-based MCRA with the discrete-time Markov chain model, the concept of time is supposed to be adapted. 
+In DCF, time unit of the model corresponds with slot, while in OFDMA-based MCRA time unit of the model is stage, a three-way handshake. 
+Thus the delay will be measured in the number of stages.
 
-Similar to Bianchi's work, let $\lbrace s(t), b(t) \rbrace$ be the bi-dimension process, where $s(t)$ denotes the backoff level $(0,\cdots, m)$, and $b(t)$ denotes backoff counter $(0,W_i)$.
+Similar to Bianchi's work, let $\lbrace s(t), b(t) \rbrace$ be the bi-dimension process, where $s(t)$ denotes the backoff level $(0,\cdots, m)$, and $b(t)$ denotes backoff counter $(0,\cdots, W_i)$.
 With the discrete and integer time scale, $t$ and $t+1$ corresponds to beginnings of two consecutive stages.
-$\lbrace b(t) \rbrace$ is not Markov process because the state of the current stage depends on the history of transmission instead of only the last stage. 
-The bi-dimensional process $\lbrace s(t),b(t) \rbrace$ will be modeled with Markov chain.
+$\lbrace b(t) \rbrace$ is not Markov process because the state of the current stage depends on the history of transmission instead of only the previous stage. 
+The bi-dimensional process $\lbrace s(t),b(t) \rbrace$ is also a Markov chain.
 The key assumption is still necessary that at each request transmission, and regardless of the number of retransmission suffered, each request frame collides with constant and independent probability $p$.
 With the independence assumption, $p$ will be a constant. The Markov chain is able to be conducted as in Fig. \ref{Markov}.
 
 % Differences
-To understand both Markov chain models of the two different mechanisms, OFDMA-based MCRA and DCF, one important concept is clarified here. 
-Since stations of DCF senses the carrier before transmitting, stations may stay at a state for multiple slots. 
-In OFDMA-based MCRA, a stage, a three-way handshake, contains exactly a period for a packet transmission.
-Stations will subtract $M$ from the OBO only if they receive a TF for random access. 
-Stations thus stay in one state for a period of exactly single stage.
+Another important difference between the two Markov chain models of OFDMA-based MCRA and DCF, is clarified here.
+Since the station of DCF senses the carrier before transmitting, it will freeze its backoff counter and stay at the state if channel is sensed busy. 
+However in the OFDMA-based MCRA, because the time unit, a stage, contains a period for exactly a packet transmission, stations certainly subtract $M$ from the OBO only if they receive a TF for random access. 
+Stations of the MCRA thus stay in one state for a period of exactly single stage.
 
 % modifications
 Some modifications are mentioned here to adapt to differences between OFDMA-based MCRA and DCF. 
@@ -807,15 +784,15 @@ The last two equations are the case of failure at the maximum backoff level.
 We assume no packets are discarded, repeating retransmitting until success.
 
 Let $b_{i,k} = \lim_{t\rightarrow \infty} P\lbrace s(t) = i, b(t) = k\rbrace,\ i\in [0,m], \ k \in [0,W_i]$, be the stationary distribution of the Markov chain. 
-Then we show how to obtain transmit probability $\tau$ and conditional probability $p$.
-First,  for states with $b(t) = T$, in which stations will transmit request or BSR in current stage, 
+Then we show how to obtain transmission probability $\tau$ and conditional collision probability $p$.
+First,  for states with $b(t) = T$, in which stations will transmit requests or BSRs in current stage, 
 \begin{align}
 b_{i-1,T}\cdot p = b_{i,T} 		\rightarrow b_{i,T} = p^i b_{0,T}, \quad 0\leq i < m \nonumber\\
 b_{m-1,T}\cdot p = (1-p) b_{m,T}	\rightarrow b_{m,T} = \frac{p^m}{1-p}b_{0,T}.
 \label{biT}
 \end{align}
 
-Then, other states are expressed with states of $b(t)=T$,
+Then, other states are expressed with states in which $b(t)=T$:
 \begin{align}
 &b_{i,k} =  \nonumber \\
 &
@@ -828,13 +805,9 @@ Then, other states are expressed with states of $b(t)=T$,
 \label{steady_prob}
 \end{align}
 
-From (\ref{biT}), we have $\sum_{i=0}^m b_{i,T}= \frac{b_{0,T}}{1-p}$; with which, sum (\ref{steady_prob}) respectively; we obtain (\ref{part_sum}).  
-\begin{figure*}[!t]
+From (\ref{biT}), $\sum_{i=0}^m b_{i,T}= \frac{b_{0,T}}{1-p}$ is obtained; whereby (\ref{steady_prob}) could be summed respectively to get (\ref{part_sum}).  
 
-%\normalsize
-%% Store the current equation number.
-%\setcounter{MYtempeqncnt}{\value{equation}}
-%\setcounter{equation}{4}
+\begin{figure*}[!t]
 \begin{align}
 \begin{cases}
 \sum_{k=M+1}^{W_0} b_{0,k} = \frac{b_{0,T}}{W_0+1}\left(-\frac{M}{2}\left\lfloor \frac{W_0}{M}\right\rfloor ^2 + \left(W_0-\frac{M}{2}\right)\left\lfloor \frac{W_0}{M} \right\rfloor \right) \\[8pt]
@@ -845,21 +818,22 @@ From (\ref{biT}), we have $\sum_{i=0}^m b_{i,T}= \frac{b_{0,T}}{1-p}$; with whic
 \end{align}
 \end{figure*}
 
-Each subequation in (\ref{part_sum}) has the same term: $-\frac{M}{2}\left\lfloor \frac{W_i}{M}\right\rfloor ^2 + \left(W_i-\frac{M}{2}\right)\left\lfloor \frac{W_i}{M} \right\rfloor$. To simplify the expression, let $X_i = -\frac{M}{2}\left\lfloor \frac{W_i}{M}\right\rfloor ^2 + \left(W_i-\frac{M}{2}\right)\left\lfloor \frac{W_i}{M} \right\rfloor$. 
-Here, we sum steady state probability of all states to get (\ref{total_sum2}).
+Each subequation in (\ref{part_sum}) has the same term: $-\frac{M}{2}\left\lfloor \frac{W_i}{M}\right\rfloor ^2 + \left(W_i-\frac{M}{2}\right)\left\lfloor \frac{W_i}{M} \right\rfloor$. 
+To simplify the expression, let $X_i = -\frac{M}{2}\left\lfloor \frac{W_i}{M}\right\rfloor ^2 + \left(W_i-\frac{M}{2}\right)\left\lfloor \frac{W_i}{M} \right\rfloor$. 
+Then, sum the steady state probability of all states to get (\ref{total_sum2}).
 
 \begin{figure*}[!t]
 \begin{align}
 1 &= \sum_{i=0}^m \sum_{k=0}^{W_i}b_{i,k} 
  = \frac{b_{0,T}}{W_0+1}\left( X_0 + \sum_{i=1}^{m-1}X_i\left( \frac{p}{2}\right)^i + X_m\frac{\left( \frac{p}{2}\right)^m}{1-p}\right) + \frac{b_{0,T}}{1-p}\label{total_sum}\\
-& = b_{0,T}\left( \frac{(1-p)X_0+(1-p) \sum_{i=1}^{m-1}X_i\left( \frac{p}{2}\right)^i+X_m\left( \frac{p}{2}\right)^m+W_0+1}{(W_0+1)(1-p)}\right)\label{total_sum2}
+& = b_{0,T}\left( \frac{(1-p)X_0+(1-p) \sum_{i=1}^{m-1}X_i\left( \frac{p}{2}\right)^i+X_m\left( \frac{p}{2}\right)^m+W_0+1}{(W_0+1)(1-p)}\right), \label{total_sum2}
 \end{align}
 %\setcounter{equation}{7}%{\value{MYtempeqncnt}}
 %% IEEE uses as a separator
 \hrulefill
 \end{figure*}
 
-Now we can express $\tau$, the probability of a station transmit a request at a randomly selected stage, as a function of $p$.
+whereby a closed-form expression of $\tau$, the probability of a station transmitting a request at a stage, is derived.
 
 \begin{align}
 \label{tau_general}
@@ -870,48 +844,43 @@ Now we can express $\tau$, the probability of a station transmit a request at a 
 For $m=0, M=1$ which is SU PHY with a fixed contention window, check (\ref{total_sum}), the terms containing $X_i, i>0$ will disappear, and $b_{0,T}/(1-p)$ degrades to $b_{0,T}$.
 As a result, (\ref{total_sum2}) degrades to 
 \begin{align}
-1 = b_{0,T}\left( \frac{W_0+1+X_0}{W_0+1}\right),
+1 = b_{0,T}\left( \frac{W_0+1+X_0}{W_0+1}\right).
 \end{align}
-thereby, 
+Thereby, 
 \begin{align}
 \tau = b_{0,T} &= \frac{W_0+1}{W_0+1+X_0} \nonumber\\
-				&= \frac{2(W_0+1)}{W_0^2+W_0+2}.
+				&= \frac{2(W_0+1)}{W_0^2+W_0+2},
 \label{tau_W0}
 \end{align}
-It is a little surprising at first that it is different from \cite{ho1996performance}, where $\tau=\frac{2}{W_0+1}$.
-After thinking for a while, it is reasonable, because the simplified OFDMA case $M=1$ does not require carrier sensing before transmission.
-It is certainly different from \cite{ho1996performance} which adopted CSMA/CA.
+which is different from that of CSMA/CA with constant window size \cite{ho1996performance}, where $\tau=\frac{2}{W_0+1}$.
+That is because stations of CSMA/CA freezes backoff counter when sensing busy channel while no such freeze mechanism of backoff counter exists in OFDMA-based MCRA. 
 
-%Whatever, $\tau$ is independent with $n$, number of contending stations.
 
 On the other hand, conditional collision probability $p$ has another relation with the probability $\tau$. 
-With ideal channel assumption, the collision happens only if at least one of other stations select the same RU.
-Thus we have 
+With ideal channel assumption that the collision happens only if at least one of other stations select the same RU, we have 
 \begin{align}
 \label{p_ax}
 p = 1-\left( 1-\frac{\tau}{M} \right)^{n-1}.
 \end{align}
 Rewrite (\ref{p_ax}) as $\tau^\star = \left(1-(1-p)^\frac{1}{n-1} \right)M$. 
-To obtain transmission probability $\tau$ and conditional collision probability $p$, we need to find solutions to group of equations \ref{tau_general} and \ref{p_ax}.
+To obtain probability $\tau$ and $p$, we need to find solutions to a group of the two equations \ref{tau_general} and \ref{p_ax}.
 $\tau^\star(p)$ is a monotonically increasing function. 
-Though $\tau(p)$ is hard to determine the monotonicity from the expression of equation \ref{tau_general} with respect to $p$. 
-We justify the monotonic decrease of function \ref{tau_general} with numerical method. 
+Though $\tau(p)$ is hard to determine the monotonicity from the expression of equation \ref{tau_general} with respect to $p$, the  function \ref{tau_general} is estimated monotonically decreasing by numerical method. 
 Also, $\tau(0) = \frac{W_0+1}{W_0+1+X_0}> \tau^\star(0) = 0$.
 And $\tau(1) < \tau^\star(1) = M$. 
-We then find the only solution with numerical method.
+Therefore, the only solution could be found by numerical method.
 
 
 
 \subsection{Random Access Efficiency}
-With the transmit probability, we could easily estimate the efficiency of OFDMA-based MCRA mechanism. 
-First, find expected number of stations who contend successfully to transmit a request at a stage, which is denoted with $E[n_s]$. 
-Extending $n_s$, we define a system efficiency as an important metric.
-Secondly, we are interested in the access delay of request frame. 
-In another word, say how many stages are required for a station to contend successfully, denoted by $D$.
+With the transmission probability $\tau$, performance of OFDMA-based MCRA mechanism could be easily evaluated. 
+First, the expected number of stations who contend successfully at a stage, denoted by $E[n_s]$. 
+Extending $n_s$, a system efficiency is defined as another important metric.
+Also, the access delay denoted by $D$, referred to as number of stages required for a station to contend successfully, could be derived. 
 
 \subsubsection{$n_s$ and System Efficiency}
-What we are concerned about in the MCRA is that how many stations contend successfully during a stage, denoted by $n_s$.
-Given $\tau$ and $p$, we could obtain probability that a station contend successfully in a stage, $P_{s\_station} = \tau (1-p)$.
+What we are concerned about is that how many stations contend successfully at a stage.
+Given $\tau$ and $p$, the probability that a station contend successfully in a stage is firstly derived: $P_{s\_station} = \tau (1-p)$.
 Then, with (\ref{p_ax}), $E[n_s]$ is easily expressed as follows. 
 \begin{align}
 \label{equ_ns}
@@ -920,20 +889,17 @@ E[n_s] &= n P_{s\_station} \nonumber \\
 		&= n\tau (1-\frac{\tau}{M})^{n-1}
 \end{align}
 
-Furthermore, normalizing $n_s$, \textit{system efficiency} here is defined as 
+Furthermore, normalizing $n_s$, \textit{system efficiency} here is defined as the ratio of the number of successful contending stations in a stage to the number of RUs for random access in a stage.
 \begin{align}
 \label{eff_def}
-\textit{eff}\ (\tau) &= \frac{E[\text{number of successful stations in a given stage}]}{\text{number of RUs for random access in a stgae}} \nonumber\\
-					 &=\frac{E[n_s]}{M} \nonumber \\
-					 &= \frac{n\tau(1-\frac{\tau}{M})^{n-1}}{M}.
+\textit{eff}\ (\tau) &=\frac{E[n_s]}{M} \nonumber \\
+					 &= \frac{n\tau(1-\frac{\tau}{M})^{n-1}}{M}
 \end{align}
 
-Both two metrics are our concerns. Another metric, access delay, is derived in next subsection.
-With all these metrics, we could evaluate the performance later.
 
 	
 \subsubsection{Access Delay}
-$D$, a random variable represents how many stages are required for a station to contend successfully in a stage. 
+$D$ represents the number of stages required for a station to contend successfully in a stage. 
 Because of saturation assumption, a new request arrives once one previous request is transmitted successfully.
 Thus queueing waiting time is not considered here. 
 In this way, the access delay $D$ follows the geometric distribution with parameter $P_{s\_station}$, which is obtained just now.  
@@ -944,16 +910,15 @@ E[D] = \frac{1}{\tau (1-\frac{\tau}{M})^{n-1}}.
 \end{align}
 
 
-In a word, we focus on three metrics: number of successful stations in a stage $n_s$, system efficiency $E[n_s]/M$ and access delay $D$. 
-
 
 
 \section{Model Validation} 		\label{sec_model_val}
-Since we are only concerned about the OFDMA-based MCRA, to simplify the simulation, we assume STAs only solicit the OFDMA-based MCRA to transmit requests as in Fig. \ref{fig_ra_illu} rather than in Fig. \ref{fig_ra_ul}. 
-The system parameters are set according to Table \ref{tab_RU_spec}.
-We run simulations for 100,000 stages with a variety of parameter sets $\lbrace M, OCW_{min}, OCW_{max}\rbrace$ and collects the information of the two variables, the number of successful attempt STAs $n_s$ and expected access delay $D$. 
-The values of results from both analysis and simulation are given in figure \ref{validation} and table \ref{table_val}. 
+The same with scenario for analysis, only OFDMA-based MCRA mechanism, i.e., Fig. \ref{fig_ra_illu}, is concerned.
+Simulation runs with three-way handshake stage by stage.
+We run simulations for 1,000,000 stages with a variety of parameter sets $\lbrace M, OCW_{min}, OCW_{max}\rbrace$ and collects the information of the two variables, the number of successful attempt STAs $n_s$ and expected access delay $D$. 
+The values of results from both analysis and simulation are given in Fig. \ref{validation} and Table \ref{table_val}. 
 The results show that the Markov model precisely predicts the steady state behavior of the OFDMA-based MCRA mechanism.
+
 \begin{table}[!h]
 \caption{Analysis versus simulation: $n_s$ and access delay with $m=3,M=9,OCW_{min} = 15$}
 \label{table_val}
@@ -984,9 +949,16 @@ $n=20$	& 6.06432	& 6.06323 \\
 \label{validation}
 \end{figure}
 
-\section{Maximum System Efficiency and Minimum Access Delay} 	\label{sec_max_min}
-With the system efficiency given in (\ref{eff_def}), we take the derivative with respect to $\tau$, and find the extreme point, $\tau^\star = M/n$. Since $\tau\in [0,1]$, $\tau^\star = min\lbrace 1,M/n\rbrace$. 
-In dense scenario, i.e., the number of contending stations $n$ is large, then $\tau^\star = M/n$. 
+
+
+\section{Performance Evaluation} 	\label{sec_perf_eval}
+
+With above analysis, we could conveniently evaluate performance, including system efficiency and access delay, and the effects of system parameters.
+Since the model acts quite precisely, model analysis is solicited to evaluate the performance later.
+
+\subsection{Maximum System Efficiency and Minimum Access Delay} 	\label{sec_max_min}
+With the system efficiency given in (\ref{eff_def}), take the derivative with respect to $\tau$, and find the extreme point, $\tau^\star = M/n$. Since $\tau\in [0,1]$, $\tau^\star = min\lbrace 1,M/n\rbrace$. 
+In the dense scenario, i.e., $n$ is large, then $\tau^\star = M/n$. 
 The system efficiency thus is
 \begin{align}
 \textit{eff}\ (\tau^\star) = (1-\frac{1}{n})^{n-1} 
@@ -1002,15 +974,16 @@ The limit of system efficiency, based on infinite $n$, is
 \label{eff_limit}
 \lim_{n\rightarrow \infty}\textit{eff}\ (\tau^\star) = \lim_{n\rightarrow \infty}(1-\frac{1}{n})^{n-1} =\frac{1}{e} 
 \end{align}
+which is the same with efficiency of SU slotted Aloha \cite{roberts1975aloha}.
 
-\begin{figure}[!ht]
-\includegraphics[scale=0.42]{./figure/chp4/max_min.png}
-\caption{Efficiency and access delay versus transmission probability $\tau$}
-\label{fig_eff_def}
-\end{figure}
+%\begin{figure}[!ht]
+%\includegraphics[scale=0.42]{./figure/chp4/max_min.png}
+%\caption{Efficiency and access delay versus transmission probability $\tau$}
+%\label{fig_eff_def}
+%\end{figure}
 
 
-With the delay analysis given in (\ref{equ_delay}), we also take the derivative with respect to $\tau$, and find the extreme point, $\tau^\star = M/n$. Again, $\tau^\star = min\lbrace 1, M/n\rbrace$. 
+With the delay analysis given in (\ref{equ_delay}), take the derivative with respect to $\tau$, and find the extreme point, $\tau^\star = M/n$. Also, $\tau^\star = min\lbrace 1, M/n\rbrace$. 
 When $n\geq M$, the minimum access delay is  
 \begin{align}
 \label{equ_min_delay}
@@ -1020,35 +993,30 @@ D(\tau^\star) = \frac{n}{M(1-\frac{1}{n})^{n-1}}.
 From above analysis, we find that the maximum system efficiency and minimum access delay are both obtained by the $\tau^\star = min\lbrace 1, M/n\rbrace$.
 What's more, optimal system efficiency is independent with $M$, while $M$ affects access delay. 
 The larger $M$ is, the shorter the access delay will be. 
-It indicates that when AP allocates RUs for random access, the AP could allocate as many as possible, only if the channel of the RU is sensed idle by AP. 
+It indicates that when AP allocates RUs for random access, the AP could allocate as many as possible.
 
-Fig. \ref{fig_eff_def} is plotted corresponding to (\ref{eff_def}) and (\ref{equ_delay}).
-Consistent with the analysis above, the figure shows that the maximum system efficiency is independent of the number of RUs for random access when $n\geq M$, and approaching to $1/e$ with $n$ increasing. 
-What's more, the optimal transmission probability $\tau$ of system efficiency and access delay is consistent with each other, which also validates the analysis. 
+%Fig. \ref{fig_eff_def} is plotted in accordance with (\ref{eff_def}) and (\ref{equ_delay}).
+%Consistent with the analysis above, the figure shows that the maximum system efficiency is independent of the number of RUs for random access when $n\geq M$, and approaching to $1/e$ with $n$ increasing. 
+%What's more, the optimal transmission probability $\tau$ of system efficiency and access delay is consistent with each other, which also validates the analysis. 
 
-Obtaining $\tau$ and $p$ by solving group equations (\ref{tau_general}) and (\ref{p_ax}), it's hard to give a closed-form of $\tau$ depending on system parameters, $M$, $W_0$, $m$ or $W_m$ and $n$.
-We could only tune the system parameter set $\lbrace M, W_0, W_m \rbrace$ based on a strong assumption that $n$ is known.
-
-\section{Performance Evaluation} 	\label{sec_perf_eval}
-With above analysis, we could conveniently evaluate system efficiency and access delay by evaluating $\tau$.
-Now that it is hard to directly find the relation between $\tau$ and system parameters, we could tune system parameters with a variety of system parameter sets to get some insight of the relation.
-
+Since $\tau$ and $p$ are obtained by solving group equations (\ref{tau_general}) and (\ref{p_ax}), it's hard to give a closed-form expression of $\tau$ only depending on system parameters, $M$, $W_0$, $m$ and $n$.
+The only way to catch the insights of the MCRA is to tune the system parameters $\lbrace M, W_0, W_m \rbrace$ one by one.
 
 \subsection{RUs for Random Access $M$}
 \label{M}
-(\ref{equ_max_eff}) indicates that $M$, has nothing to do with optimal system efficiency. 
+(\ref{equ_max_eff}) has indicated that $M$, has nothing to do with optimal system efficiency. 
 However, $n_s$ and $D$ are proportional and inversely proportional to $M$ respectively according to (\ref{equ_max_ns}) and (\ref{equ_min_delay}). 
-Following analysis results validate the statement.
+Following analysis results validate the statement. 
 
 
-\begin{figure}[!t]
+\begin{figure}[!h]
 \centering
 \includegraphics[scale=.54]{./figure/n_M_eff_perf.png}
 \caption{System efficiency versus number of stations}
 \label{fig_n_M_eff}
 \end{figure}
 
-\begin{figure}[!t]
+\begin{figure}[!h]
 \begin{subfigure}{0.5\textwidth}  
 %\centering
 \includegraphics[scale=.54]{./figure/n_M_ns_perf.png}
@@ -1065,12 +1033,12 @@ Following analysis results validate the statement.
 \caption{Configure $M$}
 \end{figure}
 
-In Fig. \ref{fig_n_M_eff}, the maximum system efficiency is almost the same, approaching $1/e$. 
-The only difference is "when" the optimal point will be. 
-However, more practically, how many stations contend successfully in a stage?
+In Fig. \ref{fig_n_M_eff}, the maximum system efficiency from various cases are almost the same, approaching $1/e$. 
+The only difference is "where" the optimal point locates. 
+Practically, the other two metrics, $n_s$ and $D$, are closely related to $M$.
 Fig. \ref{fig_n_M_ns} shows that larger $M$ results more stations contend successfully in a stage.
 Moreover, Fig. \ref{fig_n_M_delay} shows that larger $M$ markedly decrease the access delay. 
-Above all, when AP allocates RUs for random access, AP will allocate as many RUs as possible.
+Above all, when AP allocates RUs for random access, AP should allocate as many RUs as possible.
 
 
 
@@ -1078,7 +1046,7 @@ Above all, when AP allocates RUs for random access, AP will allocate as many RUs
 \label{contend_window}
 
 % figures
-\begin{figure}[!t]
+\begin{figure}[!h]
 \centering
 %subfigure
 \begin{subfigure}{0.5\textwidth}
@@ -1101,29 +1069,28 @@ Above all, when AP allocates RUs for random access, AP will allocate as many RUs
 % should have sth beginning
 %For those $m>0$, the curve will be convex and monotone decreasing. It is intuitive that with the increasing number of stations, the transmit probability decreases.
 Fig. \ref{fig_tau_n} shows case 1 ($M=9$) and case 2 ($M=18$), so that the rules we get are more convinced.
-In the figure, the purple line without point depicts the optimal $\tau$, which is given according to $\tau^\star = min\lbrace 1, M/n \rbrace$.
+In the figure, the purple line without point depicts the $\tau^\star$ that $\tau^\star = min\lbrace 1, M/n \rbrace$.
 With above analysis and effects of $M$, we tune remaining parameters $OCW_{min}, OCW_{max}$ so that $\tau$ approaches the optimal line. 
 To see the trend of the line clearly, larger $n$ is configured so that some rules could be obtained as follows.
 
-First, the $OCW_{min}$ or $W_0$, determines $\tau$ of loose scenario. 
+First, the $OCW_{min}$ or $W_0$, determines $\tau$ with small $n$. 
 The larger $W_0$ is, the lower $\tau$ is at $n=1$.
 That's why cases in Fig. \ref{fig_tau_n} have two different start points.
 
 Secondly, $m=0$ results in constant $\tau$, which is consistent with (\ref{tau_W0}) that $\tau$ does not depend on $n$.
-A special case is $W_0<M$ for scenario $n\leq M$, it results in constant transmission probability equals to 1 regardless of $n$. 
+A special case, $W_0<M$ for scenario $n\leq M$, results in constant $\tau$ equals to 1 regardless of $n$. 
 It perfectly matches $\tau^\star$ at $n\leq M$ as $\tau^\star = 1$ for the scenario $n \leq M$.
 Thus, if given $n\leq M$, the optimal configuration will be $OCW_{max}= OCW_{min} < M$. 
 
 
-Thirdly, $W_m$ affects more on dense scenario.
+Thirdly, performance of the dense scenario strongly depends on $OCW_{max}$.
 It determines the limit of the $\tau$, i.e., where the line of $\tau$ will converge. 
-Lines with the same $W_m$ will converge to a same value. 
 And both the two figures in Fig. \ref{fig_tau_n} correspond with the above statement.
 And larger $W_m$ causes lower $\tau$, which is closer to $\tau^\star$ when $n$ is large. 
 
 
 % figures
-\begin{figure}[!t]
+\begin{figure}[!h]
 \centering
 \begin{subfigure}{0.5\textwidth}
 \centering
@@ -1143,13 +1110,11 @@ And larger $W_m$ causes lower $\tau$, which is closer to $\tau^\star$ when $n$ i
 \label{fig_tau_n_detail}
 \end{figure}
 
-Then, we draw two subfigures with x-axis range $[0,100]$ to observe more clearly as in Fig. \ref{fig_tau_n_detail}. 
-From the two subfigures \ref{fig_tau_n_M9_detail} and \ref{fig_tau_n_M18_detail} we find another rule that when $W_0=1$, line of $\tau$ will have a flat start.
-It happens that the flat start matches better with $\tau^\star$ when $n\leq M$.
+Then, two subfigures as in Fig. \ref{fig_tau_n_detail} are generated from Fig. \ref{fig_tau_n} with $n$ ranges from $[0,100]$ to observe practical scenarios more clearly. 
+Another observation whereby is that when $W_0=1$, line of $\tau$ will have a flat start, which happens to match better with $\tau^\star$ at $n\leq M$.
 
-Based on all above observations, we conclude that $W_0$ has significant influence on scenario of $n\leq M$, while $W_m$ counts when $n$ is large or $n>M$. 
-In the next two subsections, we practically check the system efficiency and access delay under different parameter configurations of $\lbrace W_0, W_m \rbrace$, with which we could find an explicit relation between the parameter and performance.
-
+All above observations are summed up that $W_0$ has significant influence on scenario of $n\leq M$, while $W_m$ counts when $n$ is large, namely the dense scenario. 
+In the next two subsections, the system efficiency and access delay under different parameter configurations are practically evaluated, whereby above observed effects of parameters could be conformed.
 
 
 
@@ -1171,16 +1136,15 @@ In the next two subsections, we practically check the system efficiency and acce
 \label{fig_n_delay_Wm}
 \end{subfigure}
 \caption{Example of Configuring $OCW_{max}$, given $M=9$}
+\label{fig_Wm}
 \end{figure}
 
-With above rough rules, we estimate the effects of $OCW_{max}$ first by setting different $OCW_{max}$ while given $OCW_{min}=1$ and $M=9$.
-Actually the data we use to generate the figures are the same with that of Fig. \ref{fig_tau_n_M9}. 
-In Fig. \ref{fig_n_eff_Wm}, we select three of them to clearly display the effect of $OCW_{max}$ on system efficiency.
-From the figure, it is obvious that larger $OCW_{max}$ is much better for system efficiency when $n\geq M$. 
-The result corresponds to the above rules we obtain from the effect of parameters on $\tau$.
-Additionally, $OCW_{max}$ has the same effect on access delay . And since we use the same data with that in figure \ref{fig_tau_n_M9}, we find that the lines which converge in figure \ref{fig_tau_n_M9} also have the same tendency in figure \ref{fig_n_delay_Wm}. 
-
-As stated above that $OCW_{max}$ has a significant influence on the scenario of $n\geq M$, larger $OCW_{max}$ will obtain larger gain. 
+With above rough rules, the effect of $OCW_{max}$ is first evaluated by setting different $OCW_{max}$ while fixing $OCW_{min}=1$ and $M=9$.
+In Fig. \ref{fig_n_eff_Wm}, three cases which has the same $OCW_{min}$ are selected to clearly display the effect of $OCW_{max}$ on system efficiency.
+From the figure, it is evident that larger $OCW_{max}$ is much better for system efficiency when $n\geq M$. 
+The result corresponds to the above rules obtained from the effect of parameters on $\tau$.
+Additionally, larger $OCW_{max}$ results in shorter access delay. 
+%And since we use the same data with that in figure \ref{fig_tau_n_M9}, we find that the lines which converge in figure \ref{fig_tau_n_M9} also have the same tendency in figure \ref{fig_n_delay_Wm}. 
 
 
 \subsubsection{Configure $OCW_{min}$}
@@ -1201,15 +1165,16 @@ As stated above that $OCW_{max}$ has a significant influence on the scenario of 
 \label{fig_n_delay_W0}
 \end{subfigure}
 \caption{Example of Configuring $OCW_{min}$, given $M=18$}
+\label{fig_W0}
 \end{figure}
 
-To estimate the effect of $OCW_{min}$, we compare the performance of different configurations of $OCW_{min}$ while given $OCW_{max}=1023$, which has been validated that larger $OCW_{max}$ is better, and $M=18$. 
-First, as we claim in Section \ref{contend_window} that $W_0=W_m\leq M$ is the perfect configuration in the scenario of $n\leq M$, it is validated here that maximum system efficiency and minimum access delay are achieved with the configuration in the scenario of $n\leq M$.
-However, the configuration of small $OCW_{min}$ and large $OCW_{max}$ almost achieves as good performance as the perfect configuration.  
-Secondly, $OCW_{min}$ determines the start of the probability $\tau$, and it has a significant influence on the scenario of $n\leq M$.
+To estimate the effect of $OCW_{min}$, the performance of different configurations of $OCW_{min}$ while fixing large $OCW_{max}=1023$, and $M=18$. 
+First, $OCW_{min}$ determines the start of the probability $\tau$, and it has a significant influence on the scenario of $n\leq M$.
 From Fig. \ref{fig_n_eff_W0} and \ref{fig_n_delay_W0}, we find larger $OCW_{min}=127$ has lower system efficiency and larger access delay. 
+Secondly, as stated in Section \ref{contend_window} that $W_0=W_m\leq M$ is the perfect configuration in the scenario of $n\leq M$, it is validated in Fig. \ref{fig_W0} that maximum system efficiency and minimum access delay are achieved with the configuration in the scenario of $n\leq M$.
+However, the configuration of small $OCW_{min}$ and large $OCW_{max}$ almost achieves as good performance as the perfect configuration.  
 
-Now, we summarize above rules as follows.
+To this end, all observed rules are listed as follows.
  
 \begin{itemize}
 \item[1] For $M$: the larger the better
@@ -1221,7 +1186,7 @@ Now, we summarize above rules as follows.
 \end{itemize}
 \begin{itemize}
 	\item Special case: for $n\leq M$\\
-	$OCW_{max}=OCW_{min}<M$ 
+	$OCW_{max}=OCW_{min}<M$ is the optimal configuration.  
 \end{itemize}
 
 
@@ -1229,13 +1194,12 @@ Now, we summarize above rules as follows.
 
 
 \section{Conclusion}   \label{sec_conclu}
-In this paper, we evaluate the performance of the new OFDMA-based MCRA mechanism of 802.11ax.
-We extend \cite{bianchi2000performance} to model the MCRA mechanism and conduct a saturation analysis.
-The simple Markov model is validated that it could also precisely depict the steady state behavior of OFDMA-based MCRA of 802.11ax.
-With the model, we derive the expression of system efficiency and access delay. 
-Performance strongly depends on various system parameters.
-The number of RUs or subchannels is as large as possible.
-The initial contention window counts when only a few stations exist, while maximum contention window is important in the dense scenario.
+In this paper, Bianchi's Markov chain model is extended for saturation analysis of the OFDMA-based MCRA mechanism of 802.11ax.
+The simple Markov chain model is validated that it could precisely depict the steady state behavior of OFDMA-based MCRA of 802.11ax.
+Thereby, closed-form expressions of system efficiency and access delay are derived. 
+Finally, it is observed that performance strongly depends on the system parameters. 
+Larger number of RUs or subchannels for random access results in more successful contending stations at a stage.
+The initial contention window counts when only a few stations exist, while maximum contention window has significant influence in the dense scenario.
 
 Different from DCF of legacy 802.11, the OFDMA-based MCRA mechanism is more flexible, with system parameters dynamically configured.
 A real-time algorithm is required to configure the system parameters dynamically. 

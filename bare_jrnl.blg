@@ -16,45 +16,45 @@ Warning--empty title in draft_ax
 Warning--empty year in dengquality
 
 Done.
-You've used 14 entries,
+You've used 15 entries,
             4039 wiz_defined-function locations,
-            897 strings with 10092 characters,
-and the built_in function-call counts, 11376 in all, are:
-= -- 929
-> -- 241
-< -- 119
-+ -- 142
-- -- 34
-* -- 558
-:= -- 1652
-add.period$ -- 29
-call.type$ -- 14
-change.case$ -- 13
-chr.to.int$ -- 276
-cite$ -- 17
-duplicate$ -- 795
-empty$ -- 884
-format.name$ -- 45
-if$ -- 2627
+            904 strings with 10237 characters,
+and the built_in function-call counts, 12142 in all, are:
+= -- 1000
+> -- 251
+< -- 128
++ -- 148
+- -- 35
+* -- 594
+:= -- 1777
+add.period$ -- 31
+call.type$ -- 15
+change.case$ -- 14
+chr.to.int$ -- 294
+cite$ -- 18
+duplicate$ -- 850
+empty$ -- 939
+format.name$ -- 46
+if$ -- 2802
 int.to.chr$ -- 0
-int.to.str$ -- 14
-missing$ -- 126
-newline$ -- 65
-num.names$ -- 12
-pop$ -- 275
+int.to.str$ -- 15
+missing$ -- 134
+newline$ -- 68
+num.names$ -- 13
+pop$ -- 286
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 886
+skip$ -- 948
 stack$ -- 0
-substring$ -- 656
-swap$ -- 689
-text.length$ -- 27
+substring$ -- 699
+swap$ -- 738
+text.length$ -- 30
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 14
+type$ -- 15
 warning$ -- 3
-while$ -- 54
-width$ -- 16
-write$ -- 156
+while$ -- 59
+width$ -- 17
+write$ -- 167
 (There were 3 warnings)
