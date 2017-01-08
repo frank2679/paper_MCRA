@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.5.3)  6 JAN 2017 18:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.5.3)  8 JAN 2017 21:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -267,21 +267,30 @@ ings
 (/usr/local/texlive/2015/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip11
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
-) (./bare_jrnl.aux)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2014/10/28 v1.1a Standard LaTeX Color (DPC)
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 142.
+)
+(./bare_jrnl.aux)
 \openout1 = `bare_jrnl.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 353.
-LaTeX Font Info:    ... okay on input line 353.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 353.
-LaTeX Font Info:    ... okay on input line 353.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 353.
-LaTeX Font Info:    ... okay on input line 353.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 353.
-LaTeX Font Info:    ... okay on input line 353.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 353.
-LaTeX Font Info:    ... okay on input line 353.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 353.
-LaTeX Font Info:    ... okay on input line 353.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
 
 -- Lines per column: 58 (exact).
 Package caption Info: Begin \AtBeginDocument code.
@@ -347,6 +356,11 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
+Underfull \hbox (badness 1902) in paragraph at lines 113--115
+[]\OT1/ptm/b/it/9 Index Terms\OT1/ptm/b/n/9 ---MCRA, Multi-User PHY, OFDMA, IEE
+E
+ []
+
 [1{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
@@ -355,50 +369,50 @@ e
 File: ./figure/RU_spec.jpg Graphic file (type jpg)
 
 <use ./figure/RU_spec.jpg>
-Package pdftex.def Info: ./figure/RU_spec.jpg used on input line 649.
+Package pdftex.def Info: ./figure/RU_spec.jpg used on input line 293.
 (pdftex.def)             Requested size: 250.55437pt x 101.7394pt.
 
 <./figure/fig_MU_DL.png, id=13, 1038.88126pt x 576.1525pt>
 File: ./figure/fig_MU_DL.png Graphic file (type png)
 
 <use ./figure/fig_MU_DL.png>
-Package pdftex.def Info: ./figure/fig_MU_DL.png used on input line 656.
+Package pdftex.def Info: ./figure/fig_MU_DL.png used on input line 300.
 (pdftex.def)             Requested size: 238.93765pt x 132.51228pt.
 
 <./figure/fig_MU_UL.png, id=14, 1188.44pt x 482.80376pt>
 File: ./figure/fig_MU_UL.png Graphic file (type png)
 
 <use ./figure/fig_MU_UL.png>
-Package pdftex.def Info: ./figure/fig_MU_UL.png used on input line 663.
+Package pdftex.def Info: ./figure/fig_MU_UL.png used on input line 307.
 (pdftex.def)             Requested size: 249.57977pt x 101.39177pt.
- [2 <./figure/RU_spec.jpg> <./figure/fig_MU_DL.png> <./figure/fig_MU_UL.png>]
-<./figure/fig_tf_format.png, id=18, 1164.35pt x 434.62375pt>
+
+<./figure/fig_tf_format.png, id=15, 1164.35pt x 434.62375pt>
 File: ./figure/fig_tf_format.png Graphic file (type png)
 
 <use ./figure/fig_tf_format.png>
-Package pdftex.def Info: ./figure/fig_tf_format.png used on input line 681.
+Package pdftex.def Info: ./figure/fig_tf_format.png used on input line 325.
 (pdftex.def)             Requested size: 232.86588pt x 86.9232pt.
 
-<./figure/RA_illu_2.png, id=19, 1197.47375pt x 438.63875pt>
+<./figure/RA_illu_2.png, id=16, 1197.47375pt x 438.63875pt>
 File: ./figure/RA_illu_2.png Graphic file (type png)
 
 <use ./figure/RA_illu_2.png>
-Package pdftex.def Info: ./figure/RA_illu_2.png used on input line 701.
+Package pdftex.def Info: ./figure/RA_illu_2.png used on input line 345.
 (pdftex.def)             Requested size: 419.12209pt x 153.52585pt.
-
+ [2 <./figure/RU_spec.jpg> <./figure/fig_MU_DL.png> <./figure/fig_MU_UL.png>]
 <./figure/RA_illu.png, id=20, 1114.1625pt x 368.37625pt>
 File: ./figure/RA_illu.png Graphic file (type png)
 
 <use ./figure/RA_illu.png>
-Package pdftex.def Info: ./figure/RA_illu.png used on input line 709.
+Package pdftex.def Info: ./figure/RA_illu.png used on input line 353.
 (pdftex.def)             Requested size: 389.96272pt x 128.93361pt.
 
-Underfull \hbox (badness 1603) in paragraph at lines 729--735
+Underfull \hbox (badness 1603) in paragraph at lines 373--379
 []\OT1/ptm/m/n/10 Different from legacy 802.11, where all the pa-ram-e-
  []
 
 
-Underfull \hbox (badness 2027) in paragraph at lines 729--735
+Underfull \hbox (badness 2027) in paragraph at lines 373--379
 \OT1/ptm/m/n/10 The pa-ram-e-ters in-cludes $\OML/cmm/m/it/10 OCW[]; OCW[]; M$\
 OT1/ptm/m/n/10 , where
  []
@@ -406,10 +420,10 @@ OT1/ptm/m/n/10 , where
 <./figure/RAPS.png, id=21, 849.1725pt x 349.305pt>
 File: ./figure/RAPS.png Graphic file (type png)
  <use ./figure/RAPS.png>
-Package pdftex.def Info: ./figure/RAPS.png used on input line 765.
+Package pdftex.def Info: ./figure/RAPS.png used on input line 409.
 (pdftex.def)             Requested size: 254.75371pt x 104.7923pt.
 
-Overfull \hbox (2.75371pt too wide) in paragraph at lines 765--766
+Overfull \hbox (2.75371pt too wide) in paragraph at lines 409--410
 [][] 
  []
 
@@ -421,18 +435,15 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 File: ./figure/Markov_chain.png Graphic file (type png)
 
 <use ./figure/Markov_chain.png>
-Package pdftex.def Info: ./figure/Markov_chain.png used on input line 833.
+Package pdftex.def Info: ./figure/Markov_chain.png used on input line 477.
 (pdftex.def)             Requested size: 475.62254pt x 312.11317pt.
 
-Overfull \hbox (14.54614pt too wide) in paragraph at lines 853--853
+Overfull \hbox (14.54614pt too wide) in paragraph at lines 497--497
 [] 
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [4 <./figure/RA_illu_2.png> <./figure/RA_illu.png> <./figure/RAPS.png>]
-Overfull \hbox (9.40424pt too wide) in paragraph at lines 881--881
+[4 <./figure/RA_illu_2.png> <./figure/RA_illu.png> <./figure/RAPS.png>]
+Overfull \hbox (9.40424pt too wide) in paragraph at lines 525--525
 [] 
  []
 
@@ -441,11 +452,11 @@ Overfull \hbox (9.40424pt too wide) in paragraph at lines 881--881
 File: ./figure/multiple_parameter.png Graphic file (type png)
 
 <use ./figure/multiple_parameter.png>
-Package pdftex.def Info: ./figure/multiple_parameter.png used on input line 103
-4.
+Package pdftex.def Info: ./figure/multiple_parameter.png used on input line 678
+.
 (pdftex.def)             Requested size: 260.16812pt x 195.1261pt.
 
-Overfull \hbox (8.16812pt too wide) in paragraph at lines 1034--1035
+Overfull \hbox (8.16812pt too wide) in paragraph at lines 678--679
 [][] 
  []
 
@@ -453,10 +464,10 @@ Overfull \hbox (8.16812pt too wide) in paragraph at lines 1034--1035
 File: ./figure/chp4/max_min.png Graphic file (type png)
 
 <use ./figure/chp4/max_min.png>
-Package pdftex.def Info: ./figure/chp4/max_min.png used on input line 1059.
+Package pdftex.def Info: ./figure/chp4/max_min.png used on input line 703.
 (pdftex.def)             Requested size: 257.58055pt x 341.05185pt.
 
-Overfull \hbox (5.58055pt too wide) in paragraph at lines 1059--1060
+Overfull \hbox (5.58055pt too wide) in paragraph at lines 703--704
 [][] 
  []
 
@@ -465,10 +476,10 @@ Overfull \hbox (5.58055pt too wide) in paragraph at lines 1059--1060
 File: ./figure/n_M_eff_perf.png Graphic file (type png)
 
 <use ./figure/n_M_eff_perf.png>
-Package pdftex.def Info: ./figure/n_M_eff_perf.png used on input line 1098.
+Package pdftex.def Info: ./figure/n_M_eff_perf.png used on input line 742.
 (pdftex.def)             Requested size: 260.16812pt x 195.1261pt.
 
-Overfull \hbox (8.16812pt too wide) in paragraph at lines 1098--1099
+Overfull \hbox (8.16812pt too wide) in paragraph at lines 742--743
  [][] 
  []
 
@@ -476,15 +487,15 @@ Overfull \hbox (8.16812pt too wide) in paragraph at lines 1098--1099
 File: ./figure/n_M_ns_perf.png Graphic file (type png)
 
 <use ./figure/n_M_ns_perf.png>
-Package pdftex.def Info: ./figure/n_M_ns_perf.png used on input line 1106.
+Package pdftex.def Info: ./figure/n_M_ns_perf.png used on input line 750.
 (pdftex.def)             Requested size: 260.16812pt x 195.1261pt.
 
-Overfull \hbox (2.16812pt too wide) in paragraph at lines 1106--1107
+Overfull \hbox (2.16812pt too wide) in paragraph at lines 750--751
 [][] 
  []
 
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 1104--1110
+Overfull \hbox (6.0pt too wide) in paragraph at lines 748--754
 []$[]$ 
  []
 
@@ -492,15 +503,15 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 1104--1110
 File: ./figure/n_M_delay_perf.png Graphic file (type png)
 
 <use ./figure/n_M_delay_perf.png>
-Package pdftex.def Info: ./figure/n_M_delay_perf.png used on input line 1113.
+Package pdftex.def Info: ./figure/n_M_delay_perf.png used on input line 757.
 (pdftex.def)             Requested size: 260.16812pt x 195.1261pt.
 
-Overfull \hbox (2.16812pt too wide) in paragraph at lines 1113--1114
+Overfull \hbox (2.16812pt too wide) in paragraph at lines 757--758
 [][] 
  []
 
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 1111--1117
+Overfull \hbox (6.0pt too wide) in paragraph at lines 755--761
 []$[]$ 
  []
 
@@ -509,10 +520,10 @@ File: ./figure/chp4/M9/n_tau_perf_M9_x200.png Graphic file (type png)
 
 <use ./figure/chp4/M9/n_tau_perf_M9_x200.png>
 Package pdftex.def Info: ./figure/chp4/M9/n_tau_perf_M9_x200.png used on input 
-line 1138.
+line 782.
 (pdftex.def)             Requested size: 260.16812pt x 195.1261pt.
 
-Overfull \hbox (2.16812pt too wide) in paragraph at lines 1138--1139
+Overfull \hbox (2.16812pt too wide) in paragraph at lines 782--783
 [][] 
  []
 
@@ -521,20 +532,20 @@ File: ./figure/chp4/M18/n_tau_perf_M18_x400.png Graphic file (type png)
 
 <use ./figure/chp4/M18/n_tau_perf_M18_x400.png>
 Package pdftex.def Info: ./figure/chp4/M18/n_tau_perf_M18_x400.png used on inpu
-t line 1145.
+t line 789.
 (pdftex.def)             Requested size: 260.16812pt x 195.1261pt.
 
-Overfull \hbox (2.16812pt too wide) in paragraph at lines 1145--1146
+Overfull \hbox (2.16812pt too wide) in paragraph at lines 789--790
 [][] 
  []
 
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 1136--1150
+Overfull \hbox (6.0pt too wide) in paragraph at lines 780--794
  []$[]$ 
  []
 
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 1136--1150
+Overfull \hbox (6.0pt too wide) in paragraph at lines 780--794
  []$ 
  []
 
@@ -544,15 +555,15 @@ File: ./figure/chp4/M9/n_tau_perf_M9_x100.png Graphic file (type png)
 
 <use ./figure/chp4/M9/n_tau_perf_M9_x100.png>
 Package pdftex.def Info: ./figure/chp4/M9/n_tau_perf_M9_x100.png used on input 
-line 1183.
+line 827.
 (pdftex.def)             Requested size: 260.16812pt x 195.1261pt.
 
-Overfull \hbox (2.16812pt too wide) in paragraph at lines 1183--1184
+Overfull \hbox (2.16812pt too wide) in paragraph at lines 827--828
  [][] 
  []
 
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 1181--1187
+Overfull \hbox (6.0pt too wide) in paragraph at lines 825--831
  []$[]$ 
  []
 
@@ -561,15 +572,15 @@ File: ./figure/chp4/M18/n_tau_perf_M18_x100.png Graphic file (type png)
 
 <use ./figure/chp4/M18/n_tau_perf_M18_x100.png>
 Package pdftex.def Info: ./figure/chp4/M18/n_tau_perf_M18_x100.png used on inpu
-t line 1190.
+t line 834.
 (pdftex.def)             Requested size: 260.16812pt x 195.1261pt.
 
-Overfull \hbox (2.16812pt too wide) in paragraph at lines 1190--1191
+Overfull \hbox (2.16812pt too wide) in paragraph at lines 834--835
  [][] 
  []
 
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 1188--1194
+Overfull \hbox (6.0pt too wide) in paragraph at lines 832--838
  []$[]$ 
  []
 
@@ -578,15 +589,15 @@ File: ./figure/chp4/M9/n_eff_perf_W01.png Graphic file (type png)
 
 <use ./figure/chp4/M9/n_eff_perf_W01.png>
 Package pdftex.def Info: ./figure/chp4/M9/n_eff_perf_W01.png used on input line
- 1215.
+ 859.
 (pdftex.def)             Requested size: 260.16812pt x 195.1261pt.
 
-Overfull \hbox (2.16812pt too wide) in paragraph at lines 1215--1216
+Overfull \hbox (2.16812pt too wide) in paragraph at lines 859--860
  [][] 
  []
 
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 1213--1219
+Overfull \hbox (6.0pt too wide) in paragraph at lines 857--863
  []$[]$ 
  []
 
@@ -594,16 +605,16 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 1213--1219
 File: ./figure/chp4/M9/n_delay_perf.png Graphic file (type png)
 
 <use ./figure/chp4/M9/n_delay_perf.png>
-Package pdftex.def Info: ./figure/chp4/M9/n_delay_perf.png used on input line 1
-222.
+Package pdftex.def Info: ./figure/chp4/M9/n_delay_perf.png used on input line 8
+66.
 (pdftex.def)             Requested size: 260.16812pt x 195.1261pt.
 
-Overfull \hbox (2.16812pt too wide) in paragraph at lines 1222--1223
+Overfull \hbox (2.16812pt too wide) in paragraph at lines 866--867
  [][] 
  []
 
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 1220--1226
+Overfull \hbox (6.0pt too wide) in paragraph at lines 864--870
  []$[]$ 
  []
 
@@ -612,15 +623,15 @@ File: ./figure/chp4/M18/n_eff_perf_Wm1023.png Graphic file (type png)
 
 <use ./figure/chp4/M18/n_eff_perf_Wm1023.png>
 Package pdftex.def Info: ./figure/chp4/M18/n_eff_perf_Wm1023.png used on input 
-line 1246.
+line 890.
 (pdftex.def)             Requested size: 260.16812pt x 195.1261pt.
 
-Overfull \hbox (2.16812pt too wide) in paragraph at lines 1246--1247
+Overfull \hbox (2.16812pt too wide) in paragraph at lines 890--891
  [][] 
  []
 
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 1244--1250
+Overfull \hbox (6.0pt too wide) in paragraph at lines 888--894
  []$[]$ 
  []
 
@@ -629,20 +640,20 @@ File: ./figure/chp4/M18/n_delay_perf.png Graphic file (type png)
 
 <use ./figure/chp4/M18/n_delay_perf.png>
 Package pdftex.def Info: ./figure/chp4/M18/n_delay_perf.png used on input line 
-1253.
+897.
 (pdftex.def)             Requested size: 260.16812pt x 195.1261pt.
 
-Overfull \hbox (2.16812pt too wide) in paragraph at lines 1253--1254
+Overfull \hbox (2.16812pt too wide) in paragraph at lines 897--898
  [][] 
  []
 
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 1251--1257
+Overfull \hbox (6.0pt too wide) in paragraph at lines 895--901
  []$[]$ 
  []
 
 
-Underfull \hbox (badness 6268) in paragraph at lines 1260--1265
+Underfull \hbox (badness 6268) in paragraph at lines 904--909
  \OT1/ptm/m/it/10 2) Con-fig-ure $\OML/cmm/m/it/10 OCW[]$\OT1/ptm/m/it/10 : [][
 ] \OT1/ptm/m/n/10 To es-ti-mate the ef-fect of
  []
@@ -669,39 +680,41 @@ Underfull \hbox (badness 10000) in paragraph at lines 30--33
 11-[]481360 . pdf$,
  []
 
-) [11] [12 <./figure/chp4/M9/n_eff_perf_W01.png> <./figure/chp4/M9/n_delay_perf
-.png>] [13 <./figure/chp4/M18/n_eff_perf_Wm1023.png> <./figure/chp4/M18/n_delay
-_perf.png>] (./bare_jrnl.aux) ) 
+) [11
+
+] [12 <./figure/chp4/M9/n_eff_perf_W01.png> <./figure/chp4/M9/n_delay_perf.png>
+] [13 <./figure/chp4/M18/n_eff_perf_Wm1023.png> <./figure/chp4/M18/n_delay_perf
+.png>] (./bare_jrnl.aux) ) 
 Here is how much of TeX's memory you used:
- 4443 strings out of 493089
- 72372 string characters out of 6134843
- 142484 words of memory out of 5000000
- 7848 multiletter control sequences out of 15000+600000
- 44591 words of font info for 83 fonts, out of 8000000 for 9000
+ 4483 strings out of 493089
+ 73065 string characters out of 6134843
+ 144404 words of memory out of 5000000
+ 7886 multiletter control sequences out of 15000+600000
+ 42406 words of font info for 81 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 42i,18n,40p,387b,444s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2015/texmf-dist/fonts/enc/dv
-ips/base/8r.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmmi5.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmmi6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-mi7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
-8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.
-pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pf
-b></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><
-/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></us
-r/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/l
-ocal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/loca
-l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/t
-exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/te
-xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texl
-ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texliv
-e/2015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/tex
-mf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2015/texmf-dist/f
-onts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1
-/urw/times/utmri8a.pfb>
-Output written on bare_jrnl.pdf (13 pages, 1503355 bytes).
+ 42i,19n,40p,552b,458s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/b
+ase/8r.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+mi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+i5.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6
+.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.p
+fb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
+></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><
+/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
+sr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/
+local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/loc
+al/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/
+texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/tex
+live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texliv
+e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive
+/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2
+015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/201
+5/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-di
+st/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/
+type1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/
+times/utmri8a.pfb>
+Output written on bare_jrnl.pdf (13 pages, 1502077 bytes).
 PDF statistics:
  149 PDF objects out of 1000 (max. 8388607)
  92 compressed objects within 1 object stream
