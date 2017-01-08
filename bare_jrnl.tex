@@ -632,19 +632,12 @@ Especially, \textit{AID} with value 0 means the RU is for random access.
 
 \begin{figure*}[!ht]
 \centering
-\includegraphics[scale=0.35]{./figure/RA_illu_2.png}
-\caption{An example of OFDMA-based MCRA for UL in 802.11ax }
+\includegraphics[scale=0.35]{./figure/RA_illu_4.png}
+\caption{An example of Trigger-based MU UL transmission with OFDA-based MCRA}
 \label{fig_ra_ul}
 \end{figure*}
 
-\begin{figure*}[!ht]
-%\begin{minipage}{.5\textwidth}
-\centering
-\includegraphics[scale=0.35]{./figure/RA_illu.png}
-\caption{Illustration of OFDMA-based MCRA}
-\label{fig_ra_illu}
-%\end{minipage}
-\end{figure*}
+
 % 1. OFDMA-based MCRA is for UL
 % 2. AP configure the parameters dynamically
 % 3. TF-based MU UL above
@@ -662,7 +655,14 @@ Then the STAs, receiving the TF with resource allocation information, transmit U
 Therefore, TF above in the example have two variants, one for random access and the other for resource allocation. 
 The key of this mechanism locates at random access, i.e., the OFDMA-based MCRA, which is our concern.
 
-
+\begin{figure}[!h]
+%\begin{minipage}{.5\textwidth}
+\centering
+\includegraphics[scale=0.26]{./figure/RA_illu.png}
+\caption{Illustration of OFDMA-based MCRA}
+\label{fig_ra_illu}
+%\end{minipage}
+\end{figure}
 Details of OFDMA-based MCRA mechanism is as Fig. \ref{fig_ra_illu}. 
 To initialize a random access procedure, AP first transmits a TF announcing RUs for random access by setting the AID of the RUs to 0. 
 Attempting STAs, whose buffers are not empty, maintain a backoff counter named OFDMA Backoff (OBO), which are randomly generated among range $[0, OCW]$.
