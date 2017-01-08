@@ -142,57 +142,50 @@ However, the performance or user experience of WiFi networks still cannot catch 
 % causes of bottleneck at MAC
 MAC efficiency is reduced by the overhead of control signaling and collisions. Much effort has been paid in legacy 802.11 to reduce the overhead of control signaling, such as RIFS, frame aggregation, etc \cite{perahia2013next}. 
 In dense scenario, collisions will be the major cause of spectrum waste. More specifically, they comes from instable distributed coordination function (DCF) problem and unfair queueing problem. Firstly, DCF is inherently instable as it is a random access protocol, and the resulting collisions will consume even more resource in dense scenarios. Secondly, as we can see from the queueing model of the WiFi network, WiFi network will be an unfair queue, which will worsen the effect of instability of DCF. 
-%Each STA and AP are modeled as an individual queue, and the shared spectrum or the channel is seen as the server.
+Here we assume each STA and AP are modeled as an individual queue, and the shared spectrum or the channel is seen as the server. The WiFi network operates in a star topology, AP as the coordinator and $n$ STAs nearby.
 %Packets thus become the customers served by channel. 
 %Because legacy 802.11 implement single-user (SU) channel. That means at one time, at most one packet could be served successfully; otherwise collision happens.
-On the one hand, each STA and AP  (each queue) has the same chance to access the channel (server). 
-On the other hand, because WiFi network operates in a star topology, AP as the center and STAs surrounding the AP logically, AP shares more than $1/2$ down-link (DL) traffic loading, while AP only has $1/(n+1)$ chance to access channel, where $n$ is the number of STAs.
+On one hand, each STA and AP  (each queue) has the same chance to access the channel (server). 
+On the other hand, AP shares more than $1/2$ down-link (DL) traffic loading, while AP only has $1/(n+1)$ chance to access channel.
 The queue model of WiFi network is, therefore, an unfair queue between DL and up-link (UL) transmissions. 
 
 
 % DCF to scheduled MAC, TF-based UL
-Study group 802.11, target high efficiency WLAN (HEW) in dense scenario, thus modifies the MAC thoroughly, change DCF to central control. 
-On PHY layer, OFDMA is issued to implement both DL and UL multi-user (MU) channel, which means a STA could communicate with multiple STAs at a time. 
+Study group 802.11, target at high efficiency WLAN (HEW) in dense scenarios, thus modifies the MAC thoroughly by substituting DCF with central control. 
+On PHY layer, OFDMA is proposed to implement both the DL and UL multi-user (MU) channel, which means a STA could communicate with multiple STAs simultaneously. 
 On MAC layer, a brand new control frame called trigger frame (TF) is created to implement TF-based UL transmission. 
-The AP thus could schedule both DL and UL transmissions, which means DCF will be replaced by a scheduled MAC protocol. 
+Thus the AP could schedule both DL and UL transmissions, which means DCF will be replaced by a scheduled MAC protocol. 
 And instability of DCF will be mitigated very well and unfair queueing problem will not exist any more as AP does not need to contend with STAs.
-Moreover, a OFDMA-based multi-channel random access (MCRA) is proposed in 802.11ax as random access is highly efficient to transmit short frames, like bandwidth request. 
-In this mechanism, AP initiates the MCRA by transmit a TF at first. 
-STAs receiving the TF then contends with Aloha and binary exponential backoff mechanism. 
-AP at last responds with ACK telling which STAs succeed in contending.
-A random access procedure is thus composed of three-way handshake. 
+Moreover, a OFDMA-based multi-channel random access (MCRA) is proposed in 802.11ax as random access is still highly efficient to transmit short frames, like the bandwidth request. 
+In this three-way handshake mechanism, AP initiates the MCRA by transmit a TF at first, then STAs receiving the TF then contends with Aloha and binary exponential backoff mechanism, and AP at last responds with ACK telling which STAs succeed in contending.
+ 
 Details will be illustrated in Section II.
 
 % Related works of MCRA
 As for the OFDMA-based MCRA, we are concerned about number of stations succeeding in accessing the channel and access delay.
-Actually, MCRA has been supported by cellular networks to perform initial association to the network and to request transmission resources.
-This is the first time for 802.11 to apply OFDMA shifting SU PHY to MU PHY.
-However, cellular networks have adopted OFDMA for a while. 
-Also OFDMA-based MCRA is solicited by cellular network for initial association and bandwidth request etc.
-The OFDMA-based MCRA in cellular networks is conceptually the same with that of WiFi networks. 
+Actually, MCRA has been supported by cellular networks to perform initial association and request transmission resources, and this is the first time for 802.11 to apply OFDMA shifting SU PHY to MU PHY.
+
+
 In recent years, related works have proposed some models to derive the throughput \cite{zhou2008efficient}\cite{shen2003performance}\cite{choi2006multichannel}, the collision probability\cite{kim2012performance}\cite{seo2011design}, and the access delay \cite{zhou2008efficient}\cite{kim2012performance}\cite{seo2011design}\cite{behroozi1992delay}. 
-\cite{zhou2008efficient} gives a closed-form expression of throughput for OFDMA system. 
-\cite{shen2003performance} proposes a stabilized multi-channel slotted Aloha algorithm.
-\cite{choi2006multichannel} designs a 1-persistent type retransmission, i.e., no exponential backoff, to achieve a fast access.
-Some other works compare performance of two kinds of backoff mechanism, binary exponential backoff and uniform backoff  \cite{zhou2008efficient}\cite{seo2011design}\cite{kim2012performance}, which are implemented by IEEE 802.16 and 3GPP LTE respectively.  
-\cite{wei2015modeling} specifies a model estimating transient behavior of OFDMA system.
-In addition, \cite{GeneralizedOFDMACSMACA} generalizes CSMA/CA to OFDMA system for 802.11, which is much different from \cite{draft_ax}.
+\cite{zhou2008efficient} gives a closed-form expression of throughput for OFDMA system, \cite{shen2003performance} proposes a stabilized multi-channel slotted Aloha algorithm, and \cite{choi2006multichannel} designs a 1-persistent type retransmission that avoids exponential backoff to achieve a fast access.
+Some other works compare the performance of binary exponential backoff and uniform backoff mechanisms.  \cite{zhou2008efficient}\cite{seo2011design}\cite{kim2012performance}, which are implemented by IEEE 802.16 and 3GPP LTE respectively.  
+\cite{wei2015modeling} specifies a model to estimate transient behavior of OFDMA system.
+In addition, unlike \cite{draft_ax}, \cite{GeneralizedOFDMACSMACA} generalizes CSMA/CA to OFDMA system for 802.11, .
 
 
 % Our contribution
-In this paper, we estimate the steady state behavior of the OFDMA-based MCRA by extending Bianchi's Markov chain model.
-Bianchi's model has never been shifted to model the OFDMA-based MCRA. 
-Though the MCRA has big difference from DCF, including SU to MU channel, distributed scheme to central control scheme and listening before talk to Aloha, Bianchi's Markov chain model will have been validated that it precisely model the MCRA by some modifications.
-Also, we evaluate system efficiency, access delay and effects of important system parameters. 
+In this paper, we estimate the steady state behavior of the OFDMA-based MCRA by extending Bianchi's Markov chain model, which has never been shifted to model the OFDMA-based MCRA before. 
+Though the MCRA differs much from DCF, including SU to MU channel, distributed scheme to central control scheme and listening before talk to Aloha, Bianchi's Markov chain model proves to precisely model the MCRA after some modifications.
+Also, we evaluate the system efficiency, access delay and effects of some important system parameters. 
 
 % organization
 The paper is organized as follows.
-More explanations of 802.11ax features are given in Section \ref{sec_ax_feature}, including MU UL/DL transmission procedure and OFDMA-based random access procedure.
+We firstly explain some 802.11ax features like MU UL/DL transmission procedure and OFDMA-based random access procedure in Section \ref{sec_ax_feature}.
 Section \ref{sec_sys_model} contains the system model and performance analysis, system efficiency and access delay of the MCRA mechanism. 
-Then Section \ref{sec_model_val} shows simulation results compared with analysis results, which validates the model.
+Then Section \ref{sec_model_val} shows simulation results, along with analysis results to validate the model.
 Additional considerations on optimal performance are carried out in Section \ref{sec_max_min}. 
-After that, Section \ref{sec_perf_eval} evaluates the performance and effects of important system parameters. 
-Conclusion remark is given in Section \ref{sec_conclu}.
+After that, Section \ref{sec_perf_eval} evaluates the performance and effects of some important system parameters. 
+Conclusion remark is finally given in Section \ref{sec_conclu}.
 
 
 %% 
@@ -267,21 +260,20 @@ Conclusion remark is given in Section \ref{sec_conclu}.
 
 \section{802.11ax Features}			\label{sec_ax_feature}
 % 1. OFDMA MU, 2. TF-based UL 3. DCF to centralized coordination function
-In this section, necessary features of 802.11ax will be illustrated to understand the OFDMA-based MCRA mechanism.
+In this section, necessary features of 802.11ax will be illustrated to better understand the OFDMA-based MCRA mechanism.
 As stated above, collisions in dense scenario degrade performance of WiFi networks as the bottleneck locates at MAC.
 Study group 802.11ax thus proposes TF-based UL procedure, which means AP schedules both DL/UL transmissions.
 In respect of DL/UL, 802.11ax shifted the distributed coordination legacy 802.11 to centralized coordination.
-on the other hand, OFDMA is issued in IEEE 802.11ax to realize MU PHY.
-Additionally, OFDMA-based multi-channel random access (MCRA) is proposed.
-For more features of 802.11ax, \cite{dengquality} is a good reference.
+Additionally, OFDMA is issued in IEEE 802.11ax to realize MU PHY, and OFDMA-based multi-channel random access (MCRA) is proposed.
+More features of 802.11ax can be refered from \cite{dengquality}.
 
 \subsection{PHY}
-With MU PHY, the original SU 20 MHz channel could be specified more fine-grained and also aggregated to a wider channel.
-The resource unit (RU), which can be accessed by one STA, is specified as Figure \ref{fig_RU_spec}. The smallest RU is 26-tone, with which a 20 MHz could be separated into 9 subchannels.
+With MU PHY, the original SU 20 MHz channel could be specified as more fine-grained and aggregated to a wider channel.
+The resource unit (RU), which can be accessed by one STA, as shown in Figure \ref{fig_RU_spec}. The smallest RU is 26-tone, with which a 20 MHz could be separated into 9 subchannels.
 Also, coarse-grained RU is accepted.
-And as specified in Figure \ref{fig_RU_spec}, multiple 20 MHz channels can be aggregated, which is called \textit{Channel Bonding}. 
-This will help improve system performance, since one BSS is not restricted to a single 20 MHz channel.  
-It is worth mentioning that every transmission of MU should end at the same time. That means padding is required for shorter packets.
+And as specified in Figure \ref{fig_RU_spec}, multiple 20 MHz channels can be aggregated together, namely \textit{Channel Bonding}. 
+This will help improve system performance, since one basic service set (BSS) is not restricted to a single 20 MHz channel.  
+It is worth mentioning that every transmission of MU should end at the same time, which requires padding for shorter packets.
 
 
 % effects of MU has not explained.
@@ -314,9 +306,9 @@ It is an absolutely different method from OFDMA and beyond the scope of this pap
 For MU DL transmission, AP will transmit DL packets to multiple stations simultaneously as in Figure \ref{fig_MU_DL}. 
 The difficulty of OFDMA MU is MU UL transmission. 
 Since 802.11 is not a well synchronous system, preamble and even two-way handshaking are required before a data transmission. 
-A trigger-based MU UL is issued as in Figure \ref{fig_MU_UL}.
+The trigger-based MU UL is issued as in Figure \ref{fig_MU_UL}.
 A brand new control frame, trigger frame (TF), is created to be transmitted by AP at first.
-STAs could not transmit UL packets until they receive a TF which allocates RU for the STA or for random access. 
+STAs could not transmit UL packets until they receive a TF which allocates RU for the STA or for the random access. 
 The trigger frame format is as in Figure \ref{fig_TF_format}. Since the standard is in progress, many fields remain to be determined (TBD). 
 In the field \textit{User Info}, \textit{AID} represents the STA and \textit{RU Allocation} represents the RU allocated to the STA.
 Especially, \textit{AID} of value 0 means the RU for random access.
@@ -367,14 +359,12 @@ Especially, \textit{AID} of value 0 means the RU for random access.
 %We first illustrate the ODFMA-based random access procedure then give two use cases of the random access.
 We first check a use case of OFDMA-based MCRA as in Figure \ref{fig_ra_ul}.
 When a STA attempts to transmit data packets, the STA will send buffer state report (BSR) frame with OFDMA-based MCRA. 
-After successful contention, AP will allocate RUs for the STA by another type of trigger frame.
+After the successful contention, AP will allocate RUs for the STA by another type of trigger frame.
 Then the STA transmits data packets on the allocated RUs.
 
 Different from legacy 802.11, where all the parameters are predefined in each STA's hardware, system parameters of 802.11ax are configured dynamically by AP. 
-The parameters includes $OCW_{min}, OCW_{max}, M$, where $OCW_{min}, OCW_{max}$ represent the minimum and the maximum contention window. 
-And $M$ is the number of RUs for random access. 
-$OCW_{min}, OCW_{max}$ are given in an element called RAPS (random access parameter set) contained in beacon frame sent by AP. 
-$M$ is obtained from TF where some \textit{AID} of RUs equals 0.
+The parameters includes $OCW_{min}, OCW_{max}, M$, where $OCW_{min}, OCW_{max}$ represent the minimum and the maximum contention window, and $M$ is the number of RUs for random access. 
+$OCW_{min}, OCW_{max}$ are given in an element (random access parameter set) RAPS contained in beacon frame sent by AP, and $M$ is obtained from TF where some \textit{AID} of RUs equals 0.
 OFDMA-based MCRA is thus more flexible compared with DCF.
 
 Now let's check details by referring Figure \ref{fig_ra_illu}. 
@@ -392,9 +382,8 @@ When STAs fail to contend, the $OCW$ will be doubled until $OCW$ reaches $OCW_{m
 It means the backoff level increases until the highest level.
 
 
-We look deeply into the implementation of the mechanism by checking the RAPS element as in Figure \ref{fig_RAPS}.
-The two critical parameters $OCW_{min},OCW_{max}$ are specified in field \textit{OCW Range}. 
-The value is defined by $OCW_{min} = 2^{EOCW_{min}}-1$, $OCW_{max} = 2^{EOCW_{max}}-1$. 
+We look deeply into the implementation of the mechanism by checking the RAPS element as shown in Figure \ref{fig_RAPS}.
+Two critical parameters $OCW_{min},OCW_{max}$ are specified in field \textit{OCW Range}, and the value is defined by $OCW_{min} = 2^{EOCW_{min}}-1$, $OCW_{max} = 2^{EOCW_{max}}-1$. 
 In the following analysis, we issue another parameter $m$, \textit{maximum backoff level}, so that $OCW_{max} = (OCW_{min}+1)*2^m-1$. 
 Then we later specify $OCW_{max}$ with $m$ and $OCW_{min}$ in following section, which simplifies analysis.
 
