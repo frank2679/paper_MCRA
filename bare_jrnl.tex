@@ -470,7 +470,6 @@ MCRA, Multi-User PHY, OFDMA, 802.11ax
 % not use reference
 %\cite{khorov2015survey}
 \section{Introduction}		\label{Intro}
-
 % what is dense scenario
 During last decade, IEEE 802.11 has achieved a great success with enormous WiFi networks deployed for its high throughput and relative simplicity of implementation.
 According to Cisco Visual Network index \cite{cisco2016}, the mobile traffic will increase 53\% at CAGR within 2015-
@@ -940,13 +939,13 @@ $n=20$	& 6.06432	& 6.06323 \\
 \end{center}
 \end{table}
 
+%\input{validate.tex}
+
 \begin{figure}[!h]
-\includegraphics[scale=0.54]{./figure/multiple_parameter.png}
+\includegraphics[scale=0.38]{./figure/Section_model_validate/validate.pdf}
 \caption{System efficiency: Analysis versus Simulation}
 \label{validation}
 \end{figure}
-
-
 
 \section{Performance Evaluation} 	\label{sec_perf_eval}
 
@@ -1008,7 +1007,7 @@ Following analysis results validate the statement.
 
 \begin{figure}[!h]
 \centering
-\includegraphics[scale=.54]{./figure/n_M_eff_perf.png}
+\includegraphics[scale=.38]{./figure/Section_perf_eval/M/n_M_eff_perf.pdf}
 \caption{System efficiency versus number of stations}
 \label{fig_n_M_eff}
 \end{figure}
@@ -1016,14 +1015,14 @@ Following analysis results validate the statement.
 \begin{figure}[!h]
 \begin{subfigure}{0.5\textwidth}  
 %\centering
-\includegraphics[scale=.54]{./figure/n_M_ns_perf.png}
+\includegraphics[scale=.38]{./figure/Section_perf_eval/M/n_M_ns_perf.pdf}
 \caption{Number of successful stations in a single stage versus number of stations}
 \label{fig_n_M_ns}
 \end{subfigure}
 
 \begin{subfigure}{0.5\textwidth}  
 %\centering
-\includegraphics[scale=.54]{./figure/n_M_delay_perf.png}
+\includegraphics[scale=.38]{./figure/Section_perf_eval/M/n_M_delay_perf.pdf}
 \caption{Access delay versus number of stations}
 \label{fig_n_M_delay}
 \end{subfigure}
@@ -1048,14 +1047,14 @@ Above all, when AP allocates RUs for random access, AP should allocate as many R
 %subfigure
 \begin{subfigure}{0.5\textwidth}
 %\centering
-\includegraphics[scale=.54]{./figure/chp4/M9/n_tau_perf_M9_x200.png}
+\includegraphics[scale=.38]{./figure/Section_perf_eval/tau/n_tau_perf_M9_x200.pdf}
 \caption{Case 1, given $M=9$}
 \label{fig_tau_n_M9}
 \end{subfigure}
 %subfigure
 \begin{subfigure}{0.5\textwidth}
 %\centering
-\includegraphics[scale=.54]{./figure/chp4/M18/n_tau_perf_M18_x400.png}
+\includegraphics[scale=.38]{./figure/Section_perf_eval/tau/n_tau_perf_M18_x400.pdf}
 \caption{Case 2, given $M=18$}
 \label{fig_tau_n_M18}
 \end{subfigure}
@@ -1091,14 +1090,14 @@ And larger $W_m$ causes lower $\tau$, which is closer to $\tau^\star$ when $n$ i
 \centering
 \begin{subfigure}{0.5\textwidth}
 \centering
-\includegraphics[scale=.54]{./figure/chp4/M9/n_tau_perf_M9_x100.png}
+\includegraphics[scale=.38]{./figure/Section_perf_eval/tau/n_tau_perf_M9_x100.pdf}
 \caption{Case 1, given $M=9$}
 \label{fig_tau_n_M9_detail}
 \end{subfigure}
 
 \begin{subfigure}{0.5\textwidth}
 \centering
-\includegraphics[scale=.54]{./figure/chp4/M18/n_tau_perf_M18_x100.png}
+\includegraphics[scale=.38]{./figure/Section_perf_eval/tau/n_tau_perf_M18_x100.pdf}
 \caption{Case 2, given $M=18$}
 \label{fig_tau_n_M18_detail}
 \end{subfigure}
@@ -1121,14 +1120,14 @@ In the next two subsections, the system efficiency and access delay under differ
 \centering
 \begin{subfigure}{0.5\textwidth}  
   \centering  
-  \includegraphics[scale=0.54]{./figure/chp4/M9/n_eff_perf_W01.png}  
+  \includegraphics[scale=0.38]{./figure/Section_perf_eval/W0/n_eff_perf_W01.pdf}  
     \caption{System efficiency versus number of stations}   
     \label{fig_n_eff_Wm}
 \end{subfigure}   
 
 \begin{subfigure}{0.5\textwidth}
 	\centering
-\includegraphics[scale=.54]{./figure/chp4/M9/n_delay_perf.png}
+\includegraphics[scale=.38]{./figure/Section_perf_eval/W0/n_delay_perf_W01.pdf}
 \caption{Access delay versus number of stations}
 \label{fig_n_delay_Wm}
 \end{subfigure}
@@ -1150,14 +1149,14 @@ Additionally, larger $OCW_{max}$ results in shorter access delay.
 \centering
 \begin{subfigure}{0.5\textwidth}  
   \centering  
-  \includegraphics[scale=0.54]{./figure/chp4/M18/n_eff_perf_Wm1023.png}  
+  \includegraphics[scale=0.38]{./figure/Section_perf_eval/Wm/n_eff_perf_Wm1023.pdf}  
     \caption{System efficiency versus number of stations}   
     \label{fig_n_eff_W0}
 \end{subfigure}   
 
 \begin{subfigure}{0.5\textwidth}
 	\centering
-\includegraphics[scale=.54]{./figure/chp4/M18/n_delay_perf.png}
+\includegraphics[scale=.38]{./figure/Section_perf_eval/Wm/n_delay_perf_Wm1023.pdf}
 \caption{Access delay versus number of stations}
 \label{fig_n_delay_W0}
 \end{subfigure}
