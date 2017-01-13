@@ -31,6 +31,21 @@ E.~Perahia and R.~Stacey, \emph{{Next Generation Wireless LANS: 802.11 n and
   802.11 ac}}.\hskip 1em plus 0.5em minus 0.4em\relax Cambridge university
   press, 2013.
 
+\bibitem{bertsekas1992data}
+D.~P. Bertsekas, R.~G. Gallager, and P.~Humblet, \emph{{Data networks}}.\hskip
+  1em plus 0.5em minus 0.4em\relax Prentice-Hall International New Jersey,
+  1992, vol.~2.
+
+\bibitem{tan1987performance}
+H.~Tan and H.~Wang, ``Performance of multiple parallel slotted aloha
+  channels,'' in \emph{Proc. INFOCOM}, vol.~87, 1987, pp. 931--940.
+
+\bibitem{zhang1992multichannel}
+Z.~Zhang and Y.-J. Liu, ``Multichannel aloha data networks for personal
+  communications services (pcs),'' in \emph{Global Telecommunications
+  Conference, 1992. Conference Record., GLOBECOM'92. Communication for Global
+  Users., IEEE}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 1992, pp. 21--25.
+
 \bibitem{zhou2008efficient}
 P.~Zhou, H.~Hu, H.~Wang, and H.-h. Chen, ``{An efficient random access scheme
   for OFDMA systems with implicit message transmission},'' \emph{IEEE
@@ -71,6 +86,16 @@ C.-H. Wei, G.~Bianchi, and R.-G. Cheng, ``{Modeling and analysis of random
   \emph{IEEE Transactions on Wireless Communications}, vol.~14, no.~4, pp.
   1940--1953, 2015.
 
+\bibitem{cali2000dynamic}
+F.~Cal{\`\i}, M.~Conti, and E.~Gregori, ``{Dynamic tuning of the IEEE 802.11
+  protocol to achieve a theoretical throughput limit},'' \emph{IEEE/ACM
+  Transactions on Networking (ToN)}, vol.~8, no.~6, pp. 785--799, 2000.
+
+\bibitem{bianchi2000performance}
+G.~Bianchi, ``{Performance analysis of the IEEE 802.11 distributed coordination
+  function},'' \emph{IEEE Journal on selected areas in communications},
+  vol.~18, no.~3, pp. 535--547, 2000.
+
 \bibitem{GeneralizedOFDMACSMACA}
 H.~Kwon, H.~Seo, S.~Kim, and B.~G. Lee, ``{Generalized CSMA/CA for OFDMA
   systems: protocol design, throughput analysis, and implementation issues},''
@@ -81,11 +106,6 @@ H.~Kwon, H.~Seo, S.~Kim, and B.~G. Lee, ``{Generalized CSMA/CA for OFDMA
 \emph{Draft 1.0, Part 11: Wireless LAN Medium Access Control (MAC) and Physical
   Layer (PHY) Specifications, Amendment 6: Enhancements for High Efficiency
   WLAN, 802.11ax}, pp. 1--376, Sep 2016.
-
-\bibitem{bianchi2000performance}
-G.~Bianchi, ``{Performance analysis of the IEEE 802.11 distributed coordination
-  function},'' \emph{IEEE Journal on selected areas in communications},
-  vol.~18, no.~3, pp. 535--547, 2000.
 
 \bibitem{dengquality}
 D.-J. Deng, S.-Y. Lien, J.~Lee, and K.-C. Chen, ``{On Quality-of-Service
