@@ -471,7 +471,7 @@ OFDMA-based Random Access, Multi-User PHY, OFDMA, 802.11ax, High Efficiency WLAN
 % what is dense scenario, from development of WiFi
 During last decade, IEEE 802.11 has achieved a great success with enormous WiFi networks deployed for its high throughput and relative simplicity of implementation.
 According to Cisco Visual Network index \cite{cisco2016}, the global mobile traffic will experience an eightfold increase within 2015-2020, reaching 30.6 EB per month by 2020.
-Therefore, the \textit{dense scenarios}, where there are plenty of stations (STAs) associating with one access point (AP) or multiple basic service sets (BSSs) in a limited area, is becoming a common scenario. 
+Therefore, the \textit{dense scenarios}, where there are plenty of stations (STAs) associating with one access point (AP) or multiple basic service sets (BSSs) in a limited area, are becoming a common scenario. 
 % In this paper, the case of single AP with multiple STAs is our concern. (should not say it here)
 
 % history of 802.11 i.e., legacy solutions not work, MAC is bottleneck
@@ -508,20 +508,6 @@ STAs receiving the the announcement then contends with Aloha and binary exponent
 AP finally responds with ACK confirming which STAs contend successfully.
 Details of the mechanism will be illustrated in Section \ref{sec_ax_feature}.
 
-% Related works of OBRA
-\cite{wei2012modeling} \cite{bianchi2000performance} \cite{bertsekas1992data} 
-% performance of OBRA
-OBRA has been adopted by cellular networks to perform initial association to the network and to request transmission resource.
-In the literature, \cite{tan1987performance}\cite{zhang1992multichannel} devoted to multi-channel slotted Aloha systems, \cite{tan1987performance} designed for satellite communication. In \cite{zhang1992multichannel}, reservation is considered. 
-In recent years, related works have proposed some models to derive the throughput \cite{zhou2008efficient}\cite{shen2003performance}\cite{choi2006multichannel}, the collision probability\cite{kim2012performance}\cite{seo2011design}, and the access delay \cite{zhou2008efficient}\cite{kim2012performance}\cite{seo2011design}. 
-\cite{zhou2008efficient} gives a closed-form expression of throughput for OFDMA system. 
-\cite{shen2003performance} proposes a stabilized multi-channel slotted Aloha by pseudo-Bayesian algorithm.
-And \cite{choi2006multichannel} designs a 1-persistent type retransmission that avoids exponential backoff to achieve a fast access.
-Some other works \cite{zhou2008efficient}\cite{seo2011design}\cite{kim2012performance} compare performance of two kinds of backoff mechanism, binary exponential backoff and uniform backoff, which are implemented by IEEE 802.16 and 3GPP LTE respectively.  
-Especially, \cite{wei2015modeling} specifies a model estimating transient behavior of OFDMA system with busty traffic.
-On the other hand, it is the first time for 802.11 to adopt the MU-OFDMA in 802.11ax. 
-Almost all previous works \cite{cali2000dynamic}\cite{bianchi2000performance} etc. about 802.11 MAC efficiency focused on CSMA/CA on SU PHY. 
-One of few works \cite{GeneralizedOFDMACSMACA} generalizes CSMA/CA to OFDMA system for 802.11.
 
 
 % \cite{bianchi2000performance}
@@ -529,18 +515,45 @@ One of few works \cite{GeneralizedOFDMACSMACA} generalizes CSMA/CA to OFDMA syst
 In this paper, we use a Markov chain model to simply and accurately depict the steady state behavior of the OBRA mechanism. 
 In \cite{bianchi2000performance}, Markov chain model has been demonstrated to model DCF precisely.
 Though the OBRA differs much from DCF, including SU channel to MU channel, distributed MAC scheme to centralized MAC scheme, and carrier sense to Aloha, the Markov chain model still works well by some modifications adapting to these differences.
-And thereby, we are able to evaluate the system efficiency, access delay and effects of important system parameters. 
+And thereby, we are able to evaluate the system efficiency and access delay. 
 
 % organization
 The paper is organized as follows.
+Section \ref{sec_ref} displaies previous related works. 
 Some necessary features of 802.11ax are illustrated in Section \ref{sec_ax_feature}, including MU-OFDMA and OFDMA-based random access procedure.
 Section \ref{sec_sys_model} contains the system model and performance analysis. 
 Then Section \ref{sec_model_val} shows simulation results, along with analysis results to validate the model.
 In Section \ref{sec_perf_eval}, additional considerations on optimal performance are carried out and the effects of some important system parameters are evaluated. 
 Conclusion remark is finally given in Section \ref{sec_conclu}.
 
+\section{Related Works} \label{sec_ref}
+% legacy DCF analysis
+Evaluation of 802.11 MAC efficiency is a fertile field along with the evolution of 802.11, from DCF to EDCA \cite{perahia2013next} exploiting QoS guarantee. 
+However, the fundamental mechanism is still CSMA/CA.
+Various methods were proposed during the past 20 years. In \cite{ho1996performance}\cite{cali2000ieee} and \cite{cali2000dynamic}, assuming backoff time follows a geometric distribution, an analytical formula for the protocol capacity namely throughput of DCF is derived and \cite{cali2000dynamic} proposed a distributed algorithm to tune its backoff algorithm at run-time.
+In \cite{bianchi2000performance}, Bianchi proposed a simple and accurate model, which is a discrete-time 2-dimention Markov chain model, to compute the throughput of DCF under saturated condition and ideal channel assumptions.
+Afterward, this model is extended to evaluate throughput and delay performance of DCF or EDCA in plenty of scenarios, which validate the accuracy of the model. 
+In \cite{liaw2005performance} and \cite{daneshgaran2008unsaturated}, the authors consider unsaturated condition by introducing a new idle state. 
+The impact of channel induced errors and capture effects is also evaluated in \cite{daneshgaran2008unsaturated}.
+In \cite{kong2004performance} and \cite{roberts1975aloha}, the authors extend Bianchi's model accounting most features of EDCA in 802.11e under ideal channel condition.
 
-\section{Preliminary}			\label{sec_ax_feature}
+% performance of OBRA, SU to MU
+Standardization of next generation WLAN 802.11ax \cite{draft_ax} is almost complete, exploiting therein MU-OFDMA PHY and a centralized MAC scheme.
+However, random access is important to efficiently handle initial access, bursty traffic, and short packets. 
+The OBRA is thus proposed in \cite{draft_ax} as a multi-channel slotted Aloha with exponential backoff algorithm, transforming SU to MU channel.
+
+% analysis of MU OBRA
+Multi-channel slotted Aloha is implemented by 802.11 WLAN for the first time, while it has been adopted by cellular networks for a while to perform initial association and to request transmission resource.
+One of few works \cite{GeneralizedOFDMACSMACA} generalizes CSMA/CA to MU-OFDMA for 802.11 WLAN, which is very different from the OBRA defined in 802.11ax \cite{draft_ax}. 
+Most focus on cellular networks, like 3GPP LTE-A and IEEE 802.16.
+In the literature, research starts from SU channel slotted Aloha \cite{roberts1975aloha}, working on stability \cite{shen2003performance}, closed-form of throughput \cite{zhou2008efficient}\cite{shen2003performance}\cite{choi2006multichannel}, collision probability \cite{kim2012performance}\cite{seo2011design}, and access delay \cite{zhou2008efficient}\cite{kim2012performance}\cite{seo2011design} of multi-channel slotted Aloha.
+\cite{shen2003performance} stabilizes multi-channel slotted Aloha by pseudo-Bayesian algorithm.
+Collision resolution including uniform backoff and exponential backoff is investigated, \cite{zhou2008efficient}\cite{seo2011design} comparing the impact of both two backoff algorithms, while \cite{kim2012performance} considering only exponential backoff.
+And \cite{choi2006multichannel} designs a 1-persistent type retransmission that avoids backoff to achieve a fast access.
+Different from above works on steady-state performance, Wei \cite{wei2012modeling}\cite{wei2015modeling} conducts a transient-performance analysis of OFDMA system with busty traffic.
+
+
+\section{System Overview}			\label{sec_ax_feature}
 % 1. OFDMA MU, 2. TF-based UL 3. DCF to centralized coordination function
 Some necessary features of 802.11ax to better understand the OBRA mechanism are illustrated in this section.
 First, MU-OFDMA is firstly adopted by 802.11 to implement MU DL and MU UL. 
