@@ -490,31 +490,31 @@ In addition, an unfair queueing problem worsens the instability of DCF.
 
 The unfair queueing problem results from both DCF and star topology of BSS.
 When the WiFi network is seen with queueing model, each STA and AP are modeled as an individual queue, and the shared channel as the server. 
-Since the BSS operates in a star topology, AP as the coordinator and $n$ STAs nearby, all STAs download or upload data from or to AP, which is referred to as down-link (DL) traffic and up-link (UL) traffic respectively.
-On the other hand, each STA and AP have the same chance to access the channel. 
-Thus the AP shares the DL traffic loading, which accounts for more than $1/2$ of total traffic, while it only has chance of $1/(n+1)$ to access channel.
+Since the BSS operates in a star topology, AP as the coordinator and $n$ STAs nearby, all STAs download and upload data from and to AP, which are referred to as down-link (DL) traffic and up-link (UL) traffic respectively.
+On the other hand, each STA and AP has the same chance to access the channel. 
+Thus the AP has chance of $1/(n+1)$ to access channel while it shares the DL traffic loading, which accounts for more than $1/2$ of total traffic.
 The queue model of WiFi network is, therefore, an unfair queueing between DL and UL transmissions. 
 
 
 % DCF to scheduled MAC, TF-based UL
 Study group 802.11ax, aimed at HEW in the dense scenarios, thus modifies the MAC thoroughly by substituting DCF with centralized control. 
-On the PHY layer, OFDMA is the first time adopted by 802.11 to implement both the DL and UL Multi-User (MU) channel, which means a STA could communicate with multiple STAs simultaneously.
-On MAC layer, the AP is supposed to schedule both DL and UL transmissions, which means AP does not need to contend with STAs. 
+On the PHY layer, OFDMA is adopted by 802.11 for the first time to implement both the DL and UL Multi-User (MU) channel, which means AP could communicate with multiple STAs simultaneously.
+On the MAC layer, the AP is supposed to schedule both DL and UL transmissions, which means AP does not need to contend with STAs. 
 As a result, instability of DCF should be mitigated and the unfair queueing problem does not exist anymore.
-Moreover, an OFDMA-based random access (OBRA) is proposed in 802.11ax as random access is highly efficient to deliver short frames, like bandwidth request. 
-The OBRA mechanism proposes a three-way handshake procedure to implement random access.
-AP initiates the OBRA by transmitting an announce frame at first. 
-STAs receiving the the announcement then contends with Aloha and binary exponential backoff mechanism. 
-AP finally responds with ACK confirming which STAs contend successfully.
+A more complicated MAC scheme is required for 802.11ax compared with DCF in legacy 802.11.
+One of the MAC schemes, OFDMA-based random access (OBRA), is proposed in 802.11ax as random access for delivering short frames, like bandwidth request. 
+The OBRA mechanism proposes a three-way handshake procedure to implement random access:
+1) AP initiates the OBRA by transmitting an announce frame at first;
+2) STAs receiving the the announcement then contends with Aloha and binary exponential backoff mechanism. 
+3) finally AP responds with ACK confirming which STAs contend successfully.
 Details of the mechanism will be illustrated in Section \ref{sec_ax_feature}.
 
 
 
 % \cite{bianchi2000performance}
 % Our contribution 
-In this paper, we use a Markov chain model to simply and accurately depict the steady state behavior of the OBRA mechanism. 
-In \cite{bianchi2000performance}, Markov chain model has been demonstrated to model DCF precisely.
-Though the OBRA differs much from DCF, including SU channel to MU channel, distributed MAC scheme to centralized MAC scheme, and carrier sense to Aloha, the Markov chain model still works well by some modifications adapting to these differences.
+Since in \cite{bianchi2000performance}, the 2-dimension Markov chain model has been demonstrated simple and accurate to model DCF, we extend the Markov chain model to the OBRA mechanism.
+Though the OBRA differs much from DCF, including from SU channel to MU channel, from distributed MAC scheme to centralized MAC scheme, and from carrier sense to Aloha, our work shows that the Markov chain model still works well by some modifications adapting to these differences.
 And thereby, we are able to evaluate the system efficiency and access delay. 
 
 % organization
@@ -546,18 +546,19 @@ The OBRA is thus proposed in \cite{draft_ax} as a multi-channel slotted Aloha wi
 Multi-channel slotted Aloha is implemented by 802.11 WLAN for the first time, while it has been adopted by cellular networks for a while to perform initial association and to request transmission resource.
 One of few works \cite{GeneralizedOFDMACSMACA} generalizes CSMA/CA to MU-OFDMA for 802.11 WLAN, which is very different from the OBRA defined in 802.11ax \cite{draft_ax}. 
 Most focus on cellular networks, like 3GPP LTE-A and IEEE 802.16.
-In the literature, research starts from SU channel slotted Aloha \cite{roberts1975aloha}, working on stability \cite{shen2003performance}, closed-form of throughput \cite{zhou2008efficient}\cite{shen2003performance}\cite{choi2006multichannel}, collision probability \cite{kim2012performance}\cite{seo2011design}, and access delay \cite{zhou2008efficient}\cite{kim2012performance}\cite{seo2011design} of multi-channel slotted Aloha.
+In the literature, works follow the research of single channel slotted Aloha \cite{roberts1975aloha}, working on stability \cite{shen2003performance}, closed-form of throughput \cite{zhou2008efficient}\cite{shen2003performance}\cite{choi2006multichannel}, collision probability \cite{kim2012performance}\cite{seo2011design}, and access delay \cite{zhou2008efficient}\cite{kim2012performance}\cite{seo2011design} of multi-channel slotted Aloha.
 \cite{shen2003performance} stabilizes multi-channel slotted Aloha by pseudo-Bayesian algorithm.
 Collision resolution including uniform backoff and exponential backoff is investigated, \cite{zhou2008efficient}\cite{seo2011design} comparing the impact of both two backoff algorithms, while \cite{kim2012performance} considering only exponential backoff.
 And \cite{choi2006multichannel} designs a 1-persistent type retransmission that avoids backoff to achieve a fast access.
 Different from above works on steady-state performance, Wei \cite{wei2012modeling}\cite{wei2015modeling} conducts a transient-performance analysis of OFDMA system with busty traffic.
 
+As far as we know, no closed-form of performance analysis of the OBRA has been derived, and the Markov chain model has never been used to model the multi-channel slotted Aloha.
 
 \section{System Overview}			\label{sec_ax_feature}
 % 1. OFDMA MU, 2. TF-based UL 3. DCF to centralized coordination function
 Some necessary features of 802.11ax to better understand the OBRA mechanism are illustrated in this section.
 First, MU-OFDMA is firstly adopted by 802.11 to implement MU DL and MU UL. 
-To support MU UL, study group 802.11ax proposes TF-based UL procedure, which means UL transmission could be scheduled by AP, shifting distributed coordination to centralized control.
+To support MU UL, study group 802.11ax proposes trigger-based MU UL procedure, which means UL transmission could be scheduled by AP, shifting distributed coordination to centralized control.
 Then OFDMA-based random access (OBRA) is illustrated in the following subsection.
 For more features of 802.11ax, refer to \cite{draft_ax}\cite{dengquality}.
 
@@ -615,7 +616,13 @@ RU type & CBW20	&	CBW40	&	CBW80	&	\parbox[m]{1.7cm}{\ CBW80+80 \\ and CBW160} \\
 \label{fig_MU_UL}
 \end{figure}
 
-In respect of MAC layer, first for MU DL transmission, AP transmits DL packets to multiple stations simultaneously as in Fig. \ref{fig_MU_DL}.
+\begin{figure}[!t]
+\includegraphics[scale=0.2]{./figure/Section_preliminary/fig_tf_format.png}
+\caption{Trigger Frame format}
+\label{fig_TF_format}
+\end{figure}
+
+In respect of MAC layer, first, for MU DL transmission, AP transmits DL packets to multiple stations simultaneously as in Fig. \ref{fig_MU_DL}.
 Secondly, MU UL transmission is more complicated because WiFi network is not a well-synchronized system. 
 A trigger-based MU UL transmission is thus issued in Fig. \ref{fig_MU_UL}.
 A brand new control frame, trigger frame (TF), is created to be transmitted by AP to initiate the UL transmission.
@@ -627,24 +634,13 @@ In the field \textit{User Info}, subfield \textit{AID} represents the identifica
 Especially, \textit{AID} with value 0 means the RU is for random access.
 
 
-\begin{figure}[!t]
-\includegraphics[scale=0.2]{./figure/Section_preliminary/fig_tf_format.png}
-\caption{Trigger Frame format}
-\label{fig_TF_format}
-\end{figure}
+
 
 %What's more, to support scheduling of TF, a mechanism called \textit{Target Wake Time} (TWT) is implemented in 802.11ax. TWT is originally issued in 802.11ah for power saving\cite{khorov2015survey}. It is also out of scope of this paper.
 
 
 
 \subsection{OBRA}		\label{sec_RA_illu}
-
-\begin{figure*}[!ht]
-\centering
-\includegraphics[scale=0.35]{./figure/Section_preliminary/fig_RA_UL.png}
-\caption{An example of Trigger-based MU UL transmission with OBRA}
-\label{fig_ra_ul}
-\end{figure*}
 
 
 % 1. OBRA is for UL
@@ -663,8 +659,13 @@ Thereby in the next step, the AP could allocate RUs to STAs by transmitting a TF
 Then the STAs, receiving the TF with resource allocation information, transmit UL data packets. And AP at last responds ACK.
 Therefore, TFs in the example have two variants, one for random access and the other for resource allocation. 
 When traffic information is collected, the allocation is beyond the scope of this paper. Only step one is our interest.
-
-\begin{figure}[!h]
+\begin{figure}[!t]
+\centering
+\includegraphics[scale=0.2]{./figure/Section_preliminary/fig_RA_UL.png}
+\caption{An example of Trigger-based MU UL transmission with OBRA}
+\label{fig_ra_ul}
+\end{figure}
+\begin{figure}[!t]
 %\begin{minipage}{.5\textwidth}
 \centering
 \includegraphics[scale=0.24]{./figure/Section_preliminary/fig_RA_illu.png}
@@ -697,7 +698,7 @@ OBRA is thus more flexible compared with DCF.
 %Similar to legacy 802.11 power save, HE-STA needs to transmit PS-poll or APSD-trigger frame to inform AP of its active state when the HE-STA wakes up.
 %The transmission of PS-poll or APSD-trigger frame is a good case of OFDMA-based random access. After successful contention, AP will transmit the buffered packets of the HE-STA.
 
-\begin{figure}[!h]
+\begin{figure}[!t]
 \includegraphics[scale=0.24]{./figure/Section_preliminary/fig_RAPS.png}
 \caption{Random Access Parameter Set (RAPS) Element}
 \label{fig_RAPS}
@@ -706,11 +707,11 @@ OBRA is thus more flexible compared with DCF.
 
 
 \section{System Model} 		\label{sec_sys_model}
-Markov chain model has been verified of its accuracy of depicting the steady state behavior of DCF based on the assumption that at each request transmission, and regardless of the number of retransmission suffered, each request frame collides with constant and independent probability $p$ \cite{bianchi2000performance}. 
+Markov chain model has been verified of its accuracy of depicting the steady state behavior of DCF based on the assumption that at each request transmission, each request frame collides with constant and independent probability $p$ regardless of the number of retransmission suffered \cite{bianchi2000performance}. 
 Although some differences exist between OBRA and DCF, following shows the accuracy of Markov chain model for OBRA mechanism.
 
 The analysis is divided into two parts. First is the Markov chain model to estimate the packet transmission probability $\tau$ and conditional collision probability $p$. 
-Secondly, we evaluate some metrics given $\tau$, including the number of stations who succeed in contending in a stage $n_s$, self-defined system efficiency \textit{eff}, and access delay of a STA $D$.  
+Secondly, we evaluate some metrics given $\tau$, including the number of successful contending stations in a stage $n_s$, self-defined system efficiency \textit{eff}, and access delay of a STA $D$.  
 Table \ref{table_notation} is a list of all parameters and notations.
 
 
@@ -799,8 +800,7 @@ b_{i-1,T}\cdot p = b_{i,T} 		\rightarrow b_{i,T} = p^i b_{0,T}, \quad 0\leq i < 
 b_{m-1,T}\cdot p = (1-p) b_{m,T}	\rightarrow b_{m,T} = \frac{p^m}{1-p}b_{0,T}.
 \label{biT}
 \end{align}
-
-Then, other states are expressed with states where $b(t)=T$:
+Then, the other states could be expressed by states with $b(t)=T$:
 \begin{align}
 &b_{i,k} =  \nonumber \\
 &
@@ -812,43 +812,40 @@ Then, other states are expressed with states where $b(t)=T$:
 \\ &\qquad \qquad \qquad \qquad \quad \qquad \qquad M+1 \leq k\leq W_m, \quad i = m \nonumber \\
 \label{steady_prob}
 \end{align}
-
-From (\ref{biT}), $\sum_{i=0}^m b_{i,T}= \frac{b_{0,T}}{1-p}$ is obtained; whereby (\ref{steady_prob}) could be summed respectively to get (\ref{part_sum}).  
-
-\begin{figure*}[!t]
+The first and third subequation in (\ref{steady_prob}) are first and last row of states in \ref{Markov} except the first column state with $b(t)=T$. The second subquation is the states in the middle rows without the states in the first column.
+From (\ref{biT}), $\sum_{i=0}^m b_{i,T}= \frac{b_{0,T}}{1-p}$ is obtained; whereby each row of states in Fig. \ref{Markov} could be obtained by summing the subequations of (\ref{steady_prob}) respectively to get (\ref{part_sum}).  
+%\begin{figure*}[!b]
 \begin{align}
 \begin{cases}
-\sum_{k=M+1}^{W_0} b_{0,k} = \frac{b_{0,T}}{W_0+1}\left(-\frac{M}{2}\left\lfloor \frac{W_0}{M}\right\rfloor ^2 + \left(W_0-\frac{M}{2}\right)\left\lfloor \frac{W_0}{M} \right\rfloor \right) \\[8pt]
-\sum_{i=1}^{m-1}\sum_{k=M+1}^{W_i} b_{i,k} = \frac{b_{0,T}}{W_0+1}\left(\frac{p}{2}\right)^i \left(-\frac{M}{2}\left\lfloor \frac{W_i}{M}\right\rfloor ^2 + \left(W_i-\frac{M}{2}\right)\left\lfloor \frac{W_i}{M} \right\rfloor \right) \\[8pt]
-\sum_{k=M+1}^{W_m} b_{m,k} = \frac{b_{0,T}}{W_0+1}\frac{(\frac{p}{2})^m}{1-p}\left(-\frac{M}{2}\left\lfloor \frac{W_m}{M}\right\rfloor ^2 + \left(W_m-\frac{M}{2}\right)\left\lfloor \frac{W_m}{M} \right\rfloor \right) 
+\sum_{k=M+1}^{W_0} b_{0,k} = \\
+\quad \frac{b_{0,T}}{W_0+1}\left(-\frac{M}{2}\left\lfloor \frac{W_0}{M}\right\rfloor ^2 + \left(W_0-\frac{M}{2}\right)\left\lfloor \frac{W_0}{M} \right\rfloor \right) \\[8pt]
+\sum_{i=1}^{m-1}\sum_{k=M+1}^{W_i} b_{i,k} = \\
+\quad \frac{b_{0,T}}{W_0+1}\left(\frac{p}{2}\right)^i \left(-\frac{M}{2}\left\lfloor \frac{W_i}{M}\right\rfloor ^2 + \left(W_i-\frac{M}{2}\right)\left\lfloor \frac{W_i}{M} \right\rfloor \right) \\[8pt]
+\sum_{k=M+1}^{W_m} b_{m,k} = \\
+\quad \frac{b_{0,T}}{W_0+1}\frac{(\frac{p}{2})^m}{1-p}\left(-\frac{M}{2}\left\lfloor \frac{W_m}{M}\right\rfloor ^2 + \left(W_m-\frac{M}{2}\right)\left\lfloor \frac{W_m}{M} \right\rfloor \right) 
 \end{cases}
 \label{part_sum}
 \end{align}
-\end{figure*}
-
+%\end{figure*}
 Each subequation in (\ref{part_sum}) has the same term: $-\frac{M}{2}\left\lfloor \frac{W_i}{M}\right\rfloor ^2 + \left(W_i-\frac{M}{2}\right)\left\lfloor \frac{W_i}{M} \right\rfloor$. 
 To simplify the expression, let $X_i = -\frac{M}{2}\left\lfloor \frac{W_i}{M}\right\rfloor ^2 + \left(W_i-\frac{M}{2}\right)\left\lfloor \frac{W_i}{M} \right\rfloor$. 
 Then, sum the steady state probability of all states to get (\ref{total_sum2}).
-
 \begin{figure*}[!t]
 \begin{align}
 1 &= \sum_{i=0}^m \sum_{k=0}^{W_i}b_{i,k} 
  = \frac{b_{0,T}}{W_0+1}\left( X_0 + \sum_{i=1}^{m-1}X_i\left( \frac{p}{2}\right)^i + X_m\frac{\left( \frac{p}{2}\right)^m}{1-p}\right) + \frac{b_{0,T}}{1-p}\label{total_sum}\\
-& = b_{0,T}\left( \frac{(1-p)X_0+(1-p) \sum_{i=1}^{m-1}X_i\left( \frac{p}{2}\right)^i+X_m\left( \frac{p}{2}\right)^m+W_0+1}{(W_0+1)(1-p)}\right), \label{total_sum2}
+& = b_{0,T}\left( \frac{(1-p)X_0+(1-p) \sum_{i=1}^{m-1}X_i\left( \frac{p}{2}\right)^i+X_m\left( \frac{p}{2}\right)^m+W_0+1}{(W_0+1)(1-p)}\right) \label{total_sum2}
 \end{align}
 %\setcounter{equation}{7}%{\value{MYtempeqncnt}}
 %% IEEE uses as a separator
 \hrulefill
 \end{figure*}
-
-whereby a closed-form expression of $\tau$, the probability of a station transmitting a request at a stage, is derived.
-
+Therefore, $\tau$, the probability of a station transmitting a request at a stage, could be expressed by
 \begin{align}
 \label{tau_general}
 &\tau = \sum_{i=0}^m b_{i,T} = \frac{b_{0,T}}{1-p} = \nonumber \\
 &\frac{W_0+1}{W_0+1+(1-p)X_0+(1-p) \sum_{i=1}^{m-1}X_i\left( \frac{p}{2}\right)^i+X_m\left( \frac{p}{2}\right)^m}
 \end{align}
-
 For $m=0, M=1$ which is SU PHY with a fixed contention window, check (\ref{total_sum}), the terms containing $X_i, i>0$ will disappear, and $b_{0,T}/(1-p)$ degrades to $b_{0,T}$.
 As a result, (\ref{total_sum2}) degrades to 
 \begin{align}
@@ -1054,7 +1051,7 @@ Above all, when AP allocates RUs for random access, AP should allocate as many R
 \label{contend_window}
 
 % figures
-\begin{figure}[!ht]
+\begin{figure}[!t]
 \centering
 %subfigure
 \begin{subfigure}{0.5\textwidth}
@@ -1098,7 +1095,7 @@ And larger $W_m$ causes lower $\tau$, which is closer to $\tau^\star$ when $n$ i
 
 
 % figures
-\begin{figure}[!ht]
+\begin{figure}[!t]
 \centering
 \begin{subfigure}{0.5\textwidth}
 \centering
@@ -1128,7 +1125,7 @@ In the next two subsections, the system efficiency and access delay under differ
 
 \subsubsection{Configure $OCW_{max}$}
 
-\begin{figure}[!ht]
+\begin{figure}[!t]
 \centering
 \begin{subfigure}{0.5\textwidth}  
   \centering  
@@ -1157,7 +1154,7 @@ Additionally, larger $OCW_{max}$ results in shorter access delay.
 
 \subsubsection{Configure $OCW_{min}$}
 
-\begin{figure}[!ht]
+\begin{figure}[!t]
 \centering
 \begin{subfigure}{0.5\textwidth}  
   \centering  
